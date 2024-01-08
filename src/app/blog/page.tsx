@@ -9,7 +9,7 @@ export default function Home() {
     <>
     <Header/>
     <main className={styles.main}>
-      <Link href="/articles/trendlines">Blog</Link>
+      <Link href="/blog/articles/trendlines">Blog</Link>
     
     </main>
     </>
