@@ -1,0 +1,21 @@
+
+.header {
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  background-color: hotpink;
+  padding: 5px 20px;
+  
+  .logo {
+  font-size: 2rem;
+  padding: 10px;
+  margin: 0;
+  font-family: 'PT Mono', monospace;
+  text-decoration: none;
+  }
+}
+
+.headerNav * {
+  padding: 10px;
+  color: black
+}

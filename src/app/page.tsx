@@ -1,95 +1,47 @@
+import '@progress/kendo-theme-default/dist/all.css';
+import styles from './page.module.scss'
+import Link from 'next/link'
 import Image from 'next/image'
-import styles from './page.module.css'
+import profilePic from './main.jpg'
+import Header from './header'
+
+import { SvgIcon } from "@progress/kendo-react-common";
+import {
+  twitterIcon,
+  linkedinIcon,
+  codeIcon,
+  envelopeIcon
+} from "@progress/kendo-svg-icons";
 
 export default function Home() {
+
   return (
+    <>
+    <Header/>
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <div>
+        <Image src={profilePic} alt="me" />
+        <div className={styles.desc}>
+          <h1> &gt; <b>Kathryn Grayson Nanz</b> is a Senior Developer Advocate, Front End Engineer, UI Designer, Author, Speaker, and Lifelong Learner.</h1>
+          <p>
+          In 2013, I graduated with a Fine Arts degree and took my first job as Junior Graphic Designer at a small, boutique ad agency in Washington, DC. While there, my Creative Director told me to never let anyone else find out that I knew how to code – he warned me that if they knew I could do it, I'd be stuck doing it forever and never get to focus on print design again. I ignored his warning; turns out, he was completely right, but I've never been happier.
+          </p>
+          <p>
+          I currently work as a Senior Developer Advocate at Progress Software where I help people build beautiful and user-friendly interfaces, design and maintain component libraries, and stop back-end devs from writing any more CSS. I'm especially interested in React, design, accessibility, and creating applications and websites that center the human experience.
+          </p>
+          <div>
+            <h3>Let me save you a Google search: 
+              <a href="https://twitter.com/kathryngrayson" target="_blank"><SvgIcon icon={twitterIcon} size="large" /></a>
+              <a href="https://www.linkedin.com/in/kathryngrayson/" target="_blank"><SvgIcon icon={linkedinIcon} size="large" /></a>
+              <a href="https://github.com/kathryngraysonnanz" target="_blank"><SvgIcon icon={codeIcon} size="large" /></a>
+              <a href="mailto:kathrynkaygrayson@gmail.com"><SvgIcon icon={envelopeIcon} size="large" /></a>
+            </h3>
+            
+          </div>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    
     </main>
+    </>
   )
 }
