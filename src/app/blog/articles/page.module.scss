@@ -2,8 +2,23 @@
     margin: 40px;
     max-width: 850px;
 
+    p, li, ul {
+        line-height: 1.7rem;
+    }
+
     img {
         max-width: 90%;
+        border: 1px solid black;
+    }
+
+    code {
+        background-color: yellow;
+        padding: 6px;
+        line-height: 1.55rem;
+    }
+
+    a {
+        color: #0088A3; 
     }
 
 }

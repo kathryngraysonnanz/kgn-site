@@ -1,0 +1,84 @@
+# What’s New in WCAG 2.2
+
+*Last modified November 16, 2023* 
+
+If you’ve been keeping up with the accessibility space, then you might already know that there’s a new and updated version of the Web Content Accessibility Guidelines (WCAG) that’s been under review for the last several months. The new version will remove Success Criteria 4.1.1 – Parsing and add nine new Guidelines. What does that mean for us, practically? Let’s break it down: 
+
+## Removing Success Criteria 4.1.1
+
+The now-retired SC 4.1.1 had to do with parsing: writing correct and semantically valid HTML so that browsers and assistive technologies could accurately parse the information and present it to the user. Practically, that included things like ensuring that all elements have starting and ending tags, avoiding duplicate attributes, making sure any child elements were nested / ordered correctly, etc. 
+
+In general, this is (of course) still a best practice for writing code in general. **However,** **HTML, browsers, and assistive technologies have all gotten a lot smarter in the last few years and are now capable of handling errors in less disruptive ways.** 
+
+For example, if you were to omit a closing tag for an element, it would likely still render in the browser. The error is (of course) not ideal, but browsers have learned how to handle and accommodate many common mistakes; they can take a “best guess” at what was intended and still load the page. Furthermore, most assistive technologies used to do their own parsing of the HTML, which meant that mistakes like that could be incredibly disruptive. Now, it’s more common for assistive technologies to rely on the browser for that, via the accessibility tree. Since the browser has gotten smarter about parsing, that means any assistive technologies that *use* the browser have gotten smarter, too!  
+
+Since parsing errors will (in the vast majority of cases) no longer cause browsers or assistive technologies to crash, the WCAG has decided to retire SC 4.1.1. 
+
+## The New Guidelines
+
+Here’s a look at the nine new guidelines that have been added as part of 2.2: 
+
+### 2.4.11 and 2.4.12 – Focus not Obscured (AA and AAA)
+
+Both of these guidelines have to do with ensuring that the element with focus is visible to the user. 2.4.11 is the minimum (AA) required to pass, while 2.4.12 is the enhanced, or ideal (AAA). 
+
+- 2.4.11 states that “…when an item gets keyboard focus, it is at least partially visible”. That means that **as long as the element in question isn’t completely hidden, this will still pass at an AA level.**
+- 2.4.12, on the other hand, tells us that i**n order to achieve AAA compliance, a keyboard focused item must be “fully visible”, with no part of that item obscured or hidden in any way.**
+
+### 2.4.13 – Focus Appearance (AAA)
+
+This guideline instructs us to create focus indicators that are easily noticeable due to their high visibility in order to achieve AAA compliance. To meet this criteria, a focus indicator must have: 
+
+- A size in the focused state that is at least as large as a 2px thick perimeter around the element (as compared to its size in an unfocused state).
+    - This size is based on the actual element and doesn’t include things like drop shadow or glow effects.
+- A contrast ratio in the focused state that is at least 3:1 (as compared to the same content in an unfocused state)
+
+The only exceptions to this are when the focus indicator is either: 
+
+- Set by the user via their own custom tooling or browser setting adjustments
+- Left in the default, unmodified style – the developer makes no style changes at all to the focus
+
+### 2.5.7 – Dragging Movements (AA)
+
+This guideline is an especially important one – especially in the era of touch screens. We often make assumptions about how our users will interact with our interfaces, and this guideline reminds us that not everyone is capable of gesture and/or touch-based interactions. 
+
+2.5.7 states that any action that involves dragging must also offer a simple, pointer-based alternative. 
+
+### 2.5.8 Target Size (Minimum)
+
+Similarly to 2.5.7, 2.5.8 offers us guidance around creating target sizes for interactive elements that are easy for everyone to use and help minimize mis-clicks and mistakes. 
+
+To meet this criteria, targets for pointer inputs (such as buttons) must be ************************at least 24x24 pixels,************************ with the following exceptions. Targets can be less than 24x24 pixels if: 
+
+- They have enough empty space around them that you could draw a 24 pixel circle centered on the bounding box and it wouldn’t overlap with another element on the page
+- The same function can be triggered via a different control on the page that *****does***** meet the criteria
+- The target is inline and the size / position is determined by other factors (such as a link in the middle of a sentence, whose positioning and spacing would be determined by the text styles)
+- The user agent has determined that size and the developer hasn’t changed it
+- That specific presentation of the target is legally required or otherwise essential
+
+### 3.2.6 Consistent Help (A)
+
+Guideline 3.2 concerns making websites predictable and intuitive for users – and 3.2.6 specifically concerns the location of help mechanisms. To comply, help tools (when available) need to be placed in the same location on every page. That could apply to chat tools, guided tutorials, contact information, or other ways for users to get un-stuck when they’re confused. The actual help doesn’t need to be provided **on** the page (for example, it could be a link to an FAQ), but the link to the help needs to be offered in a consistent location throughout the website. 
+
+### 3.3.7 Redundant Entry (A)
+
+Like so many accessibility guidelines, this one is also just a polite and user-friendly thing to do: don’t ask for the same information more than once in the same session. If the information ***has*** to be re-submitted, auto-fill and selection options are preferred. There are a few exceptions to this, though: 
+
+- When re-entering the information is absolutely essential
+- For security purposes (such as confirming a PIN)
+- When the previously submitted information is out-of-date or otherwise invalid for some reason
+
+### 3.3.8 and 3.3.9 Accessible Authentication (AA and AAA)
+
+Finally, the last two new guidelines have to do with making it as easy as possible for users to get logged in. When we require users to do various tasks before allowing them to access the content – such as memorize information, click on photos of specific things, etc. – we’re effectively gating the content behind a [cognitive function test](https://www.w3.org/TR/WCAG22/#dfn-cognitive-function-test). This puts our users with cognitive disabilities at a severe disadvantage. 
+
+- 3.3.8 states that we should not make our users recall or transcribe anything in order to log in. In order to meet AA criteria, we need to offer at least one of these options:
+    - An alternative way that doesn’t rely on cognitive function
+    - A mechanism to help the user complete the test
+    - A test that only requires the user to recognize objects
+    - A test that only requires the user to identify non-text content they provide to the website
+- 3.3.9 gets even more strict, stating that in order to meet AAA criteria the recognition of objects or non-text content is also not allowed. That means that the only the first two options listed earlier (an alternative method or a support mechanism) will satisfy this requirement.
+
+## What do you think of the changes?
+
+Do you think they’re beneficial? Will you be implementing any right away? Let us know in the comments?

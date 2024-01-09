@@ -1,0 +1,129 @@
+# How I Built This: KendoReact + Storybook
+
+*Last modified April 19, 2023* 
+
+Ready for a hot take? **I believe that the core of every great, functional design system is a component library.** There’s no better tool for getting everyone on the same page and seeing your design choices in action than a component library. But that doesn’t mean that our component libraries need to be built from scratch. Using a third-party component library can be an excellent way to jump-start our design systems and save a ***ton*** of time and effort. 
+
+Storybook, a tool for building and documenting UI components, has become integral to the creation and maintenance of component libraries – and design systems. Because Storybook offers an interface for non-developers, allowing anyone to explore, play with, and manipulate the components and documentation, it’s perfect for collaboration. Often, Storybook is mentioned in the context of building component libraries from scratch, but it doesn’t have to be used that way. **Storybook is still a powerful tool for customizing, documenting, and sharing our design systems – even if they’re built on top of a third-party component library.** 
+
+Building on top of an existing library doesn’t always sound as cool as the “I made this entirely by hand” stories, but I would argue that it’s infinitely more practical – and far more realistic. Unless you work somewhere that requires very complex and unique components, I don’t see any reason why you should build your own component library. Why reinvent the wheel? The only asterisk on that statement is ensuring that the library we choose is style-agnostic enough that it won’t be a struggle to overlay our custom design system on top. If we’re constantly fighting with the CSS, it’s not going to be worth it. Strongly design opinionated libraries can be challenging – unless, of course, we’re committed to using their design system for the entirety of the life of our products. However, there are plenty of flexible component libraries out there that can be adapted to suit any design system; one example is KendoReact, which is what I’m using.  
+
+## Why I Built This
+
+Before we get to the how perhaps you’re asking why we should even bother to load a third-party component library into a tool like Storybook. After all, we’re not building it ourselves and there’s already existing documentation. Those things are true…but only somewhat. There are significant benefits to loading our component library into Storybook, regardless of whether we built it from scratch or started with something pre-made: 
+
+### Make Development and Testing Easy
+
+If we’re significantly changing the look and feel of our components with our design system, then it’s really helpful to have a place where we can see how each component will look with the new styles applied. Storybook is the perfect place for developers to do this and test their work. 
+
+Storybook is fantastic for **testing components in isolation**. When we’re using a pre-made component library it’s easy to assume that we don’t need to test as thoroughly…which is only true if we’re not adjusting or changing the components *at all* from their default state. However, if we’re making adjustments to the look and feel of the components to fit your design system, it’s a smart idea to test – especially around accessibility. 
+
+### Allow Non-Developers Easy Access
+
+The Storybook UI allows non-developers to **easily explore the available suite of components and preview each one in isolation.** This can be hugely helpful when it comes to closing the designer/developer communication gap, but also benefits Project Managers, QA testers, and more – all of whom will appreciate the ability to see each component with the new styles, exactly as they will be used in the application. 
+
+Storybook [Controls](https://storybook.js.org/docs/react/essentials/controls#page-top) allow non-developers to **adjust the parameters of various components and understand what properties are available to edit.** This means they can do things like input custom button text, change various colors, adjust default states, and more to change how the component will look and immediately see the results in the viewport panel. 
+
+### Document and Share
+
+If we’re creating our own design system, our components will need **additional, contextual documentation.** When should a developer use a Window component, as opposed to a Dialog, as opposed to a Modal? When do we reach for a Line Chart instead of a Bar Chart? The KendoReact component library offers over 100 components, some of which could potentially be used to solve the same problem in different ways. 
+
+Adding documentation about when and where to use each component within the context of our application is a crucial aspect of a design system. This makes the work easier for developers and designers, who no longer have to make individual in-the-moment decisions. This consistency ultimately makes the app more intuitive and improves the UX. However, contextual, app-specific documentation simply cannot exist within generic third-party library docs – which means it’s our job to write it as part of our design system documentation. 
+
+On that note, when we’re putting together a design system, it’s important to have one place that functions as the single source of truth. Design systems include multiple resources: Figma files, written documentation, component libraries, style guides, and more. When these resources are scattered, it’s difficult for people to know where to look…and when they don’t know where to look, they’ll just do their work without it. To improve design system adoption internally, we need to make it as easy as humanly possible for everyone to find and reference. Because Storybook has support for linking design files, writing documentation, previewing components, and more, it makes an ideal one-stop hub for our design system. It’s a simple task to publish our Storybook instance to a URL that can be bookmarked and accessed by everyone.
+
+## How I Built This
+
+Before we get too far into this section, I want to point out that you don’t have to do most of this – [I’ve already done it for you](https://github.com/kathryngraysonnanz/kendoreact-storybook)! I’m sharing this how-to process as a guide for the curious. Perhaps you’re doing something similar with a different component library, or maybe you just like to peek behind the curtain and see how things are made – if so, read on! You can [preview the finished product here](https://kathryngraysonnanz.github.io/kendoreact-storybook/). 
+
+**However**, **if you want to skip the “how it’s made” part and just start loading your design system in, [fork the repo](https://github.com/kathryngraysonnanz/kendoreact-storybook) and jump to the section about applying styles and writing documentation.** 
+
+### Setting Up the Storybook Instance
+
+Because Storybook is meant to be installed into an existing project, the first thing I needed to do was roll up a new React app. I used Create React App (CRA) so that I could take advantage of the [KendoReact CRA templates](https://www.telerik.com/kendo-react-ui-develop/components/installation/create-kendoreact-app/) to automatically install and configure my setup. If that’s not your situation, you can use [whatever you prefer to get a React app set up](https://react.dev/learn/start-a-new-react-project) and install your chosen component library. 
+
+Once I had a new project set up, I ran `npx storybook init` to install Storybook. That command installs the required dependencies, sets up the build and run scripts, and establishes the default Storybook config (including a few demo stories). Once that completes, you should be able to use `npm run storybook` to run the app locally and make sure everything is working according to plan. 
+
+### Importing External Components Into Stories
+
+The Storybook docs have a fantastic breakdown of the details around [how stories work and the easiest ways to write them,](https://storybook.js.org/docs/react/writing-stories/introduction) so I won’t re-write all that information here. The only minor difference was that rather than writing components from scratch in the story, I imported my components from the KendoReact library. 
+
+Because of how stories are named and managed within Storybook, I quickly noticed one small hitch – I needed to adjust how I was importing the external components so they wouldn’t conflict with the names of the exported stories. 
+
+For example, when I created a story for my button component, I named it `Button`. However, each story component will include the KendoReact component we import as well which, in this case, is also named `Button`. In order to ensure that I could still name my Storybook story component `Button` and not have to worry about having two identically named components, my imports needed to be adjusted to “import X as Y” rather than just importing X: 
+
+```jsx
+import { Button as KendoButton } from "@progress/kendo-react-buttons";
+```
+
+Then, when I used the KendoReact button inside my Storybook Button story, I needed to call it as `KendoButton`.  
+
+```jsx
+export const Button = ({...props }) => {
+  return (
+    <>
+      <KendoButton {...props}> {props.label} </KendoButton>
+    </>
+  );
+};
+```
+
+### Configuring Controls With PropTypes
+
+Storybook has an immensely handy built-in generator for their Controls, the elements that allow users to adjust component properties via the Storybook UI. These Controls are a huge part of what makes Storybook so valuable to non-developers and developers alike, so it’s crucial for us to get them right. Thankfully, Storybook makes it easy to do so by automatically generating Controls based on component PropTypes. 
+
+![button.gif](https://d585tldpucybw.cloudfront.net/sfimages/default-source/2017-06/button.gif?sfvrsn=54c41167_1)
+
+Luckily, every KendoReact story is accompanied by extensive documentation – including an API reference that clearly defined all the props available for each component and their possible configuration options. I used this documentation to write PropTypes for my stories, so users can play with all the possible ways to adjust, customize, and configure KendoReact components. 
+
+![Screen Shot 2023-03-17 at 4.31.42 PM.png](https://d585tldpucybw.cloudfront.net/sfimages/default-source/2017-06/screen-shot-2023-03-17-at-4.31.42-pm.png?sfvrsn=e3ab96ce_1)
+
+For example, the above `disabled` and `fillMode` props are listed like so in my Button story: 
+
+```jsx
+Button.propTypes = {
+  disabled: PropTypes.bool,
+  fillMode: PropTypes.oneOf(['solid', 'outline', 'flat', 'link', 'null'])
+}
+```
+
+Storybook takes those PropTypes and automatically determines the best UI input option to reflect it. Here, my `bool` prop became a switch input in Controls, and my `oneOf` became a selection of radio buttons. This happens without any additional input required from me beyond the definition of PropTypes (which I would be doing anyway when writing components)!  
+
+![Screen Shot 2023-03-17 at 4.35.30 PM.png](https://d585tldpucybw.cloudfront.net/sfimages/default-source/2017-06/screen-shot-2023-03-17-at-4.35.30-pm.png?sfvrsn=f2f7d182_1)
+
+### Applying Custom Styles
+
+Of course, for Storybook to be valuable to us as a Design System management tool, our components need to reflect the custom styling we’ve done in order to change their look and feel. Thankfully, this was as easy as dragging and dropping a few CSS files! 
+
+At the top of every story file, I imported the same things: React, PropTypes, the component in question (and any dependencies), and my `.scss` file. 
+
+```jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button as KendoButton } from "@progress/kendo-react-buttons";
+import './assets/index.scss';
+```
+
+Storybook comes configured with that `.assets` folder, so I decided to place any supporting files in there. That included things like images for photo-based components, mock data in `.js` or `.json` format for charting components, and – of course – my styles. If you’re writing your styles from scratch, this is the place to do it! 
+
+I, however, opted to save some time and use the ThemeBuilder application to export the styles for my established LKARS design system. If you’re interested, you can learn more about the creation of that design system and how I use it in coordination with KendoReact, Storybook, Figma, and ThemeBuilder in this article. For now, the most important thing to know is that ThemeBuilder allows me to export complete CSS or SASS files for my design system, automatically configured to work perfectly with the KendoReact suite of components. That set of files includes an `index.scss` that imports a `_tokens.scss` and an `_overrides.scss` file. All of these were dragged into my `assets` folder – and automatically applied to every component in Storybook, since `index.scss` was imported in each story. 
+
+***Note:** While I kept a personal version of my Storybook project that included my custom design system styles applied to the KendoReact components, I removed them for the publicly shared project. If you fork the repo on GitHub, my LKARS styles will not be included.* 
+
+### Installing Add-ons
+
+Storybook offers a notable library of addons that can be used to change, extend, or adjust the behavior of the Storybook UI. For the most part, I wanted to keep this project fairly vanilla since I intended it to be a base for other people to fork and use as the basis for their own projects. However, there were three addons that I believe to be truly essential, which I did install and will be included with the project if you fork it: 
+
+- @storybook/addon-a11y
+- aria-live-storybook-addon
+- storybook-addon-pseudo-states
+
+Note that all of these addons are accessibility-related. KendoReact is, by default, built to be accessible. You can [read more](https://www.telerik.com/kendo-react-ui-develop/components/accessibility/) about our commitment to accessibility and the technical specifications we meet. However, custom styling and changes can sometimes create inaccessible components. We encourage you to use the accessibility testing addons to ensure that the components are still meeting accessibility standards.
+
+Beyond that, I refrained from customizing the Storybook instance so that everyone can have a fresh start for their new project. Check out [the Storybook Integrations Library](https://storybook.js.org/integrations) to find more useful addons! Any currently installed addons can also be removed by deleting them from `.storybook/main.js`.
+
+## Conclusion
+
+There’s more to a design system than *just* a component library, of course – but that’s where design and implementation come together for the first time. It’s where the design rubber hits the road and we start to get the feel for how our application is going to look and function. Regardless of what team a person is on or how much they understand about the design process, seeing and interacting with all of the various UI components just makes things click. It’s truly invaluable. 
+
+I hope this project can help launch the beginning of your design system with KendoReact!

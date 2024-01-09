@@ -1,6 +1,5 @@
 import '@progress/kendo-theme-default/dist/all.css';
 import styles from './page.module.scss'
-import Link from 'next/link'
 import Image from 'next/image'
 import profilePic from './main.jpg'
 import Header from './header'
