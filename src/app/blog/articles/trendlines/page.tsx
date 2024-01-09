@@ -1,6 +1,6 @@
 'use client';
 
-import Trendlines from '../../markdown/trendlines/article.mdx'
+import Trendlines from './article.mdx'
 
 export default function TrendlinesBlog() {
     return ( <Trendlines/> )
