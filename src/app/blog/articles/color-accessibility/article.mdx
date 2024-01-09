@@ -1,0 +1,61 @@
+# Understanding Color and Accessibility
+
+*Last modified November 20, 2022*
+
+When it comes to making your applications accessible, the colors that you choose play a huge role! From contrast ratios to communicating information and offering users optional themes, let’s take a look at ways you can optimize your color choices to be as accessible as possible!
+
+## Color Contrast
+
+When you’re choosing colors for your various UI elements, it’s important to make sure you’re meeting an accessible standard for color contrast. The **WCAG (Web Content Accessibility Guidelines)** defines three levels of color contrast ratios – **failing, AA, and AAA**. AA level means your colors have enough contrast to be readable, but might still present problems for some users. AAA level means you have achieved extremely high contrast that should be readable for the vast majority of your users. You should always aim for AAA compliance, but making sure you’re not failing is a good starting point.
+
+Text, especially, is *incredibly* difficult to read when there’s not enough contrast between it and the background color – and this is only exacerbated for any of your users with less-than-perfect 20/20 vision. Not to mention, there are lots of adjustments a user can make to their display – night shift, brightness, monitor calibrations, etc. – all of which can impact your colors in ways that are entirely outside your control. One of the best ways you can allow your app to remain accessible through all of this is to pay attention to your color contrast ratios and ensure that they comply with the WCAG standards, so you have some wiggle room to accommodate these extenuating circumstances.   
+
+Fortunately, this is a really easy thing to do, because color contrast analyzers are easily found online just by googling “color contrast checker”. My personal favorite is the [Adobe Color accessibility tools](https://color.adobe.com/create/color-contrast-analyzer), which does a great job of showing examples for different color contrast situations, as well as allowing you to simulate different versions of colorblindness to see how your color palette would look to differently sighted users. 
+
+![Screen Shot 2022-01-21 at 4.51.39 PM.png](https://d585tldpucybw.cloudfront.net/sfimages/default-source/2017-06/screen-shot-2022-01-21-at-4.51.39-pm.png?sfvrsn=b860d255_1)
+
+![Screen Shot 2022-01-21 at 4.52.09 PM.png](https://d585tldpucybw.cloudfront.net/sfimages/default-source/2017-06/screen-shot-2022-01-21-at-4.52.09-pm.png?sfvrsn=8c536e16_1)
+
+### Value
+
+You might already be familiar with the color contrast ratios and even understand why they’re so important – but do you know the color theory behind how they work? 
+
+When we’re talking about color contrast, what we’re primarily talking about is a comparison of values. Value is the lightness or darkness of a hue – it’s what creates the difference between sky blue and navy. You can change the value of a color in 3 ways: by adding white to create a tint, adding grey to create a tone, or adding black to create a shade. When the values of two different colors are too similar…that’s when you run into contrast issues. Some colors (like bright oranges or reds) will be especially difficult to achieve high contrast with because their values fall right in the middle of the spectrum – it’s hard to go either light or dark enough to contrast with them effectively. 
+
+A great, quick, way to check your contrast (and see this in action) is to convert your display to greyscale, which takes the hue out of the equation and only shows you the value. If you can’t easily read the text or understand the layout when it’s in greyscale, chances are, you have a color accessibility issue that needs solving. 
+
+## Communicating Information via Color
+
+Another important aspect of accessibility and color is ensuring that you’re **not communicating any information through color alone.** This is a dangerously easy trap to fall into, unfortunately – especially with things like forms, data visualization, and confirmation / cancellation dialogs. 
+
+In fact, let’s take a look at some forms to see an example. How many times have you seen a form that changes the border color of an input element to red in order to signify failed validation? It’s not such a bad thing to do...as long as you *also* make sure to include some kind of icon, text, or other element to indicate to the user that something isn’t right. If you’re relying on the red border color alone, then there’s a large percentage of your users who will struggle to figure out why their form won’t submit. 
+
+![vdgSeKf.jpg](https://d585tldpucybw.cloudfront.net/sfimages/default-source/2017-06/vdgsekf.jpg?sfvrsn=92273366_1)
+
+*Image from https://stackoverflow.com/questions/16471589/javascript-form-validation-with-class*
+
+**Good Example**
+
+![research-media-file-df365441c389949fc9dbf39ed204de5f.jpg](https://d585tldpucybw.cloudfront.net/sfimages/default-source/2017-06/research-media-file-df365441c389949fc9dbf39ed204de5f.jpg?sfvrsn=29dda19c_2)
+
+*Image from https://baymard.com/blog/inline-form-validation*
+
+## Theming
+
+These days, it’s becoming more and more popular to offer multiple theme options in your application and allow your users to choose the one they like best. Almost all apps now include light and dark themes, but some go beyond that to offer all sorts of color palettes! This is not only a delightful touch for your users, though – it can also be an accessibility tool for them. 
+
+### Dark Mode
+
+Offering a dark mode is actually a really great thing you can do to support your users…even if you might not have thought of it as an accessibility feature before now! Dark mode is important for folks that struggle with migraines, light sensitivity, eye strain, and similar. Most folks already kind of know this, but might not really be thinking about it as an actual accessibility feature – but I'd bet that the majority of developers have their code editor set to a dark theme in order to reduce the eye strain of staring at their computers all day. 
+
+However, dark mode (and other alternate color themes) are often forgotten when you're running accessibility checks – can you really guarantee that your color contrast is still good enough in dark mode, or that your focus highlight is still clearly visible? It's not enough to only be accessible in the default theme! If you're offering multiple color themes, but only one of them is accessible...then you're not really offering multiple color themes to everyone. 
+
+### High Contrast Themes
+
+Another thing worth considering is high contrast themes. You might have seen these before; they usually use a pure black background color, and then neon colors for the rest of the palette. You might find it visually jarring or unpleasant, but pleasantness isn't the goal – it's purely an exercise in readability. The example here is one of the Windows OS high contrast themes, and you can see that the colors they've chosen stand out starkly from the black background. If you're creating color themes for an application UI, it‘s worth considering adding a theme like this in addition to whatever standard themes you’re planning to include. 
+
+![an example of a high contrast theme](https://d585tldpucybw.cloudfront.net/sfimages/default-source/blogs/2022/2022-11/high-contrast-theme.png?sfvrsn=e4a1fbf5_5)
+
+---
+
+Once we acknowledge the reality that accessibility is a required part of the full functionality of the product, that truth can inform every decision we make around planning, design, development, and testing. Working as a developer, by nature, involves constantly learning new things and adjusting the way we think about software and the web. The more you can learn about accessibility and start implementing that knowledge in your work, the more your users will benefit!
