@@ -17,8 +17,18 @@
         line-height: 1.55rem;
     }
 
-    a {
-        color: #0088A3; 
+    aside {
+        background-color: lightyellow;
+        padding: 5px 30px;
     }
 
+}
+
+@media (prefers-color-scheme: dark) {
+    .article {
+        code {
+            background-color: yellow;
+            color: black;
+        }
+    }
 }
