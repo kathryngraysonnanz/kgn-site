@@ -1,0 +1,128 @@
+# I can :has()?
+
+*Last modified August 29, 2022* 
+
+As of tomorrow (August 30, 2022) the `:has()` pseudo-class will be actively usable in the stable version of Chrome 105. Safari was technically the first to implement this new CSS feature, having supported it since the release of Safari 15.4 in March 2022. Since Chrome and Edge are both Chromium based browsers, we can safely bet that we’ll see `:has()` support before too long for Edge…and, probably Firefox as well, if only out of peer pressure. **Which makes *now* the perfect time to get up to speed on everything you need to know about this powerful and adaptable new CSS pseudo-class!** 
+
+## What does `:has()` do?
+
+The `:has()` pseudo-class does two main things: 
+
+1. Checks to see if an HTML tag, class, or id element contains a specified child element.
+2. Checks to see if an HTML tag, class, or id element is immediately followed by another specified element. 
+
+Then, it will apply your chosen styles to that HTML tag, class, or id element – *not* the child or following element. 
+
+### Wait, what?
+
+One of the most interesting parts of of the `:has()` function is the way in which the styles are applied to the **parent element**. In fact, some folks have been referring to this as “the parent selector” – something that has been historically missing (and highly requested) in CSS for a long time. Although, as Adrian Bece points out in [this excellent article](https://www.smashingmagazine.com/2021/06/has-native-css-parent-selector/), `:has()` would be more accurately classed as a “relational selector”. 
+
+Because it’s so different from what we’ve had available to us in CSS before, it can feel a little unintuitive at first. So let’s take a look at some examples:  
+
+### `:has()` as a parent selector
+
+When `:has()` is checking for specified child elements, it looks like this: 
+
+```css
+div:has(>img) { border: 2px solid green; } 
+```
+
+So it’s basically saying “If there’s a `<div>` that has an `<img>` tag as a child element, apply a green border to the `<div>`”. The child tag does not have to be the first child, or in any particular position. 
+
+### `:has()` as a relational selector
+
+ When `:has()` is looking at more general, relational positioning, it can look like this: 
+
+```css
+h1:has(+img) { color: limegreen; }
+```
+
+In this case, we’re saying “When there’s an `h1` that’s immediately followed by an `img`, make that `h1` lime green”. 
+
+## Advanced Usage
+
+The other nice thing about `:has()` is its flexibility. You can list multiple elements within the parentheses, chain multiple `:has()` conditions together, or check for direct children specifically. This allows us to write some really powerful and specific CSS.  
+
+### Listing multiple elements
+
+`:has()` will allow you to put more than one element within the parentheses to check.  If you want to get more specific about when there are direct children vs. children of children, you’ll want to start chaining your `:has()` conditions. However, if you’re just looking to see whether these elements are present at all as children, then listing is a great solution. 
+
+```css
+div:has(img,p) { color: green } 
+```
+
+In this example, we’re asking it to find us any `div`s that have both `img` and `p` tags as children, at any depth. This means the green color styling will still apply, even if the child tags are nested within other tags inside the high-level parent `div`. 
+
+### Chaining `:has()` conditions
+
+If you want to make a similar check, but be more attuned to that question of whether children are nested or not, then chaining multiple `:has()` conditions will allow you to do so: 
+
+```css
+div:has(>img):has(p) { color: green }
+```
+
+Here, we’re still checking for `img`s and `p`s, but we’ve split them up into two different conditions. The `>` before the `img` means that we’re checking whether the `img` tag is a **direct child** of the parent. So, in this situation, the color will only apply *if* there’s an `img` tag as a direct child *and* a `p` as a child at any level. 
+
+**It would apply to this code:** 
+
+```html
+<div> 
+	<img src-"X"/>
+	<section>
+		<p>Hello world</p>
+	</section>
+</div>
+```
+
+**But not to this code:** 
+
+```html
+<div> 
+	<section>
+		<img src-"X"/>
+		<p>Hello world</p>
+	</section>
+</div>
+```
+
+Whereas the list approach that we looked at before would apply in both scenarios. 
+
+### Checking for direct children
+
+Finally, you can also specify your `:has()` selection by checking to see whether the listed child element is a **direct child** of the parent element, or not. 
+
+```css
+div:has(>img) { border: 2px solid green } 
+```
+
+Here, the `>` indicates that the `img` has to be a direct child of the `div` in order for the green border to be applied. 
+
+**So it would apply to this code:** 
+
+```html
+<div>
+	<img src="X">
+</div>
+```
+
+But not this code: 
+
+```html
+<div>
+	<section>
+		<img src="X">
+	</section>
+</div>
+```
+
+## Get coding!
+
+As always, the best way to learn something new is to play with it! As previously mentioned, you can start fiddling with these in your Safari browser *today*, or your Chrome browser on August 30th, 2022 (aka: *tomorrow,* as of the publish date of this article).  
+
+To that end, I’ve put together a quick little CodePen that includes all the examples listed here. Pop it open, fork it, and have fun! This is a *long* awaited CSS feature that’s going to really change the way we write our styles by allowing us to select *up* for the first time. Get familiar with it now, so you’re not caught on your back foot as it starts to roll out in the near future! 
+
+<iframe scrolling="no" title=":has() examples" src="https://codepen.io/kathryngrayson/embed/ZExgzMg?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/kathryngrayson/pen/ZExgzMg">
+  :has() examples</a> by Kathryn Grayson Nanz (<a href="https://codepen.io/kathryngrayson">@kathryngrayson</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>

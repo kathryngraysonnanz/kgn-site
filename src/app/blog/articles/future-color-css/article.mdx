@@ -1,0 +1,81 @@
+# The Future of Color in CSS
+
+*Last modified June 28, 2022* 
+
+## The Past
+
+We’ve always known that the way colors are represented on a monitor doesn’t encompass the full width and breadth of colors that the human eye can perceive. As always, art is limited by the technology of the time – ages ago, color decisions were limited based on the relative expense of various dyes or paint colors to produce. That’s why purple is associated with royalty in many western cultures; purple dyes used to be quite expensive, so wearing purple clothes was a real flex! Similarly, early computers were limited to green text on a black background because the monochrome monitors used phosphor, and green phosphor was the brightest and had the longest afterglow (which helped disguise the low refresh rates). Heck, if you’ve been doing web design or development for a while, you probably remember the list of 216 “web-safe” colors we were limited to in the 90s!
+
+## The Present
+
+Similarly, the way we’re used to writing RGB colors now has a lot to do with the limitations of the time it was created. For instance, did you know that the reason RGB colors are defined on a scale from 0 to 255 is because a color is stored in three bytes of data (one for red, one for green, and one for blue)? So, if we were to take things all the way back to the binary, we’d see `00000000 - 00000000 - 00000000` as the code for pure black and `11111111 - 11111111 - 11111111` as the code for pure white – all off, or all on, basically. When we convert from binary to decimal, `1111111` converts to `255`. So, when we’re defining RGB colors, we’re really telling each one of those subpixels in an RGB display what binary value we want it to take...but it’s a lot faster and easier for us to write them in the decimal value shorthand. Kind of cool, right? Like, we abstractly know that it’s all 1s and 0s in the end, but I think it can be a lot of fun to see the curtain pulled back in this way.
+
+![Close up of pixel](https://res.cloudinary.com/practicaldev/image/fetch/s--sUfTwSwR--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rffrjwdywf6ny6bfa157.gif)
+
+*Image from https://www.quora.com/Why-in-RGB-the-biggest-number-for-any-particular-color-is-255#:~:text=The reason it is 255,lowest%2C 255 is the highest.*
+
+## Back to the Future
+
+Today, we’re seeing the shift from LCD to OLED screens, which opens up a whole new array of newly displayable colors for our usage. That new color set is known as **P3**, and it’s about 50% larger than our current RGB color set – which is pretty great, right? It means we’ll be able to design using brighter and more vibrant colors. But, we also know that it won’t be the *last* color set; the human eye is capable of seeing even more colors than we can currently represent on OLED screens. The set beyond P3 is known as Rec. 2020, and it’s what you can currently see on ultra-high definition displays (like when you see a TV advertised as being “4K UHD”) – although some of those still only support 90-97% of the full Rec. 2020 range.
+
+The important thing to take away from this is that P3 is the next – but *not* the last – color set available to us as developers, which meant that it was important for us to define a color syntax that could grow with us...unlike, unfortunately, the RGB model, which is too limited to use with P3 colors. What we’ve been referring to as RGB colors will be known moving forward as sRGB; the S is for “standard”. You might also start to see reference to “wide-gamut” color support, which is just a quick way to say “able to support more colors than an sRGB display”.
+
+It’s possible to automatically convert from sRGB to P3 (or backwards), but when that’s done by an algorithm, it can distort the colors slightly from what the designer intended. That means we needed a new way for developers and designers to define color in CSS – one that’s not limited to the sRGB color model the way `rgb()`, `hsl()` or hex are. There are a few options out there for defining P3 colors, all from the CSS Color Module Level 4.
+
+## Options for Writing P3 Colors in CSS
+
+### `color(display-p3 0 0 0)`
+
+In this syntax, we begin by specifying the color display type, which for our purposes would be `display-p3` but could also be `srgb` or `rec2020`. Then, the three numbers are kind of an updated version of how we used to define sRGB color: each number still represents red, green, and blue (in that order), but instead of maxing out at 255, it now functions on a scale from 0 to 1, with 1 being equal to 100% (the same way we define opacity). So, if we wanted a color that was 100% pure red, we’d write it like `color(display-p3 1 0 0)`.
+
+This method is nice, because it’s a very similar syntax to the stuff we’re already familiar with – no big learning curve on the developer end. However, some argue that it’s actually less useful since the RGB approach to defining color is unintuitive. Which is true; it’s hard to fine-tune an RGB defined color in the code alone, unless you’re some kind of color and code wizard. For example, if you have a color that’s `color(display-p3 0.6 0.44 0.89)` how do you make it darker? How do you make it brighter? You’d almost always have to go back to some kind of color selection tool and adjust the color there, then derive a new RBG color value to copy into your code. Kind of a pain. Which brings us to...
+
+### `lab(0% 0 0)`
+
+The `lab()` syntax is a method of defining colors based on lightness and color channels. In fact, that’s what the L in `lab` stands for: Lightness! Lightness, Color Channel A, and Color Channel B. Lightness is defined on a scale from 0-100%, with 0 being completely dark and 100% being the lightest it can go. The color channels work a little bit differently than we might be accustomed to; they define color as a value between two ends of a spectrum, going from -128 to 127 (which, spoiler alert, is a total spectrum of 255 values). Channel A works on a spectrum between red and green, and channel B works on a spectrum between blue and yellow. In both situations, 0 would be the exact middle – grey. Picture an X shape, with green to red being one crossbar and blue to yellow being the other. `lab(50% -40 60)` allows us to plot on that graph, but also adds a new value at the very beginning to define lightness on a scale from 1-100%.
+
+![Disgram of LAB color space](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2k0ikf4w4k3lw0xlatwl.jpg)
+
+*Image from https://www.colourphil.co.uk/lab_lch_colour_space.shtml*
+
+### `lch(0% 0 0)`
+
+The `lch()` syntax is similar, but not quite the same as `lab()` – it might even be *more* easy to use. The L still stands for lightness, and the scale works in exactly the same way: 0-100% to control the lightness of the color. However, the next two values are different; the C stands for chroma, and the H for hue. Chroma is the saturation or intensity of the color, with 0 being grey and 230 (the "max" value) being the highest vividness. Technically, that upper value is limitless, but in practice you'll never (currently) see it go higher than 230. Hue, as you probably guessed, is the color itself. It works on a scale from 0 to 360 (representing the color wheel), with each number representing a hue in the available spectrum. This approach is nice because it’s an incredibly intuitive approach to color. The L and C values correlate really well to the “brightness” and “saturation” controls that we’ve become really accustomed to through things like instagram filters or color picker UI tools. If you want to play around with it a little bit, [this LCH Color Picker](https://css.land/lch/) can really help you visualize how it works.
+
+![Diagram of LCH color space](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5jscbkk02b7nyvcvp6oh.jpg)
+
+*Image from https://www.colourphil.co.uk/lab_lch_colour_space.shtml*
+
+Oh, and in case you were wondering about alpha values (aka: transparency), it works the same way it did before (on a scale from 0 to 1) and can be appended to the end of any of these three new CSS syntaxes by adding a slash after the values within the parenthesis. So a new color value defined in LCH, for example, would look like this:
+
+```
+color: lch(66% 132 359 / 65%);
+
+```
+
+## Great, when can I start?
+
+As always, the bad news with future tech is that...well, it’s still mostly in the future! This stuff has only recently been finalized in the CSS specs, so that when P3 color is widely adopted the CSS is already there to support it. Most browsers right now don’t support P3 color. 
+
+Suffice to say, it’s officially on its way...but not quite here. That being said, it’s fully supported in Safari *right now*, so if you want to start playing around with this new approach to color there’s a browser you can use to do so without needing to turn on any experimental flags or anything! In fact, there are even some really great P3 color tools built right into the Safari Web Inspector panel – Jen Simmons has [a really great, short overview video](https://twitter.com/jensimmons/status/1478858248677736454?s=21) on those tools that I’d highly encourage you to check out if you’re interested in starting to work with P3 colors today.
+
+### Setting fallbacks with `color-gamut`
+
+The other thing that’s important to know if you want to start using P3 colors is how to set a fallback for your users who don’t yet have support for the new colors. By using the `color-gamut` media query, you can check the user’s browser AND output device for current color compatibility by passing in `srgb`, `p3`, or `rec2020` and then conditionally rendering your styles based on the status. So if you want to start writing for those future color spectrums, you could set up a little graceful degradation like so:
+
+```
+@media (color-gamut: p3) {
+	body { color: lch(66% 132 359 / 65%) }
+}
+
+@media (color-gamut: srgb) {
+	body { color: rgba(255 110 180 0.6) }
+}
+
+```
+
+You could also do basically the same thing using `@supports`, if you were so inclined.
+
+## Are you ready for the future of color?
+
+Being able to witness (and participate in!) these kinds of technological advances is my favorite part of being a developer. Sometimes it can feel frustrating that everything moves so fast, and it can be hard to make peace with the knowledge that the stuff you just learned a year or two ago will inevitably be outdated soon...and yet, in the same breath, I also feel very lucky to be able to work in a field that’s constantly growing, improving, and expanding. As a huge design nerd, the new color gamut support coming to CSS is something I’m especially excited about – the new methods for defining colors are all great options, and I’m thrilled to be able to create designs with brighter and more vibrant colors than we were able to use before. With the adoption P3 color support in Safari, full modern browser support is expected within the next year or so. So get ready; the future of color is here, and we get to be the ones to write it!

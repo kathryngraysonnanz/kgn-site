@@ -1,0 +1,103 @@
+# Deploying Your CRA React App on Github Pages
+
+*Last modified August 1, 2022* 
+
+Last week, I was complaining to a coworker about how difficult it was for folks to explore [a demo app](https://github.com/kathryngraysonnanz/kendo-demo) I had built for [KendoReact](https://www.telerik.com/kendo-react-ui/), since I didn’t have it hosted anywhere. I was debating whether to go through all the hoops of buying a domain name and everything when he asked: “Why not just use Github Pages?”
+
+Huh. Well, yeah…why not! In a matter of hours, my demo app was hosted at [https://kathryngraysonnanz.github.io/kendo-demo/](https://kathryngraysonnanz.github.io/kendo-demo/) !
+
+It had totally slipped my mind, but it’s actually the perfect solution! **Github Pages allows you to host a project directly from your Github account, quickly and easily.** Since I already had my repo set up on Github, I was halfway there…but, as I discovered, there were a few things I needed to tweak in my React app in order for everything to run smoothly. Since I had to do a bit of Googling to muddle my way through it, I figured I’d document everything here for anyone else with an existing Create React App project in a Github repo that they’d like to publish using Github Pages.
+
+## Steps
+
+**Pre-requisite:** This guide is assuming you already have a React project (using Create React App) in a Github repo. If you don’t, take a look at these guides for [using Create React App](https://create-react-app.dev/docs/getting-started) to spin up a new React project and then pushing that project into [a new Github repo](https://docs.github.com/en/get-started/quickstart/create-a-repo).
+
+### 1. Check out the Github Pages settings
+
+**Open up your Github repo and navigate to Settings > Pages.**
+
+This is going to be your home base for managing the hosting of your project. One of the first things it asks you is for a **Source** – where do you want Github Pages to look for your files?
+
+This is a deceptively straightforward question, since Github Pages is actually quite opinionated and won’t allow you to set a subfolder as your source. Once you’ve chosen a branch, your only folder options are `/(root)`and `/docs`. This is our first roadblock, since the CRA file structure puts all your HTML files and resources (like the favicon and `manifest.json` file) into the `/public`  subfolder. In an ideal world, we’d just be able to point Github Pages to `/public` and call it a day…but, unfortunately, we can’t.
+
+Luckily for you, I went down some (incorrect) rabbit holes first, so you don’t have to. First, I tried to see if there was a way to *force* Github Pages to read from a different subfolder (there isn’t), then whether if it’s worth just renaming your `/public` folder to `/docs` (it isn’t).
+
+Eventually, I found the real answer – [in the CRA docs.](https://create-react-app.dev/docs/deployment#github-pages) Their recommended solution is the `gh-pages` library, so that’s what I used!
+
+### 2. Install `gh-pages`
+
+**In your terminal, run `npm install --save gh-pages` to add `gh-pages` to your project.**
+
+`gh-pages` gets around the subfolder situation by moving your publish files to a separate branch, which then allows you to point your Github Pages source at the `/(root)` for *that* branch, without disrupting your main branch.
+
+It will create a branch named `gh-pages` and (after a few steps that I’ll go through in the next section) automatically update that branch with new files whenever you run `npm run deploy`. If you want the details on everything going on behind the scenes here, [check out the `gh-pages` docs](https://www.npmjs.com/package/gh-pages).
+
+### 3. Set your “homepage” and update your build scripts
+
+**Open your `package.json` file and do the following:**
+
+- **Add the following line, making sure to replace the example URL with your Github Pages URL: `"homepage":"<https://myusername.github.io/my-app>)",`**
+
+*NOTE: If you’re not sure of your Github Pages URL, it’s your Github username (in place of “myusername”) and your repo name (in place of “my-app”).*
+
+- **Add the following lines to the very beginning of your `"scripts"` section:
+`"predeploy": "npm run build", "deploy": "gh-pages -d build",`**
+
+*NOTE: Because the scripts run in order, it’s important that these lines are in this order, before the `"start"` script.*
+
+The `"homepage"` option tells CRA how to determine the root URL in the final HTML file, and the new scripts handle creating the build files and getting everything over into that new `gh-pages` branch it created for just this purpose.
+
+### 4. Update your Github Pages source and test
+
+**Run `npm-run-deploy` in your terminal, then push everything up.**
+
+**Return to the Github Pages settings and set your source to the `gh-pages` branch.**
+
+**Wait a few minutes, then check your URL!**
+
+Go ahead and push everything up, if you haven't already, and deploy. Check in Github to make sure that the `gh-pages` branch update! Now, when you return to the Github Pages settings, you should be able to select `gh-pages` as your source branch.
+
+At this point, you should be able to see *something* happening on your Github Pages URL – even if it’s not fully working just yet, it shouldn’t be the 404 error anymore. In my case, I had a blank screen at this stage, which meant a little more troubleshooting.
+
+## **If your app is working at this point: hooray – you’re good to go!**
+
+However, if (like me) things are still not quite right, see if either of the following steps fix it:
+
+### 1. Updating your relative links
+
+**In your terminal, update `PUBLIC_URL` to match your repo name by running `export PUBLIC_URL="/your-repo"` (replacing “your-repo” with your actual repo name).**
+
+In my case, I was getting a completely blank, pure white page – this was a red flag to me, since the background color of my app was black. That meant this probably wasn’t a React or JS problem – my CSS wasn’t even getting loaded! However, when I ran my app locally, everything looked good.
+
+A little Google brought me to [this page](https://maximorlov.com/deploying-to-github-pages-dont-forget-to-fix-your-links/), which helped me identify the issue: root-relative links.
+
+And sure enough, when I inspected the page I found that the app was loading at `https://kathryngraysonnanz.github.io/kendo-demo/` but all the resource links in my  `index.html` file were just `/favicon.ico` (or whatever), which meant they were resolving to `https://kathryngraysonnanz.github.io/favicon.ico`...and returning 404s. So something wasn’t getting bundled correctly.
+
+The blog said that Create React App would extract the path location from the `homepage` settings and update the `PUBLIC_URL` variable, but for whatever reason…that just wasn’t happening for me. So, I updated it manually.
+
+By running  `export PUBLIC_URL="/kendo-demo"` in the terminal, I was able to set that variable by hand and get those links generating correctly.
+
+### 2. Updating your React Router setup
+
+**Add a `basename` to your parent `<Router>` element, setting `basename` to the name of your repo – like so: `<Router basename="/my-repo">`**
+
+The other thing about having this funky URL is that it will mess up any routing you set up beforehand. That means that if you’re using React Router, you’ll need to make a little tweak.
+
+In my case, I had a page at `src/app/router/index.js` where I was using React Router to handle all my URLs. My setup looked like this:
+
+```
+<Router>
+   <Routes>
+      <Route path="/astrometrics" element={<AstronomicalLog/>} />
+			<Route path="/ops" element={<Operations/>} />
+			<Route path="/engineering" element={<Engineering/>} />
+	</Routes>
+</Router>
+
+```
+
+Thankfully, the fix was easy! All you need to do is add a `basename` to your parent `<Router>` element with your repo name, which will [adjust your links if you’re serving from a sub-directory](https://v5.reactrouter.com/web/api/BrowserRouter/basename-string). That way, it matches your Github Pages URL. I updated mine to be `<Router basename="/kendo-demo">`, and that fixed my routing issues!
+
+## Get your app out there!
+
+I hope this was a helpful guide to getting everything up and running with Github Pages – plus, a little troubleshooting, if you run into the same issues that I did. All things considered, even with the bumps in the road that I ran into, I was able to get my app regularly and successfully deploying in about 2 hours – still pretty quick! It’s definitely something I’d recommend as a quick and easy way to get your work out there. Let me know in the comments if you give it a shot!

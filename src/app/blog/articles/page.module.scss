@@ -6,9 +6,14 @@
         line-height: 1.7rem;
     }
 
-    img {
+    img, iframe {
+        width: 100%;
         max-width: 90%;
         border: 1px solid black;
+    }
+
+    iframe {
+        height: 400px;
     }
 
     code {
