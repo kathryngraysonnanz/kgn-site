@@ -1,0 +1,46 @@
+# Taking a Look at `startTransition` in React 18
+
+*Last modified November 8, 2021* 
+
+Let's take a look at (what I think) is going to be one of the coolest parts of the upcoming React 18 release: **`startTransition`**. In a nutshell, `startTransition` is a new API in React 18 that's going to allow us to keep our applications interactive and responsive, even while bg updates are happening behind the scenes. Previously, if a user was to initiate an action that would trigger a component to update – such as a search that fetches a ton of new data to display – the whole page would just kind of hang while all that loading stuff was happening. This, as you can imagine, feels kind of awkward to users, so as developers we were forced to find other ways around it – skeleton UIs to make loads feel faster, debouncing, setTimeouts, etc. 
+
+In React, all updates are rendered equally urgently – or at least, that *has* been the case up until React 18 and concurrency rendering. This meant that there was no way to differentiate between those updates that are *truly* urgent and *need* to update everything right away, every time...and those updates that are less urgent, like the search results, which shouldn't prevent the user from continuing to do other work on the page while the system sorts it out in the background.
+
+In order to fully understand `startTransition`, we should start by taking a look at a couple foundational concepts – the new concurrency rendering approach in React 18, and how React is defining a transition: 
+
+First, **transitions**. This wording can feel a little bit confusing at first, since up until this point the word "transition" has primarily been associated with animations, like CSS Transitions. And, to be fair, that long game does seem to be at least part of what they had in mind when naming this concept, at least according this tweet from Dan.  
+
+![Tweet from @dan_abramov that says "The thinking is that a first-class Animations API would be integrated with startTransition. That's part of hte reason for naming."](https://d585tldpucybw.cloudfront.net/sfimages/default-source/blogs/2021/2021-10/Dan-Abramov-Tweet-1.png)
+
+In fact, it looks like there's some really good animation-related stuff coming our way...but not quite yet. They're getting all the pieces in place before tackling such a big project, which I definitely respect. 
+
+![Tweet from @dan_abramov that says "I'm personally dying to get to work on Animation but we're building things out in a particular order so that they all work together. Context, state management ,data fetching, code splitting, image loading, exit animations, layout animations. But this approach takes time."](https://d585tldpucybw.cloudfront.net/sfimages/default-source/blogs/2021/2021-10/Dan-Abramov-Tweet-2.png)
+
+For now, though a basic "Explain Like I'm Five" definition of "transition" is just a less-urgent actions that we'd like React to move to the back burner. 
+
+Next, **concurrency:** this is a word that you're probably already hearing quite a bit...and if you're not, then get ready, because concurrent rendering is a *huge* part of React 18! At a high level, concurrency basically means that tasks can overlap. Rather than one state update having to fully complete before the system can move on to the next one, concurrency allows us to bounce back and forth between multiples. It should be noted that this doesn't mean those things are all happening *at the same time* – rather, it's that one task can now be *paused* while other, more urgent tasks are seen to. Then, once the more urgent tasks are done, we can jump back to the less urgent task, bringing with us the updated information from the more urgent ones. 
+
+What React 18 is offering us, that is *so* cool, is the ability to work with that concurrency flow. When we use the `startTransition` API, what we're doing is marking some our less-urgent actions as "transitions" and then telling React to let other, more urgent actions take priority in the rendering timeline.
+
+This is going to be a *awesome* update from a UX standpoint. It's gonna make things feel so much snappier and more responsive for the user, as well as reducing the work that we, as developers, were putting in in order to minimize that pain point. By wrapping those slower, less urgent updates in `startTransition`, we can basically tell React that it's fine to just get to those when it's not busy with something more important. That means that transitions can be interrupted by more pressing updates, and React will just throw out the unfinished, now-outdated rendering work and jump right to the new stuff. It also means that we won't ever be in a situation where we're losing time to a component that's rendering outdated and inaccurate data. Or, even worse, where a user is actually shown information that's not correct. 
+
+So, how will this look in your code? Frankly, it's incredibly easy – wherever you were calling your not-so-pressing function before, you now literally just wrap it in `startTransition`, like so: 
+
+```jsx
+onChange = (e) => {
+    const value = e.target.value;
+    startTransition(() => {
+      nonUrgentAction(value);
+    });
+  };
+```
+
+Since your whole page will no longer be locked up waiting on these long processes, your user might not even realize anything is still loading! For this reason, it's also recommended to use the `isPending` value that will also be shipping with React 18 as part of the `useTransition` hook. This hook returns the `startTransition` function, as well as an `isPending` value which will be set to `true` while your transition is rendering. That way, you can do a quick check of `isPending` to determine whether or not you need to adjust your UI to reflect the fact that the update isn't quite ready yet – for example, disabling a button. 
+
+```jsx
+const [isPending, startTransition] = useTransition();
+
+<Button className={isPending ? 'disabled' : 'active'} />
+```
+
+The other really lovely thing about `setTransition` (and all of the React 18 release, actually) is that it's not a breaking change! Because setting transitions is an opt-in action – meaning you have to go out of your way to declare an action as a transition by wrapping it in `setTransition` vs. anything being set automatically – your existing code won't be affected by this change. React 18 will still handle all updates as urgent by default, which makes all of this backwards compatible. But, with the ease of implementation and the wide array of benefits, you'll definitely start wanting to work `startTransition` into your projects as soon as possible!

@@ -1,0 +1,55 @@
+# Case Study: How Progress Uses Figma to Manage the Design Process
+
+Ever wondered how the magic happens when it comes to designing and developing our Telerik and Kendo UI component libraries? Like many teams, we coordinate extensively between our design and development teams – with the help of Figma! Let’s take a look at how the component creation process works for our KendoReact team. 
+
+## Identifying the Problem
+
+The Product Manager (PM) is the first one who attempts to capture the problem that needs solving. They’re responsible for synthesizing feedback, industry trends, and user stories in order to find places where the KendoReact component library can be expanded or improved. The design process begins when a PM hands a designer a list of feature suggestions that they’ve created based on this research. The designer can then ask questions, validate, and narrow down the problem to be solved based on this jumping-off point. 
+
+When the PM and designer are in agreement about the work, then the project will be added to the roadmap. At the next planning meeting, all the teams (product, design, and engineering) will discuss reasonable timelines and when this might be able to fit into the release schedule. The design team is working one full release ahead of the engineering team, so this requires coordination and lots of forward planning! 
+
+## Exploration
+
+Once the designer is assigned to the component, they can start their work based on the writeup that they created with the PM. This one designer will be responsible for this component throughout the entire process – they’ll see the job through from idea to implementation. 
+
+The designer will then take time to do their own exploration and research. This could include any number of things, including but not limited to: talking to users, comparing competitor approaches, looking at in-context applications of this component, and leveraging their team’s years of experience designing UI components. When they feel like they have a complete understanding of the problem this component will solve, as well as a few ideas about how to tackle it, then it’s time to start creating! 
+
+## Creating the Solution
+
+The designer begins by creating loose sketches to work through their own ideas and figure out which approach will be most effective. Once they’ve got a pretty good plan and are ready to start sharing that with others and getting feedback, they’ll turn those sketches into either wireframes or simple mockups in Figma. 
+
+Since we have a Figma Kit for each component library that provides an extensive breakdown of all our basic component parts, our designers can save a ton of time by leveraging those resources instead of building each new component completely from scratch. This also means they won’t have to think through the interaction states of each atomic piece within a larger component – buttons, dropdown menus, checkboxes, inputs, and more already have well-defined and documented interaction states in the Figma Kits that can be included when building new components. 
+
+## Sharing the Solution
+
+Because the Kendo teams are entirely remote, we primarily communicate new component designs asynchronously using Github Issues. When the designer is ready to share with the engineering and product teams, they create an Issue where they can explain their suggested solution. This includes the Figma file as well as their design rationale. In this way, the designer walks the team through their thinking regarding their choices and the features included – but without having everyone literally in the same room at the same time. 
+
+Once this is posted, the engineers can explore and inspect the Figma file, ask any questions they might have, as well as estimate build time and raise any concerns about feasibility. The PM can also ask questions, and ultimately sign off on whether they think this proposal adequately solves the problem they identified at the beginning of the process. If discussion gets complicated or there are lots of questions to answer, calls are scheduled as-needed to hash out the details – but, more often than not, the teams can get everything they need via the written communication. Once everyone is in agreement, it’s time for the designer to really start digging in deep! 
+
+## Building
+
+Once the designer has the feedback they need, they can take that and start building out the entirety of the component. Even if they magically received no suggestions or critiques, there’s still lots of little details to finish up! 
+
+Once the full design and prototype is done, the designer then has to version out that component to reflect all of our various theming options – no small task! But it’s crucial to ensure that the user experience is equally effective, no matter how the colors or theme might change the look and feel of the component. We’ve learned from experience that you don’t want to get too far down the road on a design and then realize that it just won’t work with a specific theme. 
+
+As they work, the designer will post updates in the same Github Issue that they opened before. This allows them to share informative updates, as well as ask questions, get more feedback, explain any tweaks they’ve had to make since the proposal, or open up discussions about functionality of the component. The most important part of this, though, is that the engineer has been looped in through the whole process – since the first proposal. This greatly reduced friction when it comes to the handoff, because the engineer will have a much deeper understanding of not only the original problem, but also why various design decisions were made. Furthermore, it allows them to raise any red flags or concerns they have about the feasibility of building the component early enough in the process that it’s not too disruptive to pivot. They can always peek at the shared Figma file to see the progress of a design and offer feedback. 
+
+## Handoff
+
+Once everything is done on the design side and has the stamp of approval from everyone in the Github thread, it’s time to handoff to engineering. Developers pair with designers as they move into this phase so they can continue to ask questions and collaborate throughout this process – just because the Figma files are done doesn’t mean the designer’s work is finished! The specifics of the handoff process are something that the paired individuals handle on their own – the designer and developer are empowered to work together however they need in order to hash out the details and make any necessary adjustments. 
+
+One of the things that we’ve found greatly contributes to this success is having a distinction between “Front of the Front End” (FotFE ) engineers and other developers. Brad Frost was the first to coin the term “Front of the Front End”, but it’s one that’s incredibly helpful and accurate – the front end has become a very wide space, and the skillset needed to manage state and architect applications can be incredibly different from the skillset needed to write beautiful and accessible HTML and CSS. 
+
+When you hire specialists on the FotFE , it allows that dev to take the lead on handoff communications because they are naturally closer to the design side of things. I’ve spoken a lot about the importance of sharing the same language, and this is that in action. Another benefit of this is how it allows our FotFE devs to collaborate across our teams using different frameworks, because those developers aren’t specialized in a framework, themselves. This is the best way we’ve found to ensure that our components look and behave the same way, no matter what framework is powering them behind the scenes.  
+
+The FotFE engineers can use the Figma inspect and Dev Mode tools to build out the UI for the new component without having to guess at values, ask the designer, or speculate about responsive layouts – everything is already in the Figma file. Of course, if there ***are*** any additional questions, the designer is there for support. But most of the time, the details are already captured in Figma. 
+
+## Updating the Figma Kits
+
+The last step in the Kendo process is to to loop back and update our public Figma Kits with the new component designs, so all the external designers using our product are up to date on the latest and greatest. 
+
+We align the public Figma kits with the current component release, so there’s time for the designer to update those files while the engineer is building out the component (and time for the designer to make any updates or tweaks needed to make them as clear as possible). The files we add to the public Figma Kits come directly from the design files that we built the component based off – it’s a way for us to “eat our own cooking” and test the Figma Kits. After all, what better way for us to make sure the Figma Kits are useful than to build directly from them ourselves? 
+
+---
+
+If you’re trying to get a design process established, try using this as a basis – but don’t be afraid to make any adjustments you need in order to make it work for you! The best process is the one everyone uses, so if something is proving to be a roadblock there’s no requirement to hang on to it. See if you can troubleshoot why it’s not working; sometimes, there are just small adjustments that can be made to make something work. Tools like Figma, ThemeBuilder, and the Telerik and Kendo UI component libraries can help speed up the process and remove roadblocks. We would know, after all – we use them too!

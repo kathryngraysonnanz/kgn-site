@@ -1,0 +1,209 @@
+# The Best Addons for Building Accessible Components in Storybook
+
+*Last modified November 10, 2021* 
+
+If you've ever created a component library or even *thought about* creating your own, you already know that one of the biggest considerations is accessibility. For those devs who haven't specialized in accessible development and may only know the basics – or not even that! – building accessible components from scratch is a daunting prospect. 
+
+This is one of those benefits of using a pre-made component library – not having to worry about doing this yourself, knowing that someone else has put in the time and research to guarantee an accessible experience for your users. There are lots of great, existing libraries out there if that's the path you want to take ([KendoReact](https://www.telerik.com/kendo-react-ui/) being one of my favorites), but there are also lots of valid reasons why an out-of-the-box library wouldn't work and you'll need to create your own. 
+
+No matter the reason, if you're going to be rolling your own components, it's important to prioritize accessibility during your development process. Thankfully, [Storybook](https://storybook.js.org/) (one of the most popular component library managers) has a ton of great addons that will make accessibility a natural part of your component creation. I've created [a demo](https://github.com/kathryngraysonnanz/accessible-storybook), which you can clone and use as the base for your own, or just poke around and use to try out the addons I'm suggesting before adding them to your existing setup. That being said, let's get into it! 
+
+## Creating your Storybook instance
+
+If you're starting completely from scratch, let's go ahead and set up your project. You can do this quickly and easily by using `[npx create-react-app](https://create-react-app.dev/)` to get your React app up and running, and then `[npx sb init](https://storybook.js.org/docs/react/get-started/install)` to install Storybook. Use `npm run storybook` to check that everything is working as intended, and now we're ready to start customizing your setup for accessibility! 
+
+> Note that any time you add a new addon, you'll need to rebuild your Storybook before you see the changes!
+> 
+
+## Installing Storybook addons
+
+For all of the addons in this list, you'll need to take the following steps to install and add them to your Storybook instance: 
+
+1. Install the addon with `npm install [addon-name-here]` 
+2. Add the addon to the `addons` section of your `module.exports` in the `main.js` file. Storybook installs with a few addons automatically installed, so you'll just want to add your new addon to the list.   
+    
+    ```jsx
+    module.exports = {
+      addons: [
+    		'addon-name-here', 
+    		'new-addon-name-here'
+    	]
+    };
+    ```
+    
+3. Make any additional adjustments specific to that addon (I've detailed these in each section, when there are specific configurations that I recommend). 
+4. Stop and restart your Storybook build, in order to see the changes. 
+
+## A**ddon-a11y**
+
+`[addon-a11y`](https://www.notion.so/The-Best-Addons-for-Building-Accessible-Components-in-Storybook-bd30a9c7a6e944efa5025f8c145c45c9?pvs=21) is probably the most popular and beloved Storybook accessibility addon – and for good reason. It's packed with great features, and runs on the well-known Deque Systems Axe Accessibility Engine. 
+
+### How does this help?
+
+This addon does two main things: 
+
+1. Adds a new panel to the addons drawer in Storybook, which will automatically run accessibility checks on your components as you work and alert you of violations, passes, and incomplete checks based off the WCAG accessibility guidelines. 
+2. Adds a new vision adjustment tool to the header, which can simulate blurred vision as well as many different varieties of color blindness. 
+
+![A screenshot of the window showing accessibility violations](https://res.cloudinary.com/practicaldev/image/fetch/s--wugFV34B--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7touyk510huoir7yak7m.png)
+
+![Different color blindness simulations in this addon](https://res.cloudinary.com/practicaldev/image/fetch/s--JN4CH7lC--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k174vuz26v88nhbhyr8s.png)
+
+### **Configuring this addon**
+
+The primary way to configure this addon centers around disabling or overriding the various rules that the addon uses to check your stories. This should only be done if you're 100% confident that the addon is throwing a false violation – otherwise, you're just ignoring the information you asked it to show you. If needed, however, you can disable individual rules or all checks at either the story or global level. More detailed information on these options can be found [in the `addon-a11y` docs.](https://storybook.js.org/addons/@storybook/addon-a11y) 
+
+## Dark Mode
+
+`[storybook-dark-mode](https://www.notion.so/The-Best-Addons-for-Building-Accessible-Components-in-Storybook-bd30a9c7a6e944efa5025f8c145c45c9?pvs=21)` is an addon that allows you to easily toggle your Storybook UI (and the component preview pane) between light and dark mode. 
+
+### How does this help?
+
+You might be wondering why dark mode made the list of an accessibility article...and the answer is, lots of reasons! Dark mode is an important accessibility feature in and of itself, for folks that struggle with migraines, light sensitivity, eye strain, and similar. Beyond that, however, dark mode is often forgotten when developers are running their accessibility checks – can you guarantee that your color contrast is still good enough in dark mode, or that your focus highlight is still clearly visible? It's not enough to only be accessible in light mode! 
+
+### Configuring this addon
+
+This is an addon that really benefits from some advanced configuration, because it's important to make sure that your Storybook environment matches your application environment as closely as possible. 
+
+To customize this addon, you'll want to add the following parameters for `darkMode` to your `preview.js` file, as well as making sure you're importing `themes` at the top: 
+
+```jsx
+import { themes } from '@storybook/theming';
+import customDarkTheme from './customDarkTheme' 
+
+export parameters = {
+  darkMode: {
+    // Overrides the default dark theme
+    dark: { ...customDarkTheme, appBg: 'black' },
+    // Overrides the default light theme
+    light: { ...themes.normal, appBg: 'white' },
+		// Sets the theme Storybook starts with 
+    current: 'light',
+		// Sets the name of your dark mode class 
+		darkClass: 'lights-out',
+		// Sets the name of your light mode class 
+    lightClass: 'lights-on',
+		// Applies the dark / light mode classes to your preview iFrame  
+    stylePreview: true
+  }
+};
+```
+
+There's a lot of adjustments we made here, so let's take them in order: 
+
+1. **Creating a custom theme** 
+    
+    The Storybook default dark mode will put your components over a pure black `#000` background, but more often, dark modes actually use a dark grey like `#121212` . Since we want to make sure we're creating components in the same environment they'll be used, that means we need to create a custom theme in order to adjust this background value. Good news, this is super easy to do! 
+    
+    You can create files for your custom themes in the `.storybook` folder. The [Storybook docs](https://storybook.js.org/docs/react/configure/theming) have a great rundown on all the details for theming, but for this we're only interested in changing the content background. To do so, you'll just create a custom dark theme which uses the Storybook dark theme as a base, but overwrites the `appContentBg` value. 
+    
+    ```jsx
+    import { create } from '@storybook/theming';
+    
+    export default create({
+      base: 'dark',
+      appContentBg: '#121212'
+    });
+    ```
+    
+2. **Defining the dark mode with `dark: { ...customDarkTheme, appBg: 'black' }`** 
+    
+    Now that we have our custom theme, we'll import that into `preview.js` and use it when setting the `dark` parameter in the `darkMode` addon configuration. 
+    
+3. **Defining the light mode with `light: { ...themes.normal, appBg: 'white' }`**
+    
+    In this case, we don't want to make any changes to the light mode theme, but if you wanted to you could also create a custom theme and use it here in place of `themes.normal` 
+    
+4. **Setting the default theme with `current: 'light'`** 
+    
+    This line of code tells Storybook whether to start in light or dark mode. It's a little thing, but if you're working on your dark mode CSS, you'll quickly tire of toggling the mode in the header over and over. 
+    
+5. **Setting the class names for your dark and light mode with `darkClass` and `lightClass`** 
+    
+    These are what allow you to match Storybook's CSS to the CSS in your application by changing the names of the dark and light mode classes that get applied to the Storybook UI. If your app uses a dark mode class called `night`, you'll want to change that here to make sure that Storybook is using the same class name – that way, you can easily write and test CSS that will work in both places. 
+    
+6. **Copying the class name to the preview iFrame with `sylePreview`** 
+    
+    This final step is small, but important! Setting `stylePreview` to true tells Storybook to also apply that dark / light mode class name to the component preview window, as well as the main application body. If you don't do this, then you won't be able to use the dark or light mode class names in your component styles, since the components are rendered inside an iFrame and the application level Storybook styles won't cascade naturally. 
+    
+    ### **Example time!**
+    
+    You can see in the code below that the dark mode class `lights-out` is being applied to the `html` element in my preview iFrame, thanks to the addon configurations listed above. 
+    
+    ![code sample in the browser inspect tool](https://res.cloudinary.com/practicaldev/image/fetch/s--yFMG9Irz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rblxqsfydi21lpws2pjp.png)
+    
+    Now, I can write CSS like: 
+    
+    ```jsx
+    .lights-out h1 {
+      color: white;
+    }
+    ```
+    
+    And have it toggle the styles in my components automatically as I switch between dark and light mode!  
+    
+    ![Storybook in light mode](https://res.cloudinary.com/practicaldev/image/fetch/s--nAkIGudh--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vizl4jye7f39gl61zkzl.png)
+    
+    ![Storybook in dark mode](https://res.cloudinary.com/practicaldev/image/fetch/s--t9PTeKgQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yihjm33irkbv6n8ihgpw.png)
+    
+
+## Built-in Storybook Screen Reader
+
+`[addon-screen-reader](https://storybook.js.org/addons/addon-screen-reader)` is a super handy addon that adds a basic screen reader right to Storybook – no external software needed! 
+
+### How does this help?
+
+This allows you to test your basic keyboard nav and page structure super easily. While this basic version is not as full-featured as an actual screen reader would be, it's a great way to make sure you're checking the box on the basics while you're working – then, you can circle back with more in-depth testing later. 
+
+### Configuring this addon
+
+Good news, after that last complicated one – this addon is plug-and-play! Just install like any other addon and a panel will be added to the drawer called 'Screen Reader'. You can use that to toggle the voice and text reader options. 
+
+![The screen reader panel in Storybook from this addon](https://res.cloudinary.com/practicaldev/image/fetch/s--2Ma9z-CC--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mokjlf7c5nmd2ij6tf4j.png)
+
+## Aria Live Addon
+
+If you're building any kind of component that will populate new data on the screen, the `[aria-live-storybook-addon](https://storybook.js.org/addons/aria-live-storybook-addon)` is here to help you do so accessibly! 
+
+### How does this help?
+
+If you're unfamiliar with `aria-live`, it's an attribute that you add to your HTML elements in order to let screen readers know the element is going to change dynamically, and that the screen reader should keep an eye on that element in order to tell the user about any changes. You can set two different types of `aria-live` announcements: polite and assertive. Polite should be used for most cases, and assertive only used when you *need* to interrupt a user's actions to announce critical changes. 
+
+This addon adds a new panel to the drawer called 'Aria Live Regions', which will show you when an action triggers an `aria-live` announcement and whether it's polite or assertive. This way, you can confirm that the announcements are triggering correctly, and with the correct type. 
+
+### Configuring this addon
+
+This addon requires no configuration – yay! Just add the `aria-live` attribute to the HTML element in your component and it will automatically add announcements to the panel whenever one is generated. 
+
+![The aria-live panel in Storybook from this addon, showing 2 polite and 3 assertive announcements](https://res.cloudinary.com/practicaldev/image/fetch/s--q8hC9WQ3--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w09ec5b2zvihukp6523w.png)
+
+## Pseudo States Addon
+
+`[storybook-addon-psuedo-states](https://storybook.js.org/addons/storybook-addon-pseudo-states)` allows you to quickly toggle through all possible element pseudo states from the Storybook menu bar. 
+
+### How does this help?
+
+This addon basically duplicates the functionality of the "Toggle Element State" tool from your Dev Tools, but without you ever having to leave Storybook. Pseudo states are incredibly important for accessible development – especially the `focus` and `focus-within` states. Any users who use a keyboard as their primary way of navigation will need a clearly visible focus in order to find their way around, so being able to easily design, develop, and test these easily within Storybook is a huge advantage.  
+
+### Configuring this addon
+
+With this addon, I highly recommend taking advantage of one useful configuration option: the ability to set your Storybook components to automatically set certain pseudo states on load. You can do this by adding a new set of parameters to your component's `stories.jsx` file, where you export your story variations. 
+
+```jsx
+export const Primary = Template.bind({});
+Primary.args = {
+  primary: true,
+  label: 'Button',
+};
+Primary.parameters = {
+  pseudo: { hover: true, focus: true }
+};
+```
+
+Just add that `pseudo` section to the parameters for your story variant, and set any pseudo states you want active on load to `true` . You'll still be able to toggle the pseudo states on and off from the menu bar, but now they'll start with whatever you listed automatically enabled. This is especially nice for when you're working on the CSS for a specific pseudo state, or if you want to test various pseudo states without enabling them manually every time. 
+
+![The hover state dropdown in Storybook from this addon](https://res.cloudinary.com/practicaldev/image/fetch/s--we0_jUSw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6yn007w2ss4ijddc7d7b.png)
+
+## Ready to get to work?
+
+There you have it: my list of favorite accessibility addons for Storybook. With all of these installed, you'll never have to go out of your way to write or test accessible components again – so no more excuses! Are there any Storybook addons you use that I should add to my list? Do you have any questions about configuration or installation? Let me know in the comments below, and thanks for reading!
