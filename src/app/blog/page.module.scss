@@ -1,0 +1,10 @@
+.card {
+    width: 300px;
+}
+
+.blogCardWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 10%;
+    flex-wrap: wrap;
+}
