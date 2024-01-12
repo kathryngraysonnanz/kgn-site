@@ -1,5 +1,19 @@
 .card {
     width: 300px;
+    margin-bottom: 40px;
+
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .date {
+        font-style: italic;
+        font-size: 0.9rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
 }
 
 .blogCardWrapper {
@@ -7,4 +21,14 @@
     justify-content: space-between;
     margin: 40px 10%;
     flex-wrap: wrap;
+}
+
+@media (prefers-color-scheme: dark) {
+    .card {
+        background-color: black;
+        
+        p {
+            color: white;
+        }
+    }
 }

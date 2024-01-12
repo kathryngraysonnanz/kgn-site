@@ -1,0 +1,142 @@
+# Case Study: Large Scale CSS Refactoring in a Legacy Application
+
+*Last modified July 6, 2021* 
+
+Have you ever faced a project so big, so intimidating, you weren't even really sure where to start? Like anything you did would just be chipping away at the base of a mountain that you'd never really be able to move? I found myself in that position not long ago, looking down the barrel of a large scale CSS refactoring project that I'd been asked to take the lead on. 
+
+The application was huge, and the company had been working without front-end specialists for years, so there was a pretty low level of general CSS hygiene. It had gotten to the point where the tech debt had stacked up far enough that it was impacting the engineers' ability to actually write new code – slowing them down, because they were constantly fighting against a cascade of styles that weren't really intended to cascade. Very few styles were scoped appropriately. A search turned up 3,198 `!important`s. The longer we looked, the more it looked like a pile of spaghetti we could never hope to untangle...and yet, throwing it all out and starting over wasn't a realistic option either. 
+
+Tech loves to focus on the new and shiny, but realistically, many of us live our day-to-day lives working with code that is anything but. When I started looking for resources on large-scale CSS refactoring, I was surprised and disheartened to find very little at all on the subject. Christoph Reinartz has an excellent [talk](https://www.youtube.com/watch?v=ALaQC4i1ax8) (and [blog](https://tech.trivago.com/2016/02/02/large-scale-css-refactoring-at-trivago/)) on Large Scale CSS Refactoring at Trivago that I found *immensely* helpful, but besides that...I realized I was going to have to figure this out on my own. 
+
+So, that's why I'm here (and presumably, why YOU'RE here). Our CSS refactoring project isn't complete yet, so I (unfortunately) can't share any stats and figures with you yet. But that was also part of what I learned as part of this process – sometimes, with a big project like this, you have to be willing to just slowly chip away at it in the background, making improvements where you can and letting the "finish line" be more of a nebulous thing. 
+
+But what I *can* talk about is our high-level approach, and how we've been working at this consistently since the project began – while also continuing our work on new feature development. This isn't a glamorous, sparkly case study with a big finish, but it *is* a realistic and effective one that's been making slow and steady progress – and rather than sit on this information until everything is 100% complete, I'd like to go ahead and get this out there, in the hopes that it will be helpful to someone else in a similar position. 
+
+Because this is pretty long (hey, there's a lot involved in refactoring a whole application worth of CSS), here's a linked table of contents:
+
+**[Our Plan of Attack](#plan)**
+- [Stage 1: Assess the current situation and align on the goal](#stage1)
+- [Stage 2: Establish baseline styles and structure](#stage2) 
+- [Stage 3: Refactor Page Level Styles](#stage3) 
+- [Stage 4: Refactor Shared Components](#stage4)
+- [Stage 5: Implement New Styles](#stage5)
+
+**[Implementing the Plan](#implementation)**
+
+**[Lessons Learned](#lessons)**
+- [Slow and steady wins the race](#slow)
+- [Be ready & willing to pick it up and put it down (without giving it up)](#be)
+- [You can't refactor the CSS without refactoring your HTML (or, you technically can, but it's not a great idea)](#html)
+- [Hype up every little win](#hype)
+
+## <a name="plan"></a>Our Plan of Attack
+### <a name="stage1"></a>Stage 1: Assess the current situation and align on the goal
+
+First, we needed to really wrap our brains around the current situation. We had a lot of people with a little bit of knowledge about specific parts of the application, but very few people with *all* the knowledge about the entire application. We needed to go full Captain Planet and combine our powers.
+
+To do this, we scheduled a call – a real monster of an all-day call, but we only wanted to have to do this once. We split the call into two parts: 
+
+1. Walking through the current file structure and application setup so everyone was familiar with our starting point. 
+
+2. Aligning on our future vision, so we were all moving towards the same target. 
+
+In the morning, we all got a full walkthrough of the application, focusing on the following: 
+- Determining which styles were linked to which files
+- Finding all usages of third-party libraries and evaluating whether or not we could remove / replace them 
+- Making sure everyone understood how the CSS is compiled and what the final output looked like 
+- Walking through all the content currently in our Component Library 
+- Documenting, documenting, documenting! 
+
+The last part was the most important. We wanted to make sure we had everything written down, so the knowledge wasn't just stored in people's heads anymore, but rather in a place everyone could come back to and reference as we worked. With the CSS being not-quite-ideal to begin with, this proved to be a crucial move. The less expected your setup is, the more important documentation becomes. 
+
+In the afternoon, we turned our focus towards the future – what we wanted the application to look like when we were finished. This meant discussions around: 
+- Reviewing and adjusting our planned approach 
+- Reviewing and adjusting our new CSS Styleguide 
+- Deciding how we wanted to structure things moving forward – what was missing, what could we consolidate or delete entirely, where we want global variables live, etc.
+- Deciding if we wanted to add any new libraries or tools to assist with our work 
+- Documenting, documenting, documenting! 
+
+It was a long, full day, but by the time we all signed off, we were feeling confident and ready to tackle the next stage.
+
+### <a id="stage2"></a>Stage 2: Establish baseline styles and structure
+
+Because CSS cascades, it's important to refactor from the top down. This is, of course, easier said than done. In this stage, we wanted to focus on setting a strong groundwork for everything moving forward. This meant we worked on the following tasks: 
+- Getting our branch set up and determining our branching and merging strategy 
+- Creating any new files we needed and reorganizing the application CSS structure to support our agreed-upon future vision
+  - For us, this meant creation of a new `global-styles` file, consolidated from several "not-intentionally-global" global style files already in existence, and determining what would live in the application vs. the Component Library.
+- Installing and configuring any libraries we want to use.  
+  - For us, this referred to Prettier, a code formatter we agreed to use, and some small tweaks to our existing internal Component Library.  
+- Removing any stylesheets we could safely delete without much work / adjustment. 
+- Writing global styles that we could leverage as we continued to work on this project. 
+  - This one was important because we had a lot of inconsistent component-level styling. By getting our big stuff established up front, it gave us something to replace all that inconsistent stuff with. We defined a lot of variables and wrote a lot of mixins in this step. 
+
+### <a id="stage3"></a>Stage 3: Refactor Page Level Styles
+
+In this stage, we moved down the cascade by a step and focused on page / section level styles. This is something that will vary more widely based on the structure of your application, but in our case, the application was fairly easily broken down by "page" (in quotes because...the nature of single page applications is that they don't have "pages" but you get the idea). 
+
+This was the point at which we really started digging into the mess. In fact, we ended up subdividing this stage into two Phases, in order to make it more manageable. It looked like this: 
+
+*Phase 1* 
+- Move page styles into scoped stylesheets wherever they aren't already 
+- Replace third-party library components or one-off components with Component Library components wherever possible, and delete any associated styles that are no longer needed
+- First pass refactoring on the new scoped stylesheets to meet our new CSS Styleguide rules, focusing on these main problem areas:
+  - Renaming classes to use the OOCSS approach 
+  - Refactor nesting to be no deeper than 3 levels 
+  - Reduce lines of code by combining classes, reducing specificity, removing duplication, etc. 
+  - Writing mixins and variables to support code simplification goal  
+
+*Phase 2* 
+- Refactor HTML, focusing on these main problem areas: 
+  - Improving semantic structure 
+  - Alignment with new OOCSS naming & structure 
+  - Accessibility
+  - Responsiveness 
+- Second pass refactoring on CSS, focusing on these main problem areas: 
+  - Removing remaining `!important`s wherever possible 
+  - Grouping related styles into sections and documenting with comments 
+  - Replacing hex codes, padding, fonts, etc. with variables that can be universally updated
+  - Swapping `px` values with `rem` values wherever possible 
+  - Swapping `id`s to `classes` when there isn't a need for an id 
+  - Writing / updating unit tests to accommodate any changes made
+
+> Full disclosure: this is the stage we're currently on now – so everything from here on out is the plan we have to continue the work, but isn't work we've actually completed yet.
+
+### <a id="stage4"></a>Stage 4: Refactor Shared Components
+
+Like basically every team, we have a folder of shared components that hang out in the application outside of the "page" structure mentioned above – because, of course, the whole idea is that they're shared between all those pages. This makes all the sense in the world...until it comes to CSS refactoring, in which case, you just kind of have to pick a time to handle them because they don't really fit naturally anywhere. We opted to wait until basically the end of the project to handle them to avoid the rabbit-holing and stepping-on-each-others'-toes that seemed really easy to slip into if we attempted to refactor them as part of whatever pages we found them used on. 
+
+During this process, we plan to focus on the same kind of detailed comb-through that I've already outlined at the page level: a first, high-level sweep to delete and reorganize, followed by a second, more detail-oriented pass to really tidy things up. 
+
+### <a id="stage5"></a>Stage 5: Implement New Styles
+
+Technically, the implementation of new styles isn't something that would be required for a CSS refactoring project – in fact, usually "refactoring" means you can expect to see no major changes in the final product, just improvements in how it's executed. However, in our case, one of the driving reasons that we chose to prioritize the CSS refactoring project was to ease the implementation of a new Design System that had been in the works for quite some time. The thought of rolling that out over our existing CSS setup was...painful, to say the least. 
+
+So, why am I including this in the guide, if I just spent the last paragraph acknowledging why it's not really part of a refactoring project? Well, because we actually found it to be an incredibly helpful carrot-on-the-stick approach to getting motivated and excited about what we all knew would realistically be a pretty painful project. Refactoring projects are rarely what anyone would call *fun*, and *CSS* refactoring? Not exactly a trip to Disneyland. Having this to look forward to at the end – a glimpse of how much nicer our application *could* look, and all the things we'd be able to take advantage of once it was in place – it was honestly the light at the end of the tunnel. As we started defining variables and other global styles, we pulled from these new design system styles, which gave us a little sneak peek at what the whole app would look like when we were done. So we got to see those little visual improvements, as we worked, throughout the whole life of the project – and honestly, 10/10, would do again. 
+
+## <a id="implementation"></a>Implementing the Plan
+
+If you've made it to this point in the writeup, then you probably already know that researching and planning something of that complexity is one thing, but actually making it happen is a whole other task. And, of course, try explaining to Project Management that you need several sprints worth of time to create...basically nothing. No new major features, just (to them) a little spit & polish. A hard sell, to be sure, no matter how much it would improve life on the development side. 
+
+We knew, no matter how much we wanted to, this wouldn't be a project we would be able to just sit down and knock out – we realistically couldn't put new feature development on the back burner for that length of time. So, I ~~stole~~ borrowed an approach that a previous manager of mine had used when we had a backlog full of small, low-priority bugs that seemed to always be growing, but never disruptive enough to warrant immediate attention: Bug Fix Friday. I've written about Bug Fix Friday in more detail [here](https://dev.to/kathryngrayson/bug-fix-fridays-2jpe) (and how YOU can steal the idea for your own team), but the gist of it is that we set aside one day each week for all developers to focus on a non-feature-development-related task that we otherwise would have had difficulty allocating a chunk of time for. 
+
+So, in our case, we started **CSS Fix Fridays**. This allowed us to basically maintain our current pace on feature development projects, while still dedicating regular installments of time to CSS refactoring. It did, technically, slow down feature development *slightly*, but for the most part we just factored that into our scoping of the project and honestly didn't see much of an overall change. It was (like many things about working in a legacy application) not ideal, but functional – and that's really all we needed it to be. 
+
+## <a id="lessons"></a>Lessons Learned
+
+### <a id="slow"></a>Slow and steady wins the race
+
+A huge refactoring project like this is just going to take time. Huge amounts of time. Even if we had been able to block out all the time in one chunk, it would have still been huge. There's a very sizable chunk of research, planning, and getting everyone onboard that has to be done, and that's before you ever even start touching the code. It can be tempting to come in, guns blazing, with the idea that your enthusiasm will be contagious. And maybe it will be, for a little bit, right at first. But that isn't a long-term approach, and you need to be thinking long-term. Set your expectations (and everyone else's expectations) around the idea that you'll be working on this for a long time, and speed isn't necessarily the goal. A burst of work and enthusiasm right at the beginning isn't the goal, so much as setting a sustainable pace for the life of the project. 
+
+### <a id="be"></a>Be ready & willing to pick it up and put it down (without giving it up)
+
+In the same vein as the last one, sometimes things will come up that mean you need to hit the pause button on a long-term refactoring project like this. It's almost never going to be priority, and that's okay. The important part is to make sure you keep hitting play again, once you've completed the more urgent work. You need someone on your team to be the advocate for the refactoring work – someone to bring up in every meeting "Okay, so when can we restart CSS Fix Fridays?" You can't be afraid of sounding like a "nag" or a broken record – the point is to keep it in everyone's working memory, and not let it slip into obscurity if you ever have to take a break from the work. Set it down as many times as you need, just make sure you pick it back up again. 
+
+Another potentially useful approach to this that we've used is to not think of the team as an all-or-nothing group. When there's urgent work to complete, ask yourself realistically if it's *really* all-hands-on-deck work. If it's not (and it usually isn't), you might be able to have a few folks stay on the refactoring project, and a few folks split off to handle the other work. This keeps the refactoring project on the radar, even if those people aren't able to make huge amounts of progress. Remember: slow & steady. 
+
+### <a id="html"></a>You can't refactor the CSS without refactoring your HTML (or, you technically can, but it's not a great idea)
+
+99% of the time, if you've got bad CSS, you've also got bad HTML. They're like two sides of the same unfortunate coin. So if you're gonna be in there, attempting a huge CSS refactoring project, be ready to write some HTML, too. In order to get our CSS formatted using the OOCSS approach we had all agreed on, it meant making some significant changes. Not to mention, once we got in there, we found a lot of non-semantic, unaccessible HTML just kind of...hanging out. Divs on spans on divs; not cool. It seems kind of obvious in retrospect, but it wasn't something I had considered and factored in when originally writing up the plans for our refactoring project – but you don't have to make the same mistake. 
+
+### <a id="hype"></a>Hype up every little win
+
+The combination of "giant project" with "no set completion date" and "not really fun to begin with" can all add up to "one pretty big bummer". It's easy for morale to get low, and you can't even really blame anyone for that. I've found that the answer is *not* to pretend that it's awesome and we're all actually having a great time (mandatory fun, anyone?), but rather to make an effort to highlight genuine wins and successes whenever we have them. And you'll find that you actually have them quite a lot, as long as you're not expecting something to be HUGE in order for it to be a win. Got one component completely refactored? Awesome, gif party in Slack. Wrote some new mixins that everyone can use now? Fantastic, have a party parrot. Closed a whole ticket? Time to hype you up, my friend! Give people public kudos, see and appreciate their work, leave positive comments on code reviews, share screenshots. Make Slack a fun, positive place to be when you're working on this project. It's an undertaking, and if you wait for it to be 100% done before you start celebrating, you're gonna be waiting a long time. There are always everyday wins, and when you're working on this, it's more important than ever to lift those up and honor them. 

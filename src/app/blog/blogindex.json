@@ -16,5 +16,197 @@
         "link": "best-addons-accessible-storybook",
         "published": "Nov 10 2021",
         "snippet": "If you've ever created a component library or even thought about creating your own, you already know that one of the biggest considerations is accessibility."
+    },
+    {
+        "title": "I Don’t Know How to Explain to You That Being a Developer Means You Have to Care About Users",
+        "link": "care-about-users",
+        "published": "Dec 16 2021",
+        "snippet": "Users are more than a number – they’re not logins per day, page views per month, or engagement metrics to measure against our OKRs – they're real people. "
+    },
+    {
+        "title": "Case Study: How Progress Uses Figma to Manage the Design Process",
+        "link": "case-study-progress-figma",
+        "published": "Sept 26 2023",
+        "snippet": "Ever wondered how the magic happens when it comes to designing and developing our Telerik and Kendo UI component libraries?"
+    },
+    {
+        "title": "Understanding Color and Accessibility",
+        "link": "color-accessibility",
+        "published": "Nov 20 2022",
+        "snippet": "When it comes to making your applications accessible, the colors that you choose play a huge role!"
+    },
+    {
+        "title": "Contextual Design vs. Feature Driven Development",
+        "link": "contextual-design-vs-fdd",
+        "published": "Oct 27 2022",
+        "snippet": "Ideally, design is the thing that positions itself in-between the user and the solution and becomes the bridge; when a design is perfect, the user won’t even notice that they’ve left solid ground and stepped onto a bridge at all."
+    },
+    {
+        "title": "Deploying Your CRA React App on Github Pages",
+        "link": "cra-github",
+        "published": "Aug 1 2022",
+        "snippet": "Github Pages allows you to host a project directly from your Github account, quickly and easily."
+    },
+    {
+        "title": "Layering Up with CSS Cascade Layers",
+        "link": "css-cascade-layers",
+        "published": "March 10 2022",
+        "snippet": "With this new update, however, we have a new tool that allows us far more control over the cascade than we’ve ever had before."
+    },
+    {
+        "title": "Debunking 6 Common Myths about D&I in Tech",
+        "link": "d-i-myths",
+        "published": "May 18 2023",
+        "snippet": "I don’t think it’s surprising news to say that we have a diversity and inclusion problem in tech. rogress is happening, slowly – but it’s often impeded by myths and incorrect assumptions."
+    },
+    {
+        "title": "A Developer's Guide to Implementing a Design System",
+        "link": "design-system-implementation",
+        "published": "Aug 10 2023",
+        "snippet": "You’ve seen the Figma kits, the style guide, and the written documentation; it all looks great, but it’s not code."
+    },
+    {
+        "title": "Design Systems for Developers",
+        "link": "design-system-implementation",
+        "published": "Feb 11 2022",
+        "snippet": "If you work with designers, chances are high that you’ve heard the words “design system” bandied about at least a few times."
+    }, 
+    {
+        "title": "You Probably Don't Need Media Queries Anymore",
+        "link": "ditch-the-media-queries",
+        "published": "Nov 08 2021",
+        "snippet": "Now, with screens available in more or less any size you can imagine, it's time to shift our approach once again – the era of breakpoints is over and the era of fluid design is here."
+    },
+    {
+        "title": "Figma for Developers",
+        "link": "figma-for-developers",
+        "published": "Jul 21 2021",
+        "snippet": "Like any specialized software, a Figma file can be a little overwhelming to navigate if you're not familiar with it – so let's start from the top!"
+    },
+    {
+        "title": "Using Figma Kits to Kickstart Your Design System",
+        "link": "figma-kickstart-design-system",
+        "published": "June 15 2022",
+        "snippet": "How do we get a quick and dirty Design System MVP up and running, with minimal time investment, in order to demonstrate the benefits? We do what great artists have done for centuries: start with someone else’s work."
+    },
+    {
+        "title": "The Future of Color in CSS",
+        "link": "future-color-css",
+        "published": "June 28 2022",
+        "snippet": "Today, we’re seeing the shift from LCD to OLED screens, which opens up a whole new array of newly displayable colors for our usage."
+    },
+    {
+        "title": "I can :has()?",
+        "link": "i-can-has",
+        "published": "Aug 29 2022",
+        "snippet": "Now is the perfect time to get up to speed on everything you need to know about this powerful and adaptable new CSS pseudo-class!"
+    },
+    {
+        "title": "How I Built This: KendoReact + Storybook",
+        "link": "kendoreact-storybook",
+        "published": "Apr 29 2023",
+        "snippet": "Ready for a hot take? I believe that the core of every great, functional design system is a component library."
+    },
+    {
+        "title": "Building Your Online Presence as a Developer",
+        "link": "online-presence",
+        "published": "Jun 1 2023",
+        "snippet": "There’s tremendous value and benefit in putting both yourself and your work out there – and I’ve come to believe that it’s one of the best things that developers (especially beginning developers) can do for their careers."
+    },
+    {
+        "title": "6 Ways to Start Coding Accessibly",
+        "link": "six-ways-start-coding-accessibly",
+        "published": "Oct 25 2022",
+        "snippet": "In my opinion, the best thing we can do is to start writing accessible code to the best of our ability, with the acknowledgement that we might make a mistake! After all, isn’t that just...how development works all the time?"
+    },
+    {
+        "title": "Taking a Look at `startTransition` in React 18",
+        "link": "start-transition-react-18",
+        "published": "Nov 08 2021",
+        "snippet": "Let's take a look at (what I think) is going to be one of the coolest parts of the upcoming React 18 release: `startTransition`."
+    },
+    {
+        "title": "What’s New in WCAG 2.2",
+        "link": "whats-new-wcag-2.2",
+        "published": "Nov 16 2023",
+        "snippet": "If you’ve been keeping up with the accessibility space, then you might already know that there’s a new and updated version of the Web Content Accessibility Guidelines (WCAG) that’s been under review for the last several months."
+    },
+    {
+        "title": "A Year in DevRel by the Numbers",
+        "link": "year-in-devrel-2022",
+        "published": "Aug 31 2022",
+        "snippet": "By nature, you can’t quantify a valuable conversation, an actual human connection, a depth of learning, or many other things that are inherent to the work of DevRel."
+    },
+    {
+        "title": "Graceful Resignation",
+        "link": "graceful-resignation",
+        "published": "Mar 30 2017",
+        "snippet": "For those of you that might be coming up on the end of one opportunity and the beginning of another, here's a list I've been working on over these last two weeks of things you can do to resign your job with grace and make sure your coworkers might actually miss you when you're gone."
+    },
+    {
+        "title": "The Designated Asshole: Lessons from my Dad on Leadership",
+        "link": "designated-asshole",
+        "published": "Jul 10 2017",
+        "snippet": "Like a Designated Driver, The Designated Asshole is someone who has agreed in advance to do the less fun, but responsible thing."
+    },
+    {
+        "title": "Overcoming Impostor Syndrome",
+        "link": "overcoming-impostor-syndrome",
+        "published": "Jul 17 2018",
+        "snippet": "This, at its heart, is what Impostor Syndrome is. It’s the constant nagging voice in the back of your head telling you that you’re unqualified to do what you’re doing. And it’s being absolutely convinced, even after you do it, that your success was only due to luck, coincidence, or outside help."
+    },
+    {
+        "title": "Understanding the Hierarchy of Competence",
+        "link": "hierarchy-of-competence",
+        "published": "Oct 18 2017",
+        "snippet": "The Hierarchy of Competence is a model, developed by Noel Burch in the 1970s, that attempts to explain the stages we go through as we learn a new skill."
+    },
+    {
+        "title": "Your Questions Are Ridiculous; Ask Them Anyway",
+        "link": "ask-anyway",
+        "published": "Apr 13 2018",
+        "snippet": "People will tell you that there's no such thing as a bad question, but that's not true. Anyone who has said to you 'There are no bad questions!' is only trying to make you feel better because you just asked a bad question."
+    },
+    {
+        "title": "Sprint Planning as Self Care",
+        "link": "sprint-planning-self-care",
+        "published": "Aug 17 2018",
+        "snippet": "The word 'self-care' gets thrown around a lot...but really, it just means being in tune with yourself enough to recognize your own needs and accommodate them. A big part of self-care at work means balancing your load, and a crucial part of that happens during sprint planning."
+    },
+    {
+        "title": "Improve Your Code Reviews: Critique like a Designer",
+        "link": "improve-your-code-reviews",
+        "published": "Mar 26 2019",
+        "snippet": "Turns out, the lessons I learned critiquing other people's work in art school has helped make me a better code reviewer."
+    },
+    {
+        "title": "Case Study: Building a Component Library",
+        "link": "case-study-component-library",
+        "published": "Aug 17 2019",
+        "snippet": "If you're interested in implementing a Component Library at your own workplace, this post will detail the steps I took, the lessons I learned, and the resources that inspired and guided me along the way."
+    },
+    {
+        "title": "How to Get Buy-In",
+        "link": "get-buy-in",
+        "published": "July 28 2020",
+        "snippet": "I've talked at a few conferences lately about my experience building a component library, and without exception, I always hear the same thing: 'This sounds great! But how do I get the buy-in from my manager or team to actually do it?'"
+    },
+    {
+        "title": "9 Lesser-Known CSS Selectors To Up Your Styling Game",
+        "link": "lesser-known-css-selectors",
+        "published": "Sept 04 2020",
+        "snippet": "Ironically, making use of the more complex selectors will actually simplify your code, because it allows CSS to do what it’s really good at – cascade."
+    },
+    {
+        "title": "Case Study: Large Scale CSS Refactoring in a Legacy Application",
+        "link": "case-study-large-scale-css-refactor",
+        "published": "July 06 2021",
+        "snippet": "Have you ever faced a project so big, so intimidating, you weren't even really sure where to start? Like anything you did would just be chipping away at the base of a mountain that you'd never really be able to move?"
+    },
+    {
+        "title": "Bug Fix Fridays",
+        "link": "bug-fix-fridays",
+        "published": "July 06 2021",
+        "snippet": "How can you balance necessary internal work with continuing to produce in a way that will keep your sales team happy?"
     }
 ]

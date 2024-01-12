@@ -1,0 +1,47 @@
+# Improve Your Code Reviews: Critique like a Designer 
+
+*Last modified March 26, 2019* 
+
+The one thing that always really _terrified_ me was the idea of other people reviewing my code. I'd done lots front-end development work in the past, but always in places where I was the only one coding anything – the thought of sharing a codebase with other engineers scared me. Before, if it worked from a user's perspective, it was deemed Good Code™️. I knew this was not actually how Good Code™️ worked, and was sure a reckoning was fast approaching (it was). 
+
+What I hadn't really considered was that I already had years of experience getting my work critiqued from when I was in art school and later working as a Graphic Designer – and honestly, the stuff my first Creative Director said about my work was a hell of a lot meaner than any code review I've ever had (at least, so far 🤞🏻). More importantly, the lessons I learned critiquing other people's work during those years has helped make me a better code _reviewer_. 
+
+So, even if you're not an art aficionado, here's how you can borrow the guidelines of a good art critique to leave better comments as a reviewer on that next PR: 
+
+## Step back and understand the context of the work 
+
+Duchamp's famous work, _Fountain_, is literally just a urinal – _if_ you look at it with no understanding of its historical context. But take a step back, and you can see how it was more than that: it was a challenge to those who thought they could define what art was, a statement about the use of pre-made pieces in art, and an open question about how much of a piece you have to alter in order to be able to claim it as your own work. Those aspects – not its literal form – are why it's a pivotal piece in modern art history. 
+
+A small piece of code within the greater structure of an application can be the same way – you can't judge it's purpose and the effectiveness of the solution if you don't understand the larger scope of the problem they were trying to solve. Don't just skim only the lines that were changed; make sure you're reviewing the file as a whole and checking that against the feature or bug that prompted the work in the first place. 
+
+## Voice dissenting opinions kindly. Critique the art, not the artist 
+
+If you're offering a critique directly to someone you work with (as opposed to making a critical analysis of a piece in a museum), it's important to be both honest _and_ tactful. Contrary to popular opinion, one is not more important than the other. Remember that the end goal is to create better work - NOT to show off your own knowledge, knock someone else down a peg, play devil's advocate, etc. Make sure your suggestions are grounded in fact, not personal opinion, and oriented towards improvement. If you dislike or disagree with something (which is valid) make sure your comment also includes a recommendation for an approach you think would be better. 
+
+And finally: don't use the "shit sandwich" method, where you structure your responses as compliment / critique / compliment. It's _very_ obvious when people do this and it makes the compliments seem insincere, even if they're not. 
+
+## Technical execution is important, but it's not the only thing to critique
+
+Code that gets merged into a shared codebase should be as technically correct as possible: no argument there. I have a coworker who's personal mission seems to be to make sure that my code is indented perfectly in every PR, and he _will_ leave a comment if it's not – and I appreciate that. I also appreciate when my coworkers tell me where I could DRY things up, where my naming structure is inconsistent or unclear, etc. Technical notes are the most obvious purpose of code review, but I think it's also important to remember that it's not the only one. 
+
+A good drawing isn't defined solely by whether it's a photorealistic representation of the subject or not – there are other factors at play. Poor technical skill can limit a work, and it needs to be addressed so the creator can improve. However, if the only comments you ever offer are in regards to technical minutia, I'd encourage you to look at the larger structure of the work as well. 
+
+## Ask questions, don't make assumptions 
+
+Making assumptions is easy, but 99% of the time it leaves us with an answer that's incorrect or biased. When you look at someone else's work and don't fully understand a choice they made, ask them to explain it – this is often a learning opportunity for both parties. 
+* If the creator didn't make an intentional choice (they chose blue for the background without thinking), asking them why they made it is often enough for them to go "Um, I'm actually not sure!" and reevaluate. 
+* If they made a biased choice (they chose blue because that's their favorite color), this forces them to come up with a rational defense for the choice beyond "I just like it". 
+* Finally, if they _do_ have a good reason (they chose blue because blue is known to have a calming effect), then they can tell you about their choice and you now have information you didn't have before that will influence your understanding of the work. 
+
+None of this happens if you leave a comment that just says "Make it red." 
+
+## You don't have to be a better artist to offer a critique 
+
+This is one I struggle with (shoutout to my BFF, Impostor Syndrome 🙌🏻), but you don't have to be a master before you're allowed to critique the work of others. I'm willing to bet that most of you could look at a painting and form an opinion, even if you can't draw a stick figure. In fact, if you keep looking at lots of different paintings and forming opinions about them, we call that "getting an art education". 
+
+Code is the same way. I'm just starting out learning Ruby, and to help me with that goal, my coworkers add me to their PRs when they've used it. This gives me the chance to familiarize myself with the language, see how they approach problems, google bits of syntax I'm not familiar with, or sometimes just ask "Hey, why did you do this X way instead of Y?" It's a great learning opportunity for me, and I'm surprised by how often I'm able to catch stuff – even in a language I'm still a real novice in. 
+
+## Note what works, not just what doesn't 
+
+We often think of code reviews or critiques as chances for other people to call out what's wrong with our work, but it's more than that – it's also a chance to talk about what's working well. That same coworker who's always on me about proper indentation is also really great about leaving comments when he sees something I've done well. Sometimes, it's as simple as a 👍🏻 next to a line of that Good Code™️. Who knows – if Van Gogh had gotten a few more 👍🏻s on his work, maybe the whole ear situation could have been avoided, altogether. 
+

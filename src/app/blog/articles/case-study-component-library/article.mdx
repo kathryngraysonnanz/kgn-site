@@ -1,0 +1,90 @@
+# Case Study: Building a Component Library
+
+*Last modified August 17, 2019* 
+
+Over the last year and a half, I've been the lead on a project to create and implement a robust Component Library. Our Component Library been a hugely beneficial effort that's made our suite of web applications more cohesive, more accessible, and (frankly) more beautiful. The other (less-frontend-inclined) developers enjoy being able to build without having to worry about UI design decisions or touch any CSS – two things that I, personally, love to do.  Recently, we've even begun to take the steps to expand the Component Library into a full Design System (but that's another post entirely). 
+
+If you're interested in implementing a Component Library at your own workplace, this post will detail the steps I took, the lessons I learned, and the resources that inspired and guided me along the way. 
+
+Because this is pretty long *(hey, there's a lot involved in getting a Component Library off the ground)*, here's a linked table of contents: 
+
+**[Steps: Practical Implementation of Your New Library](#steps)** 
+1. [Choosing Tools](#choosing-tools)
+2. [Recreating Existing Basic Components](#recreating)
+3. [Installing the library in our applications and replacing existing components](#installing) 
+4. [Building a Component "Wish List"](#wishlist)
+5. [Creating New Components and Removing Old Ones](#new-components)
+6. [Opportunistic Maintenance](#maintenance)  
+
+**[Lessons Learned: What I Wish I Knew When I Started](#lessons)**
+* [Keep it general](#general) 
+* [It's okay (and actually beneficial) to have unfinished components in the library](#wip)
+* [Build in accessibility at the component to "get it for free" in the application](#accessibility) 
+* [Remember to occasionally "zoom out"](#zoom-out)
+
+**[If you've read this far...](#conclusion)**
+
+
+## <a name="steps"></a>Steps: Practical Implementation of Your New Library
+
+### <a name="choosing-tools"></a>1. Choosing Tools
+
+My team creates and maintains a suite of web applications built primarily in **[React](https://reactjs.org/)** (which, of course, already lends itself beautifully to the use of a Component Library). It only took a little bit of research to find [**Storybook.js**](https://storybook.js.org/), "an open source tool for developing UI components in isolation for React, Vue, and Angular." Getting it up and running was a mercifully smooth process with only a small learning curve, thanks to their very solid documentation. Within Storybook, we use the [**Info Addon**](https://github.com/storybookjs/storybook/tree/master/addons/info), the [**Viewport Addon**](https://github.com/storybookjs/storybook/tree/master/addons/viewport), and **[Story-Router](https://github.com/gvaldambrini/storybook-router)**. We also use **[Rollup.js](https://rollupjs.org/guide/en/)** to compile everything into a library which can then be imported into our other applications via package manager and handled like any other dependency. Within the actual components, we use [**Font Awesome**](https://fontawesome.com/) icons for our more general icon needs, as a supplement to our lovely (but limited) library of custom brand-specific icons. Our CSS is written using **[Sass](https://sass-lang.com/),** which is especially useful for a Component Library because it lets you make use of variables (although vanilla CSS is fast catching up!) and nesting. In the future, we hope to take more advantage of partials and mixins, but I'll admit we're not currently using them to their full potential. 
+
+### <a name="recreating"></a>2. Re-creating existing basic components
+
+So you're all set up and ready to build some components – hell yeah! But how do you decide what to build first? It can be tempting to want to start 100% from scratch or just recreate the component list of another, more established Component Library from another company, but you're actually better off looking through what you've already built. If you have an existing application or website, it's time to go through page by page and start cataloguing – what do the buttons look like on each page? How about headers? How about modals? Brad Frost calls this [**"Interface Inventory"**](http://bradfrost.com/blog/post/interface-inventory/) and it's a hugely beneficial thing to do when you're first starting out. Once you have a list, look at your most-used bits of UI and bam – there's your list of starter components. 
+
+If you have a fairly consistent design already, then it's just a case of copying the code for a button (for example) into the Component Library and making any necessary small adjustments. But, more likely, you'll discover that you have 3 or 5 (...or more) vaguely similar (...or not) different button designs and now you need to choose which one will be *The Button Design<sup>TM</sup>*. When you're making this decision, be sure to keep in mind all the different contexts in which buttons are used in your application. You may find that you need several button components to meet all your various needs, and that's fine too – maybe you make a Primary Button, a Small Button, a Ghost Button, etc. 
+
+**As part of this process, make sure you're not just writing code, but also defining usage guidelines and writing documentation so other developers can understand how to use the different components.** I cannot overstate the importance of this; I know writing documentation isn't the most fun part, but in this case, it's absolutely critical – part of the goal of the Component Library is visual consistency, and that includes consistency in the way your components are used...and people won't know how they should or shouldn't use a component, unless you write documentation for it. 
+
+### 3. <a name="installing"></a>Installing the library in our applications and replacing existing components
+
+At this point, you should have a basic library of maybe 5-10 basic components – stuff that was being used in lots of places within your application. Now, it's time to go in and swap out the old stuff with the new, imported Component Library components so we can start reaping the benefits. Depending on your setup, you may have some small kinks to smooth out in terms of integration – I remember an especially frustrating one where one of our applications was using an older version of React that didn't fully support JSX fragments (*these guys:* `<> </>`) so we had to go back and replace them with `<span>`s in the Component Library until we were ready to update. You may also notice, at this point, that some of the components you created in the bubble of the Component Library aren't quite meeting the actual needs of where you want to use them in your real-world app – you'll likely need to make some adjustments (see the Lessons Learned section further down for some more info on how you can avoid this as much as possible). 
+
+Hopefully, these bumps in the road will be relatively minor and outweighed by the immense joy of all the code you get to delete – because truly, is there anything that feels better than KonMari-ing the shit out of your code???
+
+### <a name="wishlist"></a>4. Building a Component "Wish List"
+
+Once you've got the basic needs covered, it's time to start thinking about the nice-to-haves. We keep a component "wish list", which is basically just a list of component ideas that we want to build someday, but don't have an urgent need for right now. This could be stuff you'd like to redesign or improve, stuff you anticipate needing for a feature down the road, or stuff you've gotten requests for. Keeping it all written down has a few benefits: 
+
+- It makes sure you don't forget a good idea you had for a component
+- It makes it it easy for other folks to pick up tasks, when they have a spare hour or so they can throw at Component Library work
+- It helps users see that the Library is still active and growing
+- It reassures folks that any component requests they make aren't just being sent into the void
+
+### <a name="new-components"></a>5. Creating New Components and Removing Old Ones
+
+In terms of recommended reading for building a Component Library, I can't recommend [**Atomic Design**](http://bradfrost.com/blog/post/atomic-web-design/) enough. This is the approach we took to the actual component making – combining our smaller pieces into bigger "organisms". For example, our Button component became part of our Search Form component, and our Subheader component became part of our Dashboard Tile component. Not only does this make your life easier, but it also should be a reassurance that the components you created were the right ones – if you find yourself using them over and over, then they were clearly needed. 
+
+On the other hand, you'll also likely discover that some of the components you *thought* you needed aren't actually being used. It's good to go through and take stock every now and again, so you can cull unused components from the library and reduce clutter. It may also be useful to check in with other developers or designers to see why the component wasn't useful – maybe the component was too limited or opinionated, or there was just something inconvenient about how the component was built. The good news is that those types of things can be easily adjusted – and asking prevents you from throwing out the baby with the bathwater. 
+
+### <a name="maintenance"></a>6. Opportunistic Maintenance
+
+In the same way that we practice [**Opportunistic Refactoring**](https://martinfowler.com/bliki/OpportunisticRefactoring.html), we also take an opportunistic approach to Component Library maintenance. Frankly, it's not always realistic to fit dedicated Component Library time into every sprint – and even more frankly, it's not always *necessary*, once you get things up and running. We look at our upcoming tasks, see where we can tie new component creation (or old component refactoring) into the work, and just estimate it as part of the story. Keep your "wish list" pulled up during sprint planning – as you talk through the upcoming work, see if any of the new components would be useful, or add new ideas to the list for later. We've made contributions or edits to the Component Library every single month since its creation (about a year ago), and I credit this approach primarily. You hear horror stories about companies who spend tons of time and energy creating a Component Library, only to have it go unused because they're not maintaining it and it's no longer useful – **opportunistically building in small, regular amounts of Component Library work to your workflow does wonders to prevent this.** 
+
+## <a name="lessons"></a>Lessons Learned: What I Wish I Knew When I Started
+
+### <a name="general"></a>Keep it general
+This is by far the piece of advice I most wish I had when I started filling the library. **When creating components, it's best to keep them broad and open to various uses and interpretations.** When I first started making components, I wanted them to be fairly limited – I knew my fellow developers weren't interested in design decisions, so I tried to be as opinionated as possible about them. 
+
+For example: I was afraid people would put too much information into a pop-up modal – a component I feel strongly should be used sparingly and with minimal text. I imagined modals with whole paragraphs of text and huge images that would be miserable to navigate on a phone – so I made it a modal component where you could only pass in a header and some descriptive text. But then we needed a modal with a button...so I modified the component to have a button. And then that modal also needed a second button, and eventually a text input. As I went back and scraped all the pre-written crap out of my modal component, it occurred to me that I should have just let people pass in whatever they wanted from the get-go. In the end, I found myself frustrated by my own aggressive restrictions. 
+
+You can't tell the future, and you'll drive yourself crazy trying to guess all the ways in which people *could* use (or misuse) a component. Start with a more general, un-opinionated component and use the documentation to specify how it should be used – you can always go back in later and add restrictions if they're really needed. **Flexibility makes your components more usable**, and that's the goal at the end of the day.
+
+### <a name="wip"></a> It's okay (and actually beneficial) to have unfinished components in the library
+
+In ours, we include a [WIP] tag in the component name, so you know it's not ready to be used in our applications (yet). At first, the Component Library was my baby, and I didn't want anyone to see it in any form other than *absolute perfection.* This was a mistake; it prevented people from seeing what was in the works, making suggestions, or thinking about how they could incorporate upcoming components. It also made people feel uncomfortable getting in and creating or editing components on their own. The Component Library isn't an art museum, it's an art studio – it's okay if it's a little messy, as long as it's organized chaos.
+
+### <a name="accessibility"></a>Build in accessibility at the component to "get it for free" in the application
+
+Often, the task of "making our app/site accessible" feels daunting and overwhelming – it's definitely something my company is grappling with right now. I wish it had been pointed out to us earlier  how much a Component Library would help us with that. The process of building for accessibility becomes a lot more...well, accessible when you can break it off into bite-size pieces and tackle it one component at a time.
+
+### <a name="zoom-out"></a>Remember to occasionally "zoom out"
+
+As wonderful as Storybook is, one intrinsic aspect of it is a real double-edged sword: you're always designing and developing each component in isolation. While this can be useful in terms of being able to really focus on the details, it can also inadvertently lead to you creating components that don't really jive with the rest of your stuff. I remember spending a ton of time on a button, importing it into the application...and realizing how absolutely GIANT it looked compared to everything else on the page. Every once in a while, it's important to look at the big picture and see how your components will all work together in situ.
+
+## <a name="conclusion"></a>If you've read this far...
+
+After a full year of using the Component Library *every single sprint*, I feel confident that it was worth the upfront investment of time and resources. I can say without hesitation that it makes my own job easier, and I've proudly watched as it's become a reference for my coworkers – not just on my own team, but surprisingly on other teams across the company as well. If building a Component Library appeals to you, I absolutely encourage you to look into it – and if you have any questions (about what we did or how you could do the same at your company), I'll answer them as best I can! 

@@ -1,0 +1,204 @@
+# 9 Lesser-Known CSS Selectors To Up Your Styling Game
+
+*Last modified September 4, 2020* 
+
+So you've got a handle on your basic `.class` and `#id` declarations, and you know the difference between `.class1.class2` and `.class1 .class2` – but how familiar are you with the `~` selector? CSS is an incredibly powerful language, but many folks don't take advantage of its full potential. 
+
+Ironically, making use of the more complex selectors will actually simplify your code, because it allows CSS to do what it’s really good at – cascade. That is, after all, what the C in CSS stands for (and not "Crying", despite popular opinion). By leveraging that natural flow, we can define fewer classes & ids, which means less maintenance and upkeep (and naming, which – lets face it – is the worst part of programming). It also encourages the writing of more general styles, which leads to greater visual continuity across your whole project.
+
+Folks who hate writing CSS often struggle because they’re fighting against the cascade the whole way. Learn to embrace the cascade, and let your styles write themselves! 
+
+## 1. `*` – Descendents 
+
+The `*` selector lets you target ALL decedents of an element. 
+
+CSS 
+```
+.class1 * { border: 1px solid red; }
+```
+
+HTML
+```
+<div class="class1"> 
+	<div>
+		<p>Hello World</p>
+	</div>
+</div> 
+```
+In this example, the red border would apply to both the div AND the p because they are all decedents of the `.class1` div.
+
+## 2. `>` – Children 
+
+The `>` selector allows you to target only the immediate children of an element. 
+
+CSS 
+```
+.class1 > * { border: 1px solid red; }
+```
+
+HTML
+```
+<div class=‘class1’> 
+	<div>
+		<p>Hello World</p>
+	</div>
+</div> 
+```
+In this situation, because `> *` was used instead of `*`, the border would only appear on the `<div>` – not the `<p>`, because `<p>` is not an immediate child of the `.class1` div. 
+
+## 3. `+` – Immediate Siblings 
+
+The `+` selector applies styles to the designated element that immediately follows the first element.
+
+CSS 
+```
+span + p { color: red }
+```
+
+HTML
+```
+<span>Title</span>
+<p>Hello</p>
+<p>World</p>
+<p>Again</p>
+```
+In this example, only the first `<p>` tag would be red, because the CSS is saying "find the first `<p>` tag that immediately follows a `<span>` tag AND shares the same parent element." 
+
+> **FUN FACT:** In CSS, two elements share the same parent are called "siblings"! Cute, right? 
+
+## 4. `~` – All Siblings 
+
+The `~` selector is another sibling selector – it's almost the same as the `+`, but it applies to ALL following elements, not just the IMMEDIATELY following element.
+
+CSS 
+```
+span ~ p { color: green }
+```
+
+HTML
+```
+<span>Title</span>
+<p>Hello</p>
+<p>World</p>
+<p>Again</p>
+```
+In this example, all the `<p>` tags would be green, because the CSS is saying "find ALL the `<p>` tags that follow a `<span>` tag AND share the same parent element." 
+
+## 5. `[]` – Attributes  
+
+You can target all items with a specific attribute by calling them with the `[attribute]` selector. *Swap the word 'attribute' for the actual attribute name, of course!* 
+
+To take it one step further, you can also target specific attribute values with this selector as well. In the example below, I used the `target` attribute, but you can use ANY available attribute – `lang`, `title`, etc. 
+
+CSS 
+```
+[target] { border: 1px solid green }
+
+[target=_blank] { background-color: red } 
+```
+
+HTML
+```
+<a href="http://www.google.com" target="_self"/>Link1</a>
+<a href="http://www.google.com" target="_blank"/>Link2</a>
+```
+In this example, both `<a>` elements will have a green border, but only the second one will have a red background because it not only has a target attribute, but the value for the target matches the one specified in the CSS.
+
+## 6. `:` – Pseudo-classes 
+
+You're probably familiar with `:hover` and `:focus`, but did you know there are [more than 50 pseudo-class selectors available](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)? For this example, we'll look at `:only-of-type`.
+
+CSS 
+```
+p:only-of-type { color: red }
+```
+
+HTML
+```
+<div>
+	<span>Hello</span>
+	<p>Darkness</p>
+	<a>My</a>
+</div>
+<div>
+	<span>Old</span>
+	<p>Friend</p>
+</div>
+```
+In this example, both the words "Darkness" and "Friend" would be red, because they're the only of their type (`<p>` tags) within their parent element. 
+
+> **FUN FACT:** Sometimes you’ll see pseudo selectors start with a `:` and sometimes a `::`. The difference has to do with what, specifically, you are styling.
+> 
+> • The single colon means it’s a **pseudo-class**, which is made for styling different states of an element (ex – `:hover`, `:active`, `:focus`, etc.) 
+>
+> • The double colon means it’s a **pseudo-element**, which is made for styling different parts of an element (ex – `::before`, `::after`, `::first-line`, etc.). More on pseudo-elements next!
+
+## 7. `::` – Pseudo-elements
+
+Pseudo-elements are less common than pseudo-classes, but just as useful. The most common ones are `::after` and `::before`, which allow us to add new content into an element via CSS (cool, right??). A fun, less popular pseudo-element is `::first-letter`, which allows us to create book-style drop cap typography.  
+
+CSS
+```
+h1 + p::first-letter { font-size: 150%; float: left; padding-right: 2px; } 
+```
+
+HTML
+```
+<h1>Hello</h1>
+<p>This is the start of some text</p>
+```
+In the example above, every `<p>` tag that immediately follows an `<h1>` tag (note use of the `+` selector) will get drop cap styling on the first letter!
+
+## 8. `Nth` – It's a magic number
+
+Technically, both this section and the next could be considered subsections of the pseudo-class selector type – however, there are some important categories of pseudo-class that I think are worth calling out. 
+
+The `nth` pseudo-classes are one of these super useful categories. You might already be familiar with `:first-child` and `:last-child`, but did you know that for pretty much any selector that includes the word "first" or "last", there's also an `nth` version? Pseudo-classes that include an `nth` allow you to pass in a specific number in a set of parenthesis at the end of the selector. This is easiest to understand by looking at an example: 
+
+CSS 
+```
+li:last-child { color: blue } 
+li:nth-child(2) { color: green } 
+```
+
+HTML 
+```
+<ul>
+    <li>This</li>
+    <li>Is</li>
+    <li>A</li>
+    <li>Long</li>
+    <li>List</li>
+</ul>
+```
+The `:last-child` selector will look for the last element of it's type within its group of siblings – in this case, the word "List" will be green. However, the `:nth-child(2)` looks for the second element within the group of siblings, because we passed in the 2. It will turn the word "Is" blue.  
+
+> **FUN FACT**: You can also pass in the words "even" or "odd" into an `:nth-child()` selector, which is especially handy when styling tables. `tr:nth-child(even)` will apply to every even-numbered row in a table.  
+
+## 9. Input Validation  
+
+Many folks assume form validation is something that has to be done entirely with JS, but there's actually a lot you can do in your CSS, thanks to the power of pseudo-classes! 
+
+CSS 
+```
+input:out-of-range { color: red; } 
+input[type="checkbox"]:checked + label { color: green }
+```
+
+HTML
+```
+<form> 
+   <div>
+     <input type="checkbox" id="check">
+     <label for="check">Checkbox</label>
+   </div>
+   <div>
+   <label for="value1">Number</label>
+   <input id="value1" type="number" min="1" max="10">
+</form> 
+```
+Here, we have a very simple example form. Our pseudo-classes help us style the form conditionally, based on whether the user inputs values are checked or out-of-range, respectively. No need to deal with state, or back-end validation – all in our CSS! There are lots of other input validation related pseudo-classes, including `:invalid`, `:in-range`, `:default`, and more. [Check them out!](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
+
+<hr/>
+
+Hopefully this list has encouraged you to step out of the box a little and try some new, more complex selectors in your CSS! As you can see, they're each useful on their own, but they truly shine when you start to combine them to narrow down specifically – without having to write a new class each time. Master the art of CSS selectors, and let the cascade do the work for you! 

@@ -1,0 +1,55 @@
+# Bug Fix fridays
+
+*Last modified July 6, 2021* 
+
+Sometimes, there are development tasks that just don't fit cleanly into the sprint cycle. We're always fighting against that pressure for new features, new releases, new *things* we can give to the users. And while that stuff is, absolutely, important, it means that the less exciting stuff – non-essential bug fixes, various library updates, refactoring, and tech debt of all sorts – often gets shoved to the back of the list. Do that for long enough, and you'll end up in a pretty rough spot. So, how can you balance that necessary internal work with continuing to produce in a way that will keep your sales team happy? I don't pretend to have *the* solution, but I do have *one* solution that I'd like to share with you: **Bug Fix Fridays.** 
+
+## How did it work? 
+
+Bug Fix Fridays are an approach that I've since ~~stolen~~ borrowed from a previous manager of mine. He originally used it when our team had a backlog full of small, low-priority bugs that seemed to always be growing, but never disruptive enough to warrant immediate attention. Bug Fix Fridays were the one day a week that we allocated to focus exclusively on our ever-growing bug backlog. Every Friday morning, we stashed whatever feature-related work we were working on, and got to bug squashing.
+
+I've since used the same approach to tackle a large scale CSS refactoring project at a different company (of course, updating the name to [**CSS Fix Fridays**](https://dev.to/kathryngrayson/case-study-large-scale-css-refactoring-in-a-legacy-application-52lc)), but kept the bones of the idea intact: once a week, previous work is shelved and time is allocated and protected (as much as possible) in order to allow the developers to focus on a non-feature-related task. 
+
+To be most effective, Bug Fix Fridays should always start with a quick standup – who's working on what, where did we leave off last week, does anyone need help or want to pair? This also serves as a kind of kickoff for the day, which helps from a motivation and morale standpoint. Say good morning, align on priorities, distribute tasks, and get everyone in the right mindset. 
+
+I also recommend have a Slack channel for your Bug Fix Fridays – especially if you share a team channel with anyone else. You don't wanna blow up a channel and be disruptive, but it's really great to have a place to share wins and get help. You want a mix of fun and functional – ideally with a strong lean towards fun. Bug Fix Fridays should feel a little like a hackathon. Try to capture that feeling of camaraderie, fun, and celebration. Maybe consider having a team lunch that day. 
+
+Finally, make sure you end the day with a reminder to document any work that was done, especially if there's a task that will stretch over multiple weeks. I like to prompt the team about an hour before end of day to start wrapping things up: find a good stopping point, commit and push what they've done so far, update the task in Jira, comment their code, add notes to Confluence, and post their accomplishments in the Slack channel for us to hype up! 
+
+The last, and perhaps most important thing, is to defend your Fridays. Make sure other teams know you're doing this, and that Fridays are off the books for your team unless there's a true emergency. Sometimes, urgent things do happen that will pull you away, and that's okay. If you're taking this approach, it means the thing you're working on was already low priority, so it's fair to expect that you'll be pulled off it sometimes. Just make sure you always get back on the horse, and don't let a week or two off derail the entire project. Be the advocate for your own Bug Fix Fridays, and make sure you protect them as much as you possibly can. Put it on the team calendar, decline meetings, turn off Slack notifications in specific channels  – whatever it takes. 
+
+## Why Fridays? 
+
+I've found that Fridays work best for a few reasons. First, It's the end of the week, when folks are kind of naturally winding down their work. Fridays aren't usually your most productive days (be honest), so you don't lose a lot of actual productivity time by switching them over to focus on something else. You wouldn't want to choose a Wednesday or something and disrupt the work week by making someone set something down right in the middle of their flow, so catching this kind of wind-down day works best. You could potentially try a Monday, which would have the advantage of catching your team before they get pulled into other work, but when we discussed the idea with my current team they voiced the opinion that it would feel like a stumbling block to getting back up and going after a weekend – like you'd end up having *two* Mondays (and nobody wants that). 
+
+## Pros and Cons 
+
+I want to be clear that Bug Fix Fridays are not a perfect solution – in fact, I don't think there *is* a perfect solution to a challenge like this. **What most people are looking for is a realistic solution to a difficult problem, which allows them to make some amount of progress on two important projects, without giving up either one entirely.** That's what I think Bug Fix Fridays do well – they are a reasonable, if imperfect compromise. That being said, they do have some definite pros and cons:  
+
+### Pros 
+
+#### A compromise that allowed us to continue feature development *and* internal work 
+
+The biggest pro here is what I just mentioned above: the compromise. Bug Fix Fridays allow your team to work on two things at once, in a way that's predictable and manageable. Because it's every week, it makes it easy to scope other projects around it. Because it's only one day, it doesn't feel like it eats into feature development time too dramatically. Because it's a whole day for the whole team, it's enough to see incremental progress more clearly than individuals just picking up things whenever they can. It feels like the sweet spot. 
+
+#### A mental break 
+
+Some people on teams I've done this with have expressed that Bug Fix Fridays are a good mental break, if they've spent the rest of the week working on something complex or challenging. Sometimes, it can be really good to switch it up and let your brain focus on something new. Especially at the end of the week, this can be a good way to still be productive while not feeling like you're biting off more than you can chew right before the weekend. Small tasks or large, non-time-sensitive tasks that can be chipped away at slowly are ideal candidates for Bug Fix Friday work. 
+
+#### A fun team bonding time 
+
+One of my favorite parts of the first time I used this approach was that for 8 hours each week, we could stash what we'd been banging our heads against all week and have a bug squashing party. And the "party" part of it is kind of important – team morale is half the battle when it comes to doing work that sucks. That was definitely the case when it came to a miles-long list of minor, frustrating edge case bugs. So, we made it fun (or, at least, as fun as we could). We posted music recommendations in the Slack channel and listened to each others' playlists while we worked. We wrote silly commit messages and posted gifs in Slack to celebrate every ticket we closed. We paired a lot and hyped each other up. There was a *lot* of party parrot. That kind of positive energy made an otherwise boring task actually pretty enjoyable. Misery loves company, and with the right mindset, something like this can be a great opportunity for your team to bond. 
+
+### Cons 
+
+#### Some people found it difficult to make the mental switch 
+
+Sometimes, when you've really been head-down on something all week, it can be hard to come up for air. The downside of having one day a week for a different project is that you have to kind of allow for some time at the start of the day to get re-acquainted with something different from where you've been focusing for the last 4 days. This can be especially difficult if you'll be working in a different part of the application (or a different application entirely). While some folks enjoyed the break from their usual, others expressed frustration at having to kind of "start over" each Friday. 
+
+#### Work progresses slowly 
+
+Bug Fix Friday is not an approach that lends itself to quick development. If you have something urgent, or with a hard deadline, it's not a good candidate for this approach. Similarly, if you have something that's incredibly complex and difficult to pick up and set down, it might not be a good fit either (although I've found that a lot of this can be mitigated by emphasizing good documentation). Work will move slowly, but it will always be moving – and in my opinion, that's often preferable to not moving at all. 
+
+### Are Bug Fix Fridays for your team? 
+
+When I think about this approach, I think about hiking a mountain – if you stop every 10 feet and look back, you won't feel like you've gone very far. But if you keep working at a regular pace, sometimes you'll catch a break in the trees and realize that you're actually up much higher than you would have thought. You have to come into the project with a "slow and steady" mindset, and it's important to set expectations with your team accordingly. But when you do, I think you'll be surprised at what you can accomplish with just one dedicated day a week. So, do you think this is an idea you could adapt for your team? Ready to implement Documentation Fridays, CSS Fix Fridays, or similar? Let me know in the comments! I'd love to hear your thoughts. 
