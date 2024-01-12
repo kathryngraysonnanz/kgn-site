@@ -208,5 +208,11 @@
         "link": "bug-fix-fridays",
         "published": "July 06 2021",
         "snippet": "How can you balance necessary internal work with continuing to produce in a way that will keep your sales team happy?"
+    },
+    {
+        "title": "Everything You Need to Know About the Updated React Docs",
+        "link": "updated-react-docs",
+        "published": "Mar 17 2023",
+        "snippet": "Exciting news in the React world: after years of hard work and refinement, the former React Docs Beta have been promoted to official React documentation and are now live at react.dev!"
     }
 ]

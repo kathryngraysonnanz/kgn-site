@@ -1,0 +1,80 @@
+# Everything You Need to Know About the Updated React Docs
+
+*Last modified March 17, 2023* 
+
+**Exciting news in the React world:** after years of hard work and refinement, the former React Docs Beta have been promoted to official React documentation and are now live at [react.dev!](https://react.dev/) 
+
+{% embed https://twitter.com/reactjs/status/1636441676506906626?s=20 %}
+
+With that, the original docs have been downgraded to legacy, although they are still accessible at [legacy.rectjs.org](https://legacy.reactjs.org/). 
+
+## History
+
+The React Docs Beta project was first published in late October 2021, led by [Rachel Nabors](https://twitter.com/rachelnabors/) and [Dan Abramov](https://twitter.com/dan_abramov), with the goal of updating the existing React documentation to reflect newer, more current ways of writing React. This was primarily focused on the use of Hooks (which were introduced as part of React 16.8, released in February 2019) and the associated shift to favor functional components instead of class components. 
+
+{% embed https://twitter.com/reactjs/status/1458854918257877007?s=20 %}
+
+Previously, the official React documentation was class-component forward because that was the only way to write stateful components. However, the introduction of Hooks – the `useState()` hook, in particular – allowed functional components to handle state as well. Since then, there’s been [plenty](https://stackoverflow.blog/2021/10/20/why-hooks-are-the-best-thing-to-happen-to-react/#:~:text=Hooks%20make%20React%20so%20much,React%20class%20and%20functional%20components.) of [debate](https://leocode.com/development/why-hooks-are-bad/) over whether Hooks were the right move and whether or not they accomplished the goal of simplifying state and state management. Regardless, the introduction of Hooks drastically changed the way we wrote React. To differentiate between the before and after of this development, many React tutorials and articles (including the introduction to the new official React docs) commonly refer to the post-Hooks era as **“modern” React.**  
+
+However, this put new React learners in a difficult position. There was an abundance of writing and guidance about migrating from class components and traditional state management over to functional components and Hooks. Folks learning React for the very first time, though, found that there wasn’t strong documentation teaching Hooks from scratch. Over time, the official React docs only became more outdated and difficult to use. 
+
+## What’s New?
+
+### Hooks and Functional Components as Default
+
+The biggest change in the new documentation is **the shift to be strongly opinionated toward the use of Hooks and teaching functional components as the standard approach for writing modern React** – with the rare exception of the few remaining use cases where class components are still required. Otherwise, class components (while still supported) have been officially designated as “legacy”. 
+
+### Interactive Demos and Challenges
+
+The new docs have **greatly expanded the number of interactive code examples,** as well as added new challenges to allow you to practice what you’ve just learned and test your knowledge. There are 600+ new interactive code examples, sandboxes, and demos – all of which can be forked to open in [codesandbox.io](http://codesandbox.io) for bigger, more extensive changes or to be easily adapted for use in your own work. This, along with the addition of more illustrations and diagrams, was done in the hopes of making the React docs more friendly and easy to understand. 
+
+### Create React App No Longer the Standard
+
+One of the most remarked-upon changes to the documentation is **the removal of [Create React App (CRA)](https://create-react-app.dev/),** the official Facebook-maintained React quick-configuration tool, from the Installation section of the new docs. The legacy docs had recommended CRA as “the best way to start building a new single-page application in React”. 
+
+There have been several calls recently to remove the CRA recommendation, perhaps most notably from popular YouTuber [Theo (t3.gg)](https://www.youtube.com/@t3dotgg) whose [pull request on the reactjs project recommending the replacement of CRA with Vite](https://github.com/reactjs/reactjs.org/pull/5487) gained a lot of attention. This sparked heated criticism of CRA, including its perceived lack of features (such as native support for TypeScript or popular CSS library Tailwind), size, performance, and more. 
+
+{% embed https://twitter.com/t3dotgg/status/1616933234478309378?ref_src=twsrc%5Etfw" %}
+
+Ultimately, though, there is one deal-breaking fact about CRA that cannot be ignored: it is no longer actively maintained. With 1.5k current unresolved issues, over 400 open PRs, and the last release over a year old, it’s safe to call [CRA a dead project](https://github.com/facebook/create-react-app). 
+
+### Frameworks are the Official Recommendation
+
+For users creating new apps or sites entirely in React, **the updated docs [now recommend React frameworks](https://react.dev/learn/start-a-new-react-project)** including Next.js, Remix, Gatsby, and Expo for React Native. In a click-to-expand “Deep Dive” section, they officially take the opinion that using a framework is the best way to build with React. They do, however, note that options such as Vite or Parcel exist for those who “like to roll [their] own custom setup, we can’t stop you – go for it!”. 
+
+This is a notable difference from the legacy docs, which offered a quick sentence of description each for Next.js and Gatsby but focused heavily on CRA as the recommended approach. 
+
+### New Domain Name
+
+The now-legacy documentation could originally be found at [reactjs.org](http://reactjs.org); **this now redirects to the brand-new [react.dev](http://react.dev) domain.** When the new docs were still in beta, they were hosted at [beta.reactjs.org](https://beta.reactjs.org/), which now also redirects to [react.dev](https://react.dev/). The original documentation can still be found, for those who need it, at [legacy.reactjs.org](https://legacy.reactjs.org). This was done to make a fresh start and clear separation between the current vs. legacy documentation. 
+
+### New Brand Color?
+
+{% embed https://twitter.com/borekb/status/1636487193555349505?s=20 %}
+
+A less crucial (but still interesting) update: a keen-eyed Twitter user (@borekb) noted that **the iconic teal brand color that’s historically been associated with React has changed slightly** in the new documentation. The (now) legacy docs previously used the slightly brighter `#61dafb`, while this user noted that the new docs use `#0a7ea4`. However, I did some digging as well, and there’s actually a little more to it than that! 
+
+In addition to `#0a7ea4`, the new docs ****also**** use `#149eca` as “React blue” – a slightly brighter shade of teal that’s closer to the original. Which one of these is used depends on whether or not the site is in light or dark mode, as we can see in this snippet I grabbed from their CSS via the inspect tool. 
+
+![A screenshot of code from the React docs website, showing how the blue color changes based on whether the UI is in light or dark mode.](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1ebjidzo6j3paruezzmi.png)
+
+Based on this info (without knowing the actual reason), my guess would be that the colors were adjusted slightly for accessibility purposes. The primary dark mode background color is `#23272F`, against which the lighter color will pass a color contrast check, while the darker color will not. On the other hand, the darker teal passes a color contrast check against a white background, while the lighter color does not. Based on this, I’d assume that the colors were changed from the original to be as accessible as possible in the new docs. Shoutout to the React team for their attention to accessibility! 
+
+## Looking Forward
+
+As with all docs, the React documentation is constantly evolving and expanding. The [“Introducing react.dev” blog article](https://react.dev/blog/2023/03/16/introducing-react-dev) lists several new features that we can look forward to in the near future, including TypeScript examples, an updated accessibility guide, expanded language translations, and more. 
+
+### Feedback
+
+Got an opinion on the new docs? The React team has a few ways to offer feedback: 
+
+- Fill out a [survey](https://www.surveymonkey.co.uk/r/PYRPF3X) to offer general feedback.
+- Log an [issue](https://github.com/reactjs/reactjs.org/issues) to document problems, bugs, mistakes, etc.
+
+### An Exciting Future
+
+I’m of the personal opinion that these new docs are a *huge* triumph for the React team and a massive improvement over the legacy offerings. They’re well-designed, easy to read, and generally incredibly user-friendly. It’s a shame that it took so long for them to feel comfortable removing the beta tag and transitioning this excellent new resource to the official React documentation – but better late than never! 
+
+The introductory blog states: “We think there’s never been a better time to learn React” – I’m inclined to agree! I hope these fantastic new docs bring with them a burst of new and excited learners. **Here’s to another 10 years of React!**
+
+What do you think of the new docs? Were you happy to see the removal of Create React App? Excited to embrace Hooks? Let me know in the comments! 
