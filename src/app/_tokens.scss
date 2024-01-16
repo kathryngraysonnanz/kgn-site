@@ -1,0 +1,117 @@
+// Compatible with @progress/kendo-theme-default v.7.0.0
+
+
+$tb-kendo-is-dark-theme: true;
+$tb-kendo-border-radius: 1px;
+$tb-kendo-color-primary: #e167b1ff;
+$tb-kendo-color-secondary: #f6f6f6;
+$tb-kendo-series-d: #65deffff;
+$tb-kendo-series-c: #a9ff7cff;
+$tb-kendo-series-b: #fffa83ff;
+$tb-kendo-series-a: #ff857dff;
+$tb-kendo-body-bg: #3e3e3eff;
+$tb-kendo-body-text: #ffffff;
+$tb-kendo-heading-text: #ffffff;
+$tb-kendo-subtle-text: #e0e0e0;
+$tb-kendo-disabled-text: #d0d0d0;
+$tb-kendo-component-bg: #373737ff;
+$tb-kendo-base-bg: #343434ff;
+$tb-kendo-hover-bg: #292929ff;
+$tb-kendo-selected-text: #ffffff;
+$tb-kendo-button-text: #ffffff;
+$tb-kendo-link-hover-text: #ff8dd6ff;
+$tb-kendo-series-e: #ac58ff;
+$tb-kendo-series-f: #ffb13cff;
+$tb-kendo-color-info: $tb-kendo-series-d;
+$tb-kendo-color-success: $tb-kendo-series-c;
+$tb-kendo-color-warning: $tb-kendo-series-b;
+$tb-kendo-color-error: $tb-kendo-series-a;
+$tb-kendo-component-text: $tb-kendo-body-text;
+$tb-kendo-base-text: $tb-kendo-body-text;
+$tb-kendo-hover-text: $tb-kendo-base-text;
+$tb-kendo-selected-bg: $tb-kendo-color-primary;
+$tb-kendo-button-bg: $tb-kendo-base-bg;
+$tb-kendo-link-text: $tb-kendo-color-primary;
+
+
+$kendo-is-dark-theme: $tb-kendo-is-dark-theme;
+$kendo-border-radius: $tb-kendo-border-radius;
+$kendo-color-primary: $tb-kendo-color-primary;
+$kendo-color-secondary: $tb-kendo-color-secondary;
+$kendo-series-d: $tb-kendo-series-d;
+$kendo-series-c: $tb-kendo-series-c;
+$kendo-series-b: $tb-kendo-series-b;
+$kendo-series-a: $tb-kendo-series-a;
+$kendo-body-bg: $tb-kendo-body-bg;
+$kendo-body-text: $tb-kendo-body-text;
+$kendo-heading-text: $tb-kendo-heading-text;
+$kendo-subtle-text: $tb-kendo-subtle-text;
+$kendo-disabled-text: $tb-kendo-disabled-text;
+$kendo-component-bg: $tb-kendo-component-bg;
+$kendo-base-bg: $tb-kendo-base-bg;
+$kendo-hover-bg: $tb-kendo-hover-bg;
+$kendo-selected-text: $tb-kendo-selected-text;
+$kendo-button-text: $tb-kendo-button-text;
+$kendo-link-hover-text: $tb-kendo-link-hover-text;
+$kendo-series-e: $tb-kendo-series-e;
+$kendo-series-f: $tb-kendo-series-f;
+$kendo-color-info: $tb-kendo-color-info;
+$kendo-color-success: $tb-kendo-color-success;
+$kendo-color-warning: $tb-kendo-color-warning;
+$kendo-color-error: $tb-kendo-color-error;
+$kendo-component-text: $tb-kendo-component-text;
+$kendo-base-text: $tb-kendo-base-text;
+$kendo-hover-text: $tb-kendo-hover-text;
+$kendo-selected-bg: $tb-kendo-selected-bg;
+$kendo-button-bg: $tb-kendo-button-bg;
+$kendo-link-text: $tb-kendo-link-text;
+    $kendo-font-family: Arial, sans-serif;
+    $kendo-font-size: 14px;
+    $kendo-font-weight-normal: 400;
+    $kendo-line-height: 1.4285714286;
+
+    $kendo-font-header: 'PT Mono', monospace; 
+    
+$enable-gradients: true;
+
+$tb-typography: (
+  kendo-default-typography: (
+      font-family: 'Arial',
+      font-size: 14px,
+      font-weight: 400,
+      line-height: 1.4285714286,
+  ),
+);
+
+@mixin typography-classes ($typography) {
+  @each $selector, $property in $typography {
+    &-#{$selector} {
+      @each $propName, $propValue in $property {
+        #{$propName}: #{$propValue};
+      }
+    } &-#{$selector}-important {
+      @each $propName, $propValue in $property {
+        #{$propName}: $propValue !important;
+      }
+    }
+  }
+}
+
+$tb-effects: (
+  tb-internal-none-effects: (
+      box-shadow: (none), filter: (none), backdrop-filter: (none),  ),
+);
+
+@mixin effects-classes ($effects) {
+  @each $selector, $property in $effects {
+    &-#{$selector} {
+      @each $propName, $propValue in $property {
+        #{$propName}: $propValue;
+      }
+    } &-#{$selector}-important {
+      @each $propName, $propValue in $property {
+        #{$propName}: $propValue !important;
+      }
+    }
+  }
+}

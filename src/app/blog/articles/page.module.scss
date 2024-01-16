@@ -1,3 +1,5 @@
+@import '../../tokens';
+
 .article {
     margin: 40px;
     max-width: 850px;
@@ -17,7 +19,7 @@
     }
 
     code {
-        background-color: yellow;
+        background-color: $tb-kendo-series-b;
         padding: 6px;
         line-height: 1.55rem;
     }
@@ -32,12 +34,12 @@
 @media (prefers-color-scheme: dark) {
     .article {
         code {
-            background-color: yellow;
+            background-color: $tb-kendo-series-b;
             color: black;
         }
 
         aside {
-            background-color: goldenrod;
+            background-color: $tb-kendo-series-f;
             padding: 5px 30px;
             color: black;
         }

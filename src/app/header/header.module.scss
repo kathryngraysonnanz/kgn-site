@@ -1,21 +1,22 @@
+@import '../tokens';
 
 .header {
   display: flex; 
   justify-content: space-between;
   align-items: center;
-  background-color: hotpink;
+  background-color: $tb-kendo-color-primary;
   padding: 5px 20px;
   
   .logo {
   font-size: 2rem;
   padding: 10px;
   margin: 0;
-  font-family: 'PT Mono', monospace;
+  font-family: $kendo-font-header;
   text-decoration: none;
   }
 }
 
 .headerNav * {
   padding: 10px;
-  color: black
+  color: $tb-kendo-base-bg;
 }

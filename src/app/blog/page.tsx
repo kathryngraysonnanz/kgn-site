@@ -13,15 +13,21 @@ export default function Blog() {
   return (
     <>
     <Header/>
-      <main className={styles.blogCardWrapper}>
-          { blogData.map((blog, i)=>
-            <BlogCard 
-              title={blogData[i].title} 
-              snippet={blogData[i].snippet} 
-              date={blogData[i].published} 
-              link={blogData[i].link}
-            />
-          )}
+      <main className={styles.blog}>
+        <h1>Blogs</h1>
+        <p>Organized from newest to oldest. For KendoReact tutorials and other KendoUI-specific writing, check out <a href="https://www.telerik.com/blogs/author/kathryn-grayson-nanz">Telerik Blogs.</a> </p>
+        <div className={styles.blogCardWrapper}>
+          <div>
+            { blogData.map((blog, i)=>
+              <BlogCard 
+                title={blogData[i].title} 
+                snippet={blogData[i].snippet} 
+                date={blogData[i].published} 
+                link={blogData[i].link}
+              />
+            )}
+            </div>
+          </div>
       </main>
     </>
   )

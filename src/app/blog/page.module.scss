@@ -1,34 +1,35 @@
-.card {
-    width: 300px;
-    margin-bottom: 40px;
+@import '../tokens';
 
-    .title {
-        font-size: 1.2rem;
-    }
-
-    .date {
-        font-style: italic;
-        font-size: 0.9rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
+.blog {
+    margin: 20px;
 }
 
 .blogCardWrapper {
     display: flex;
-    justify-content: space-between;
-    margin: 40px 10%;
-    flex-wrap: wrap;
+    justify-content: space-around;
+
+    > div {
+        width: 100%;
+        max-width: 1000px;
+
+       > * {
+        margin: 20px;
+       }
+    }
+}
+
+.date {
+    font-size: 0.9rem;
+    font-style: italic;
 }
 
 @media (prefers-color-scheme: dark) {
-    .card {
-        background-color: black;
+    .blogCardWrapper > div > div {
+        background-color: $tb-kendo-component-bg;
+        border: 1px solid black;
         
         p {
-            color: white;
+            color: $tb-kendo-body-text;
         }
     }
 }

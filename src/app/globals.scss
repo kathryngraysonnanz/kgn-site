@@ -1,31 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
 
+@import 'tokens';
+
+@import '@progress/kendo-theme-default/dist/all';
+
+@import 'overrides';
 
 body {
+  width: 100%;
   margin: 0;
-  background-color: white;
-  color: black;
-} 
-
-h1 {
-  font-size: 2.8rem;
+  padding: 0;
 }
 
-a {
-  color: #0088A3; 
+h1 {
+  font-family: 'PT Mono', monospace;
+  font-size: 2.4rem;
+  font-weight: normal;
+  line-height: 2.9rem;
+}
+
+h2 {
+  font-family: 'PT Mono', monospace;
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+h3 {
+  font-family: 'PT Mono', monospace;
+  font-size: 1.3rem;
+  font-weight: normal;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #4d4d4d;
-    color: white;
-  }
-
-  header a {
-    color: black;
+    background-color: $tb-kendo-body-bg;
+    color: $tb-kendo-body-text;
   }
 
   a {
-    color: cyan;
+    color: $tb-kendo-color-primary;
+
+    :visited {
+      color: $tb-kendo-link-hover-text;
+    }
   }
+
 }

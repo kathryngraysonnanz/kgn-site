@@ -1,0 +1,11 @@
+%tb-typography {
+  @include typography-classes($tb-typography);
+}
+
+%tb-effects {
+  @include effects-classes($tb-effects);
+}
+
+.k-card {
+  background-color: $tb-kendo-component-bg;
+}

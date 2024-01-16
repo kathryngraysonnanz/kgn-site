@@ -11,7 +11,7 @@ export default function BlogCard(props) {
         <Card className={styles.card}>
             <CardBody>
                 <Link href={{pathname: `/blog/articles/${props.link}`}}>
-                    <CardTitle className={styles.title}>{props.title}</CardTitle>
+                    <CardTitle><h3>{props.title}</h3></CardTitle>
                 </Link>
                 <CardSubtitle><p>{props.snippet}</p></CardSubtitle>
                 <CardSubtitle ><p className={styles.date}>{props.date}</p></CardSubtitle>
