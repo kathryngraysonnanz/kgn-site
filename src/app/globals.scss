@@ -37,7 +37,7 @@ p {
 }
 
 a {
-  color: #D1298E; 
+  color: $tb-kendo-accessible-link-text; 
 }
 
 @media (prefers-color-scheme: dark) {

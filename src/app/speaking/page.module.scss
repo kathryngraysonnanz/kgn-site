@@ -1,0 +1,54 @@
+@import '../tokens';
+
+.main {
+    margin: 20px;
+}
+
+.eventCardWrapper {
+    display: flex;
+    justify-content: space-around;
+
+    > div {
+        width: 100%;
+        max-width: 1000px;
+
+       > * {
+        margin: 20px;
+       }
+    }
+}
+
+.date {
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.card h3 {
+    color: $tb-kendo-series-d;
+    margin: 10px 10px 0px 0;
+}
+
+.card a {
+    color: $tb-kendo-accessible-link-text;
+    font-size: 1rem;
+}
+
+.card p {
+    margin: 0;
+    padding: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .eventCardWrapper > div > div {
+        background-color: $tb-kendo-component-bg;
+        border: 1px solid black;
+        
+        p {
+            color: $tb-kendo-body-text;
+        }
+    }
+
+    .card a {
+        color: $tb-kendo-color-primary
+    }
+}

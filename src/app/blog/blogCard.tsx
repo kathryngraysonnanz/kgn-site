@@ -3,8 +3,9 @@ import Link from 'next/link'
 import styles from './page.module.scss'
 
 import { Card, CardBody, CardTitle, CardSubtitle  } from "@progress/kendo-react-layout"
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
 
-export default function BlogCard(props) {
+export default function BlogCard(props: { link: any; title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; snippet: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; date: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; }) {
 
   return (
     <>

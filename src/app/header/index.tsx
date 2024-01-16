@@ -10,7 +10,6 @@ export default function Header() {
         <div className={styles.headerNav}>
           <Link href="/blog">Blog</Link>
           <Link href="/speaking">Speaking</Link>
-          <Link href="/video">Videos + Streaming</Link>
         </div>
     </header>
   )
