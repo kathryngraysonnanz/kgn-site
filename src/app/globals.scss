@@ -36,18 +36,17 @@ p {
   line-height: 1.5rem;
 }
 
+a {
+  color: #D1298E; 
+}
+
 @media (prefers-color-scheme: dark) {
+  a {
+    color: $tb-kendo-color-primary;
+  }
+
   body {
     background-color: $tb-kendo-body-bg;
     color: $tb-kendo-body-text;
   }
-
-  a {
-    color: $tb-kendo-color-primary;
-
-    :visited {
-      color: $tb-kendo-link-hover-text;
-    }
-  }
-
 }
