@@ -1,6 +1,6 @@
 import '@progress/kendo-theme-default/dist/all.css';
 import styles from './page.module.scss'
-import Header from '../header'
+import Header from '../_header'
 import EventCard from './eventCard';
 import { events } from './events';
 

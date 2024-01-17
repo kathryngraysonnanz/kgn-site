@@ -1,5 +1,5 @@
 import styles from './page.module.scss'
-import Header from "../../header"
+import Header from "../../_header"
 import Link from 'next/link'
 
 export default function ArticleLayout({

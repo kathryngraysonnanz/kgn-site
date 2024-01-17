@@ -11,9 +11,8 @@
     flex-wrap: wrap-reverse;
 
     img {
-      width: 300px;
-      height: auto;
-      max-height: 450px;
+      width: 100%;
+      max-width: 300px;
       margin: 20px 60px; 
       transform: rotate(-3deg);
       border: 10px solid black;

@@ -1,5 +1,5 @@
 import '@progress/kendo-theme-default/dist/all.css';
-import Header from '../header'
+import Header from '../_header'
 import styles from './page.module.scss'
 import blogData from './blogindex.json'
 import BlogCard from './blogCard';

@@ -2,7 +2,7 @@ import '@progress/kendo-theme-default/dist/all.css';
 import styles from './page.module.scss'
 import Image from 'next/image'
 import profilePic from './main.jpg'
-import Header from './header'
+import Header from './_header'
 
 import { SvgIcon } from "@progress/kendo-react-common";
 import {
@@ -19,7 +19,7 @@ export default function Home() {
     <Header/>
     <main className={styles.main}>
       <div>
-        <Image src={profilePic} alt="me" />
+        <img src="https://kgrayson.com/_next/static/media/main.8536db4c.jpg" alt="A photo of Kathryn, speaking at an event."/>
         <div className={styles.desc}>
           <h1> &gt; <b>Kathryn Grayson Nanz</b> is a Senior Developer Advocate, Front End Engineer, UI Designer, Author, Speaker, and Lifelong Learner.</h1>
           <p>
