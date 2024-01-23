@@ -48,7 +48,12 @@
         }
     }
 
-    .card a {
+    .card {
+        h3 {
+            color: #01E1FF; 
+        }
+        a {
         color: $tb-kendo-color-primary
+        }
     }
 }
