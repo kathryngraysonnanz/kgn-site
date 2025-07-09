@@ -21,7 +21,7 @@ export default function Home() {
       <div>
         <img src="https://kgrayson.com/_next/static/media/main.8536db4c.jpg" alt="A photo of Kathryn, speaking at an event."/>
         <div className={styles.desc}>
-          <h1> &gt; <b>Kathryn Grayson Nanz</b> is a Senior Developer Advocate, Front End Engineer, UI Designer, Author, Speaker, and Lifelong Learner.</h1>
+          <h1> &gt; <b>Kathryn Grayson Nanz</b> is a Senior Design & Developer Advocate, Front End Engineer, UI Designer, Author, Speaker, and Lifelong Learner.</h1>
           <p>
           In 2013, I graduated with a Fine Arts degree and took my first job as Junior Graphic Designer at a small, boutique ad agency in Washington, DC. While there, my Creative Director told me to never let anyone else find out that I knew how to code – he warned me that if they knew I could do it, I&apos;d be stuck doing it forever and never get to focus on print design again. I ignored his warning; turns out, he was completely right, but I&apos;ve never been happier.
           </p>
