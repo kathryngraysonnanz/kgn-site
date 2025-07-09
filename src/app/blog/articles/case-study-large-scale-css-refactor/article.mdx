@@ -1,7 +1,3 @@
-# Case Study: Large Scale CSS Refactoring in a Legacy Application
-
-*Last modified July 6, 2021* 
-
 Have you ever faced a project so big, so intimidating, you weren't even really sure where to start? Like anything you did would just be chipping away at the base of a mountain that you'd never really be able to move? I found myself in that position not long ago, looking down the barrel of a large scale CSS refactoring project that I'd been asked to take the lead on. 
 
 The application was huge, and the company had been working without front-end specialists for years, so there was a pretty low level of general CSS hygiene. It had gotten to the point where the tech debt had stacked up far enough that it was impacting the engineers' ability to actually write new code – slowing them down, because they were constantly fighting against a cascade of styles that weren't really intended to cascade. Very few styles were scoped appropriately. A search turned up 3,198 `!important`s. The longer we looked, the more it looked like a pile of spaghetti we could never hope to untangle...and yet, throwing it all out and starting over wasn't a realistic option either. 

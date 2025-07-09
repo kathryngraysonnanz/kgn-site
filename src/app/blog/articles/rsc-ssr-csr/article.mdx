@@ -1,0 +1,43 @@
+Tech has always had an acronym problem, but it’s never been quite so acute as it is in the world of React right now. With the growing popularity of RSCs (React Server Components), lots of React developers who had previously only written components for CSR (Client-Side Rendering) are suddenly finding that they need to brush up on their SSR (Server-Side Rendering) knowledge – *whew.* If this is all sounding alien to you, keep in mind the helpful guidance of the Hitchhiker’s Guide: grab your towel and **don’t panic.** We’re going to take a high-level look at what each of these things mean and how they (might) impact your day-to-day work. 
+
+## Let’s start with the familiar: CSR
+
+**CSR (or Client Side Rendering)** is what most React developers are most familiar with because it’s how we’ve been writing components in React for years. “Client side” here refers to the user’s browser. When websites are loaded, the browser fetches the site’s code from a server. However, browsers can only read HTML, CSS, and JS (plus some other special things, like XML…but that’s not relevant to what we’re discussing right now). 
+
+The difference between CSR and SSR is where that content gets **rendered** – in this case meaning “translated” from what we’ve written in React into that browser-readable HTML, CSS, and JS. SSR happens (you guessed it) over on the server side, so that the already-translated HTML, CSS, and JS are what get grabbed by the browser. CSR happens on the client (or user) side, meaning that the React stuff is what gets fetched and the translation part happens in the browser. However, there are both benefits and drawbacks to the CSR approach. 
+
+### What works well
+
+One of the primary benefits is that it works really well for dynamic content – stateful content that needs to quickly respond to user inputs. That’s been a crucial part of modern web apps, which is part of why CSR has been the go-to approach for the last several years. In fact, it’s a huge part of why SPAs (Single Page Applications) have been so popular –  we can dynamically rewrite the current page vs. having to fetch and load new pages for every click. It has the potential to make web apps feel super fast and snappy, which is great. 
+
+### What doesn’t work well
+
+Unfortunately, that snappy and instant feeling really only applied if you were one of those people lucky enough to have a strong, reliable internet connection. For anyone not in that ideal scenario, all that rendering the browser had to do meant that the initial load time could be rough – things got pretty slow. And for folks that never jumped on that fast internet bandwagon in the first place – like folks in rural areas or those who couldn’t afford a fancy, super-high-speed connection…well, they were just kind of left behind. Meanwhile, web apps themselves just got bigger…and bigger…and bigger. 
+
+CSR also doesn’t play particularly well with SEO (Search Engine Optimization). That’s because search engines crawl and index websites by looking at their text, image descriptions, etc…but in the case of CSR, that stuff hasn’t been rendered yet. In that space between getting grabbed from the server and loaded in the user’s browser, it’s mostly just an empty HTML file and some (not-yet-readable) React. 
+
+## The proposed solution: SSR
+
+As previously mentioned, SSR or Server Side Rendering means that the content gets rendered on the server before it’s delivered to the browser as HTML, CSS, and JS. As you might expect, this has its own set of pros and cons. 
+
+### What works well
+
+SSR, in general, has better performance as compared to CSR. Because the HTML and CSS are already rendered, the feeling of the page loading for the very first time is super fast – say goodbye to all those spinners and load animations that we see so often in SPAs. 
+
+That pre-rendering also fixes the SEO issues mentioned before. Again, because the HTML shows up in the browser rendered and ready to go, search engines can easily skim through those header and paragraph tags to understand what content is actually on the site. Good SEO bumps your ratings and rankings, puts your site higher in the search results, and generally leads to more traffic. 
+
+### What doesn’t work well
+
+SSR isn’t the best at reacting to client input. That’s because it needs to make a trip back to the server every time it needs to fetch updated content. While a CSR component has everything it needs already on the client side and just needs to do a quick re-render, the SSR component just has the static HTML. For dynamic, stateful apps, this wasn’t ideal. 
+
+## Cool. But where does this RSC thing fit in?
+
+[RSCs (React Server Components)](https://react.dev/reference/rsc/server-components) are the React-specific approach to balancing SSR and CSR in a way that lets us have the best of both worlds. For many front-end-focused React devs, SSR had a big learning curve; it came with a lot of new technical concepts and terminology (suspense, hydration, incremental static regeneration, etc). For some folks, the barrier to entry was feeling a little steep and benefits weren’t quite outweighing the time investment to implement. 
+
+When combined with a framework (like [Next.js](https://nextjs.org/) or [Waku](https://waku.gg/)), RSCs do a great job of handling the more challenging technical aspects of SSR “behind the scenes” – making the actual components that we write feel not-that-different from what we’re already used to as a React developer. 
+
+The popular approach to SSR today is to split an application into “islands” of interaction, meaning that some parts of the page will be static while others are dynamic. In React, this happens by choosing between RSCs and traditional client components. Any React app making use of RSCs would need a combination of server components and client components in order to be fully reactive to user inputs. Generally, you’ll want to reach for a server component when you need to do heavy data fetching or deal with big dependencies, then leverage client components when you need user interaction and stateful UI. This often looks like a parent-child relationship where RSCs are the parent and client components are the child. 
+
+## Feeling ready to dive in?
+
+While all those acronyms can feel a little intimidating at first, it’s actually not so bad after all, right? Plus, if you’re a KendoReact user, it’s even easier to start implementing server components – we’re proud to be early adopters of [React Server Components](https://www.telerik.com/kendo-react-ui-develop/components/server-components/)! If you’re interested in hearing more about that process and getting a peek behind the curtain at what our RSC development process looked like, check out our recent stream: [**Data Decisions: React Server Components and KendoReact!**](https://www.youtube.com/watch?v=ZGsIspsbrIY)

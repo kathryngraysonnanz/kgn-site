@@ -1,0 +1,41 @@
+On today’s web, SEO is king – as much as it may be something we’d like to ignore, that’s simply not possible. SEO (Search Engine Optimization) is the art of getting your website ranked higher on various search engines, thereby increasing the discoverability of what you’ve created. The internet is incredibly vast, and most people will only find your work if it’s surfaced by search engines when they search for related keywords. 
+
+Some of the most common ways to increase SEO have to do with meta tags, using the right language and terms in your copy, including alt text / similar accessibility features, and other content-based approaches – but did you know that your architecture development decisions can have an impact as well? That’s right: apps that make use of Server Side Rendering (SSR) have a variety of benefits, including (drumroll, please…) improved SEO! If you’re building React apps, that means getting on board with RSCs, the React approach to SSR. 
+
+If you got this far and are thinking “Man, this is a lot of acronyms I’m not familiar with!” – don’t worry; you’re not alone. Check out [this primer on SSR, CSR, RSCs and more](https://www.telerik.com/blogs/rsc-ssr-csr-omg) to get up-to-speed with the terms and tech we’ll be referencing in the rest of this article. 
+
+## How does SEO work?
+
+Before we can dive into SSR’s impact on SEO, we first need to take a step back and look at the basics of how SEO works. 
+
+Search engines scan the content of websites and webapps in a process known as “crawling”. As part of the crawling process, the HTML of a page is read and “indexed” – stored in the search engine’s index. This includes looking at the content and text of the page, following various embedded links, cataloging the page title and meta information, and more. What the search engine is trying to do is understand what the page is about, so that it’s capable of returning relevant information when the user searches for a specific keyword. 
+
+For example, if you have a site all about baking the perfect croissant, then naturally your page text, images, title, etc. will mention croissants, baking, recipes, kitchen tools – you get the idea. When the search engine crawlers load your website, they’re looking to those things as hints for what your page is about. They scan over the page, catalog all that stuff, and add it to their index. Then, when someone searches “easy croissant recipes”, your site pops up in the search engine index as related content and gets served to the user.     
+
+## How does SSR impact SEO?
+
+You might have noticed an important detail in that last section: when the crawlers look over a website, they’re scanning the *HTML*. For those of us creating web applications, this can be a bit of a problem, because the vast majority of what we’re doing is in JavaScript. Now, of course, this does get (eventually) rendered as HTML because that’s what the browser needs…but that doesn’t always happen right away, or exactly how we might expect. 
+
+The popular approach to webapp development in recent years has been Client Side Rendering (CSR) – in fact, until the introduction of RSCs, this was the primary method used in React development. There were, technically, ways to do server side rendering in React before RSCs…but it was cumbersome and not terribly popular. It’s a pretty safe generalization to say that most React apps, up until this point, were using CSR. 
+
+Unfortunately, CSR doesn’t play particularly well with SEO. In the case of CSR, the HTML usually hasn’t been rendered when the crawlers first get to the site. In that space between getting grabbed from the server and loaded in the user’s browser, our app is mostly just an empty HTML file and some (not-yet-readable) React. That means there’s no page title, content, images – anything, really – for the crawlers to index. Not ideal. 
+
+## How can we improve SEO with RSCs?
+
+The good news is that SSR – and by extension, RSCs – really help with that SEO crawling issue. There are a few main ways in which this happens, all sequential and related: 
+
+### The faster initial load…
+
+Apps with SSR generally have a faster initial load (or TTFB: Time to First Byte) because the heavy lifting of the rendering is happening over on the server vs. in the browser. By the time the content hits the browser, it’s set to go: all the browser has to do is serve it up. That means that things are up and ready to scan by the time the crawlers hit your site – no more empty HTML. 
+
+### …leads to better crawling…
+
+Because the HTML is rendered before it hits the browser, the crawling process itself is also improved. All your content is easily accessible: headers, paragraph tags, images, meta tags, etc. – with less of that pesky JavaScript. That means that when your site is crawled, search engines will understand what content is actually there. 
+
+### …which means improved indexing!
+
+Both of those things lead to our improved end goal: better, more accurate indexing. When search engines can easily load and crawl your site, they get better information – and that information goes directly into their index, which is referenced when the user searches. 
+
+## Try it out!
+
+If you’re a KendoReact user, it’s especially easy to start implementing RSCs and reaping all those sweet, sweet SEO perks – we’re proud to be early adopters of [React Server Components](https://www.telerik.com/kendo-react-ui-develop/components/server-components/)! Now, you can improve your search ranking (as well as enjoy a ton of other benefits) while still using the beautiful, accessible, performant KendoReact components you already know and love. Give it a shot and let us know what you think!

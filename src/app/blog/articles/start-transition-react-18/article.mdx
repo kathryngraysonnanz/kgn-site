@@ -1,7 +1,3 @@
-# Taking a Look at `startTransition` in React 18
-
-*Last modified November 8, 2021* 
-
 Let's take a look at (what I think) is going to be one of the coolest parts of the upcoming React 18 release: **`startTransition`**. In a nutshell, `startTransition` is a new API in React 18 that's going to allow us to keep our applications interactive and responsive, even while bg updates are happening behind the scenes. Previously, if a user was to initiate an action that would trigger a component to update – such as a search that fetches a ton of new data to display – the whole page would just kind of hang while all that loading stuff was happening. This, as you can imagine, feels kind of awkward to users, so as developers we were forced to find other ways around it – skeleton UIs to make loads feel faster, debouncing, setTimeouts, etc. 
 
 In React, all updates are rendered equally urgently – or at least, that *has* been the case up until React 18 and concurrency rendering. This meant that there was no way to differentiate between those updates that are *truly* urgent and *need* to update everything right away, every time...and those updates that are less urgent, like the search results, which shouldn't prevent the user from continuing to do other work on the page while the system sorts it out in the background.

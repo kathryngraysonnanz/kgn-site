@@ -1,0 +1,88 @@
+When we’re assessing the user experience of a website or application, what exactly are we looking for? What makes a site especially usable (or especially difficult to use)? One of the most common models for breaking down this question into a more easily quantifiable and measurable system is Jakob Nielsen’s 10 Usability Heuristics. 
+
+The word “heuristic” simply refers to an approach or strategy that works like more as a rule of thumb – not necessarily scientifically tested or 100% accurate all the time, but rather a good mental shortcut or helpful generalization. By nature, that also means that there will be exceptions to the rules; a site that “violates” one or two of the heuristics in this list isn’t automatically a bad or unusable site. However, we can feel pretty safe in saying that when when the criteria isn’t met for *many* or *most* of these, there’s probably a usability issue (or several) that need to be examined.  
+
+Nielsen’s heuristics were originally created in 1990, then refined down to 10 in 1994. In 2020, they were re-examined and adjusted slightly for clarity – however, the 10 heuristics themselves did not change. [As Nielsen says](https://www.nngroup.com/articles/ten-usability-heuristics/): “When something has remained true for 26 years, it will likely apply to future generations of user interfaces as well.” 
+
+That being said, let’s take a look at what these include: 
+
+## 1. Visibility of System Status
+
+Users always need to know what’s happening and what the current state of the website or application is. Imagine you’ve just completed a form and hit the “Submit” button – but there’s no confirmation dialog or other visual change. Did it go through? Did your internet connection lapse? Do you have an error that needs correcting? Should you re-submit, or will that cause an error? 
+
+When users interact with elements and see no change in the system, it can be unsettling and confusing. In *Designing Interfaces: Patterns for Effective Interaction Design,* the authors describe the user interface as our way of having a conversation with the user – similar to the way that a receptionist might help a user in-person at a hotel front desk. If you were to check in at a hotel and make a request for a wake-up call, but be met with total silence…it would be pretty weird, right? You’d wonder if they’d heard you at all or whether you were at risk of oversleeping your morning meeting. In the same way, we need to make sure that our interfaces include active feedback to keep the user apprised of everything happening “behind the scenes”. 
+
+## 2. Match Between System & Real World
+
+The language, layout, and approach that we use within a website or application should always align with the user’s real world experience. That means that everything from where elements are on a page to the words we use we describe things should be user-centric and tailored to the way that *they* move through the world. That sounds obvious, but can actually be very challenging – mostly because our own lived experience is often very different from that of our users, and when we design and develop we’re always doing so from the basis (and bias) of our own experience.  
+
+It’s very easy to make assumptions about what users know, how they think, and what experiences they will have had. *Of course* users will know what a widget is, that’s a common term…right? *Of course* users will be able to identify that icon as a drag and drop symbol, that’s an industry standard…right? The answer, of course, is that it depends entirely on your userbase. A younger, more technically-savvy userbase might not have any issues with those examples, but an older userbase could struggle more. It’s our responsibility to conduct user research and gain an understanding of the people who use our applications and websites, in order to more accurately tailor the content and layout to them. 
+
+However, it’s crucial to keep in mind that users are not a monolith. You’ll likely have users of many different capability levels, experiences, backgrounds, etc. using your product. It’s often a good idea to build in multiple ways of accomplishing tasks, so users have flexibility in choosing the approach that works best for them. We’ll talk more about this in the 7th heuristic. 
+
+## 3. User Control & Freedom
+
+Users are not going to get everything right the first time; that’s just a fact. No matter how wonderful or intuitive our UI is, there will still be folks that make mistakes, forget things and have to go back, or need to undo an action. Part of what makes users feel comfortable and engaged with a piece of software is the knowledge that they can freely experiment and know that the stakes are low. That means that the consequences for simple actions should be minimal: clicks can be un-clicked, navigation can move backward and forward without getting lost, choices aren’t permanent. Changed the color to red – oops, didn’t like that! – click undo. This is referred to as **safe exploration**, and it’s an important way for users to learn the application interface and functions. 
+
+Obviously, there are some situations where users *do* need to make important, permanent decisions: placing an order, deleting an account, or similar. In those situations, we need to clearly communicate to users (1) at which point there’s no turning back and (2) what exactly will happen afterwards. Always allow users an “escape route” or a way back – all the way up until the point at which that’s no longer possible. 
+
+## 4. Consistency & Standards
+
+This one has two main interpretations: 
+
+1. Consistency with a user’s wider experience using web and software in general  
+2. Consistency between pages in a website  / applications in a suite / other connected digital experiences 
+
+Both have to do with the concept of **mental models**. A user’s mental model is the understanding they build and the assumptions they make about their current experience, based on the similar experiences they’ve had up until now. For example, most websites have a logo in the top left corner that will take the user back to the home page when clicked. Most linked text in a webpage is underlined. Right-clicking will usually open a contextual action menu. The Ctrl+S keyboard shortcut will save a file. When these things don’t happen – or worse, when something *else* unexpected happens – it throws us off. Our mental models no longer line up and now we have to both learn a new system and remember that the system is different for *this particular* website / piece of software. That increases a user’s **cognitive load**, or the amount of effort and energy that it takes to complete a task. 
+
+By meeting the wider standards of web and application design, we allow our user to carry over everything they’ve learned and all the behaviors that have become second-nature to them from years of tech use. Things “just work”, because we’re not forcing them to go against the grain and learn something new in order to use our product. Mental models also can be (and are) constructed on a product-by-product basis. Maybe we use a specific color system to designate different types of information, or maybe our menus are organized in a certain way. If that were to differ between applications in a shared product suite, we’d be disrupting our users’ mental models – and creating a higher cognitive load for the users that have to switch back and forth between those two systems regularly. 
+
+## 5. Error Prevention
+
+Errors are inevitable. Whether it’s a system bug, a user mistake, or some combination, it’s important that we prepare for the reality of errors in our software. However, even better than error mitigation is error *prevention*. By making smart choices during the design and development process, we can create products that reduce the likelihood of errors happening in the first place.
+
+For example, users on mobile devices are more likely to misclick or “fat finger” something, especially in a compact page layout. We can help prevent that error by making the clickable areas – or **target sizes –** larger and more forgiving. We can also be smart about where we place interactive elements on the page, and how closely we place them relative to each other. Finally, if a user does misclick, we can make it easy for them to go back, undo, or otherwise negate the unintentional action. This combination of preventative measures means less stress for the user – and for us. 
+
+## 6. Recognition Rather Than Recall
+
+Users have a lot going on, and our software is a comparatively small part of that. Schedules, grocery lists, work to-dos, calendars – the details of our particular UI tends to be pretty low on that list. As someone uses the interface more often, over time it will stick in their memory…but that takes time. We can help reduce that time *and* reduce the amount of effort it takes to use the UI by working based on the assumption that our users *won’t* remember it. 
+
+Practically, that means surfacing relevant information as needed, in the context of the task, rather than expecting our users to recall details. It might be visually efficient to just use icons in our menu, but that means we’re placing the burden on our users to remember what they all mean. That burden might be pretty low for common icons, like a house for “home” or a gear for “settings”…but it could also be more difficult. Does a light bulb icon mean “see a tip” or “toggle on light mode”? Those things could make perfect sense to an established user, but new users will have to wrack their brains to remember, over and over again until it sticks. By adding a label to the icon, we reduce the cognitive load required to use the application. 
+
+## 7. Flexibility and Efficiency of Use
+
+Remember when I said we’d talk more about the whole “multiple ways of accomplishing tasks” thing, way back in heuristic #2? Well, now it’s time! Flexibility and Efficiency of Use is all about creating flexible paths and processes, so that users of different experiences and capabilities can all feel comfortable using your product. 
+
+A great example of this is a well-designed and prioritized keyboard navigation experience. Keyboard nav benefits a wide variety of users: from experienced “power users” who appreciate the speed and ease, to visually impaired users who require it for accessibility purposes. By enabling useful keyboard shortcuts and well-designed keyboard navigation, we can allow those users to engage with the software in the method that’s most comfortable to them. 
+
+Consider the use case of filling out a long form. A new user might work through the form more slowly, clicking on each input box with their mouse and considering their response. An experienced user (who has filled out this form a hundred times before) might tab between the input boxes and copy/paste the content without ever touching the mouse. A visually impaired user will make use of a screenreader in combination with their keyboard to complete the form. If we’ve built the form to be flexible, all 3 of these example users will be able to complete it in their preferred way, using their preferred tools. 
+
+## 8. Aesthetic and Minimal Design
+
+This is a heuristic with a name that can be a little misleading at first, because “minimalism” refers to a very specific, sparse visual style. However, that’s not what we’re talking about here; in this case, “minimal” simply means that every element on the page serves a purpose. Think of it kind of like the Marie Kondo method – she doesn’t say that you need get rid of everything in your house, she simply asks you to question its purpose and whether it “sparks joy”. We should approach the elements in our user interfaces with the same curiosity: what purpose is this serving? Is it making the website or application a better place for the user? 
+
+We can vastly improve the user experience by creating designs that are (a) visually appealing and (b) not cluttered with elements that don’t further the user’s goals. Every time we place a new element into a layout, we should think: “What is this helping the user achieve?” When we have too many items on the page, it becomes distracting; it makes it more challenging for the user to parse what’s needed vs. what isn’t in order for them to complete a particular task. Often, we refer to this kind of design as “clean” – it feels straightforward, intuitive, and easy to understand at first glance. 
+
+## 9. Help Users Recognize, Diagnose, and Recover from Errors
+
+As wonderful as it would be if we could simply prevent *all* errors using that error prevention heuristic, there will still be cases in which errors do happen. When they do, it’s our job to make sure that users can see that they’ve happen, understand why they’ve happened, and know what the next step is. 
+
+Recognizing an error means that a user knows the error has happened in the first place. That might seem like common sense, but remember that some errors happen on the system side – bugs, unexpected inputs, connection failures, and other things not necessarily related to a user’s mistake. Many times, those errors happen “behind the scenes”, but still have implications for the user experience – anything from longer-than-expected load screens to full crashes. Regardless of how the error came to be, we need to make sure the user is aware that it happened. 
+
+Diagnosing an error means that a user knows why the error occurred. Again, this might be due to their mistake (such as a form validation error) or a system issue (dropped connection). This should always be communicated in user-friendly language, so avoid using overly technical terms or error codes that won’t be meaningful to them. 
+
+Finally, recovering from errors means that a user knows what they’re supposed to do next. This could be simply an acknowledgement that the error happened, a prompt to try the action again, instructions on how to revise their input, or possibly just the right language to communicate their issue to a help desk. No matter what the followup action is, we want to make sure we don’t leave the user hanging, unsure of how to resolve the problem. 
+
+## 10. Help and Documentation
+
+We talk a lot about intuitive user interfaces as a kind of ideal – wouldn’t it be wonderful if all of the products we created were so crystal clear that you could simply look at them and immediately understand everything? However, that’s not always realistic. Sometimes, the systems we build are, by nature, complex systems meant to solve complex problems. Advanced video or photo editing software, applications for banking or money management, specialized healthcare websites – all of these are examples of situations where even the best, most intuitive visual design can only get us so far. Sometimes, the situation calls for written instructions and additional explanation.  
+
+When this is the case, we need to make sure our documentation is as thoughtful and intentional as the website or application, itself. That means good search capabilities, well-thought-out organization, easy-to-understand language, and straightforward steps that users can follow to accomplish tasks. 
+
+## Putting the Heuristics to Work
+
+Now that you have this list of heuristics, how are you supposed to use them? A great way to leverage this knowledge is to use the heuristics as a kind of checklist for internal review. While it’s still ideal to put work in front of users to get their feedback, we can often catch a lot of easy mistakes or UX shortcomings by using these heuristics to evaluate the product ourselves, first.
+
+This also saves time and money – usability testing takes a lot of organization and effort, so you don’t want to “waste” that on catching the obvious mistakes. Ideally, you want user feedback to be the kind of nuanced, contextual, experience-informed stuff that you won’t be able to mimic with an internal review. By using these heuristics to make sure you’ve checked all the low-level boxes, you can concentrate your user interviews on higher-level, more insightful feedback. 
+
+Try using this list as a basis for internal review and critique sessions – you might be surprised by how much you’re able to improve the product before it’s ever touched by a user!

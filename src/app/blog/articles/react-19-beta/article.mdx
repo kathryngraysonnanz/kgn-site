@@ -1,0 +1,47 @@
+Exciting news: [React 19 beta is now available](https://react.dev/blog/2024/04/25/react-19?ck_subscriber_id=1866533603)! We’ve known that it’s been on the horizon for quite some time now, so it’s thrilling to finally get our hands on it. Here’s what we know: 
+
+## What’s New
+
+### Actions
+
+React 19 will add support for using async functions during transitions, called Actions. As noted in the official blog, Actions will automatically manage the submission of data for us – that will make things like optimistic updating and error handling a *lot* easier.
+
+To support the new Actions, we also get a few new hooks. `useOptimistic` will allow us to show users instant feedback while requests are submitting. `useActionState`  is meant to handle common cases for Actions. And for forms, we’ll get `useFormStatus`, which is intended to support those same common cases for Actions, but in the context of a `<form>` .
+
+### useOptimistic
+
+One of the common pain points in web app development is that feeling of slowness for the user as they’re waiting for requests to finish and things to load. [`useOptimistic`](https://react.dev/reference/react/useOptimistic) is intended to help fight that, by allowing us to easily add “optimistic” content while we wait for an async request to complete. Then, once we have the actual data, we can replace any optimistic content that is no longer accurate. 
+
+### useActionState
+
+[`useActionState`](https://react.dev/reference/react/useActionState) will accept a function and return a wrapped Action to call. When that wrapped Action gets called, `useActionState` will set the pending state of the Action as `pending` and return the last result of the Action as `data`. 
+
+Those of you that were already experimenting with the Canary release might already be familiar with `useActionState` – although then, it was going by the name `useFormState`. **`useFormState` is now officially deprecated.** 
+
+### useFormStatus
+
+Not to be confused with the now-outdated `useFormState`, React 19 adds a new hook: [`useFormStatus`](https://react.dev/reference/react-dom/hooks/useFormStatus). In React 19, `formAction` props for `<form>`, `<input>`, and `<button>` elements can automatically submit forms with Actions. `useFormStatus` gives us information about the current status of the last form submission. This includes whether or not it’s currently pending submission, what data the form is submitting, and whether the form is submitting with a GET or POST HTTP method. 
+
+### `use` API
+
+React 19 includes [a new API, `use`](https://react.dev/reference/react/use), that lets us read the value of a resource, such as a Promise or Context. The function that calls `use` must be a Component or a Hook, and it can be called within loops or conditional statements. This makes it more easily usable than the prior `useContext` hook, since it can be called in more places. It will also help support the use of Server Components, since data often moves via Promise from a Server Component to a Client Component. The `use` API can read the value from the Promise that gets passed to the Client Component as a prop. 
+
+### Server Components
+
+Speaking of [Server Components](https://www.telerik.com/kendo-react-ui-develop/components/server-components/) – we’d be remiss not to highlight that they are officially supported in React 19. While they might not *feel* new, since we’ve technically had access to them for a while (thanks to Next.js leveraging the Canary build of React), it is notable that they are now out of the experimental phase. This also means we’re more likely to see other frameworks add full-fledged support for RSCs – and by extension, wider adoption in the React community. Perhaps most importantly, this means we finally have [official documentation for RSCs.](https://react.dev/reference/rsc/server-components) 
+
+## Upgrading
+
+In addition to the React 19 beta, we also got a new mainline release: [React 18.3.](https://react.dev/blog/2024/04/25/react-19-upgrade-guide?ck_subscriber_id=1866533603) 
+
+Since React 19 will introduce some breaking changes, React 18.3 is intended to help ease the upgrade process by adding warning for depreciations and other changes. Aside from those new warnings, 18.3 is identical in function to 18.2. React 18.3 will cause no breaking changes – it’s simply meant to help bridge the gap between 18 and 19. 
+
+If you plan on upgrading to React 19 ASAP, it’s highly recommended to use this time (while 19 is still in beta) to move to 18.3 and make any necessary adjustments. By doing so, you can be prepared and ready to make the shift to React 19 on release day, if desired. The [KendoReact](https://www.telerik.com/kendo-react-ui) team will be taking this approach, which allows us to have day one support for the new release (as always). 
+
+## When’s the Official React 19 Release?
+
+All this leads to the next natural question: when can we expect the official React 19 release? The answer is, unfortunately: we’re still not sure. During the beta, the React team will be working closely with major libraries to hear feedback and make any necessary adjustments. They haven’t offered any guidance as to a timeline on that process, so (as always) we’ll just have to wait and see. 
+
+There’s some speculation that we’ll get an announcement for React 19 at [ReactConf](https://conf.react.dev/), the official React-team-hosted conference happening in just a few weeks on May 15th. While this would be a great opportunity, it would also mean a *significantly* shorter beta than we generally see from React. For example, the React 18 beta was first shared on November 15, 2021, but we didn’t see the official React 18 release until March 29, 2022 – that’s 134 days between beta and official. React 18 was a *much* larger change for the ecosystem, so it may not be the best way to predict future behavior…however, I think it’s safe to say that a 20 day gap between beta and official for React 19 would be a surprisingly short turn of events. 
+
+Still, only one way to find out: we’ll just have to stay tuned! In the meantime, make the jump to React 18.3 and take advantage of the time to do some testing and get ready for the big update. If you’re feeling especially eager, you can always try out the React 19 beta today, including the much-anticipated [Server Components](https://www.telerik.com/blogs/current-state-react-server-components-guide-perplexed). Will you be upgrading on day 1? What new features are you most excited about? Drop a comment and let us know!

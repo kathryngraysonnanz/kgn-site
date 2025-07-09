@@ -1,0 +1,76 @@
+React Server Components (RSCs) aren’t brand new – in fact, they’ve been around for a few years now. So why are they still so misunderstood? Like many React devs right now, I had a general understanding of what they were, but couldn’t have given you the details on how they work or why you might want to use them. As I’ve written about previously, I’m not generally an early-adopter – I like to wait for a little bit and see how the practical use case of new technologies pan out. That being said, the future of React certainly seems to be trending towards server components; it was time for me to get up to speed. 
+
+Because KendoReact prioritizes always supporting the newest and latest, we’ve implemented RSCs in our own components. And they’re certainly a hot discussion topic right now, with many of the big voices in React really excited about them and confident that they’re the right direction for React to be heading…but that hype didn’t seem to be translating directly to major adoption in the community (myself, admittedly, included). That got me curious – not only about where that adoption gap was coming from, but also about what I might have been missing out on by not jumping on board sooner. 
+
+If you were like me – hanging out on the sidelines of the RSC movement, keeping an eye on stuff but not necessarily testing the waters yourself – you’re in the right place. Let’s take a look at the big picture regarding server components: not only what they are, but also why they didn’t take off immediately and the pros and cons of incorporating them now. 
+
+## So, what is a server component?
+
+Within React, there are now two types of components: server components and client components. Historically, React exclusively used client components, so it might make the most sense to start there. 
+
+## Okay, fine: what is a client component?
+
+The “client” in client components refer to the fact they they render and function entirely in the user’s browser – otherwise known as the client slide. Server-side and client-side refer to different places where the heavy lifting (if you will) is carried out in an application. Server-side stuff happens on the web server; client-side stuff happens on the client’s (aka: user’s) device. So when we wrote client components in React, it was with the assumption that all the functions, rendering, state management, etc. would happen exclusively in the browser on the user’s laptop / phone / tablet / screen on the front of their smart fridge / whatever. 
+
+## Good to know. Back to server components, please.
+
+Right. So, if client components do all their ish on the browser (aka: the client side), then we can extrapolate that server components will do all *their* ish on the web server. 
+
+Traditionally, with client components, the component would send a request and wait for a response. That response would either be the data that we requested…or an error. If we got back the data, then that could be passed down to child components via props and rendered in the UI for the user. If we got back an error, well…we show the user an error message (hopefully). In the meantime, it makes for a lot of waiting on the user’s side – a common complaint in modern app development. While that can be mitigated by lazy-loading, skeleton UIs, etc., those were still just bandages over the real problem – that apps are only getting bigger, and users aren’t always loading them with lightning-fast connections. 
+
+Server components run entirely on the server, which eliminates that back-and-forth game. The flip side is that their code won’t get included in the JS bundle – that’s a huge chunk of why the load times are way faster, but it also means that they can’t re-render when state changes. They do their thing on the server and then they’re done – that rendered component gets sent to the client side as-is, as HTML. 
+
+This means that any React app making use of RSCs would need a combination of server components and client components in order to be fully reactive to user inputs. Generally, you’ll want to reach for a server component when you need to do heavy data fetching or deal with big dependencies, then leverage client components when you need user interaction and stateful UI. This often looks like a parent-child relationship where RSCs are the parent and client components are the child. The Next.js docs have [a really great breakdown of the different use cases](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#when-to-use-server-and-client-components) where you might reach for a server component vs. a client component. 
+
+## Will we see more RSC usage in the future?
+
+Almost certainly. From a technical perspective: we know they’ll be included as part of the mainline, stable release in React 19. Although we don’t know when exactly that will come, we do know that it will be soon; React 19 moved from Beta to Release Candidate (RC) on May 15, 2024, and we don’t anticipate a long time before it moves from RC to Stable. From an adoption perspective: in addition to the endorsement of RSCs from several big voices in the React community, our most tangible indication of RSCs gaining popularity is Next.js. 
+
+## What’s Next.js got to do with it?
+
+**Next.js is currently the only framework recommended in the official React docs that supports server components.** So, why is that? 
+
+When the new React docs were officially moved out of beta in March 2023, it came with a big shift – frameworks are now the officially recommended approach for writing new React apps. Previously, frameworks were mentioned alongside a “roll your own” approach, with both being suggested as equally recommended approaches for new apps – now, the docs specifically include several paragraphs on why using react without a framework is *not* the ideal approach. 
+
+One of the most popular React frameworks available (and the top-listed recommendation in the official React docs) is Next.js. Vercel, the company who maintains Next.js, has a close relationship with the React team – [some have even argued *too* close](https://blog.cassidoo.co/post/annoyed-at-react/). Setting aside whether it should be that way or not, that close relationship means that the decisions Next.js makes are closely interwoven with the decisions that React makes (and vice-versa). When Next.js takes an opinionated approach to something in their framework, it kind of comes with the tacit endorsement of the React team. In fact, Next.js is even built on the Canary (or early-release) versions of React instead of the Stable releases. While you can, without a doubt, still use React without Next.js, it’s getting hard to argue that they’re not becoming more and more enmeshed. Whether or not that’s the right move for the future of React is a different question – one I’m sure you can find several different hot takes on if you poke around, but which we won’t cover in this particular article. 
+
+That was a lot of context just to say: **the choices that Vercel makes with regards to Next.js carry significant weight in the React world** – and in version 13, **Next.js made server components the default approach when spinning up a new app.** Developers can still, of course, opt out of this when using Next.js, but it takes a little config. Considering the amount of influence that Next.js has within the React community it seems pretty darn likely that if Next.js is betting on RSCs, RSCs are gonna happen. 
+
+## Why aren’t more people using RSCs, if they’re the likely future of React?
+
+There are a few contributing factors: 
+
+### Previous lack of official documentation
+
+We only *just* got [official RSC documentation](https://react.dev/reference/rsc/server-components#noun-labs-1201738-(2)) on May 15th, when React 19 moved into RC. Before that, there was no guide to React Server Components included in the official React docs – only third-party blogs and tutorials, like [*React Server Components: A comprehensive guide*](https://blog.logrocket.com/react-server-components-comprehensive-guide) by [Chinwike Maduabuchi](https://blog.logrocket.com/author/chinwikemaduabuchi/) and [*Making Sense of React Server Components*](https://www.joshwcomeau.com/react/server-components/) by [Josh Comeau](https://www.joshwcomeau.com/). [Dan Abramov](https://twitter.com/dan_abramov2) had also done a fair bit of tweeting about RSCs, offering guidance in a less-official capacity.
+
+However, none of that was quite the same as real documentation, and undocumented tech is a dealbreaker for many folks – especially those working on larger teams or at enterprise companies. Now that we *do* have documentation, that will probably start to change.  
+
+### Reliance on a framework
+
+Currently, server component implementation options are fairly limited – by which I mean that they need to be used in conjunction with a framework. That previously-mentioned React Labs blog on RSC development even says directly: 
+
+> Building your own RSC-compatible framework is not as easy as we’d like it to be, mainly due to the deep bundler integration needed.
+> 
+
+So, while it’s *technically* possible, RSCs without a framework are currently more in the realm of weekend tinkering vs. real business-case applications. 
+
+### For a long time, that framework had to be Next.js
+
+The other piece of important information to acknowledge here is that when we say RSCs need a framework, up until very recently “framework” effectively meant “Next.js”. There were some smaller frameworks (like [Waku](https://waku.gg/)) that have had support for RSCs. But many larger and more established frameworks were still working towards it or only supported RSCs in beta. Now that React 19 is in RC, that has changed: both [Redwood](https://redwoodjs.com/blog/rsc-now-in-redwoodjs) and [Gatsby](https://www.gatsbyjs.com/docs/how-to/performance/partial-hydration/#server-components), for example, now have full support for RSCs – but only recently. **For nearly two years** (since October 2022), **Next.js was the only framework recommended in the official React docs that supported server components.** 
+
+So, if you didn’t happen to already be using Next.js for your React app, then your options for leveraging RSCs *used to be* pretty slim: either migrating to a new framework (which is no small task) or waiting for support in the framework you’re already invested in. As cool as RSCs sound, I can tell you which one I’d be doing (spoiler alert: it’s the waiting). Now that the waiting is over, I suspect we’ll see adoption start to increase from folks already invested in those other frameworks. 
+
+## Should I start using server components?
+
+The boring, logical answer to this is (like so many things in web development): “it depends”. It depends on your team, your current tech stack, whether you’re starting a new project or this would mean refactoring a legacy app, etc. 
+
+My personal opinion is that if I was in the lucky position to be starting a new project right now, I would probably do so with Next.js – and with server components. In addition to just being a helpful thing you can use to improve performance, I think there’s some real truth that the wind definitely seems to be blowing in the direction of RSCs – and that’s not a thing I would want to get stuck fighting against in the next few years. 
+
+However, if I was the maintainer of a legacy app, I wouldn’t make the jump yet. Would there be benefits? Absolutely. Would those benefits be worth investing such a significant chunk of time and effort into (what will almost certainly be) a huge refactoring project? My gut says no. 
+
+For many years, client components were the backbone of the React experience – and for the most part, it worked pretty well. To be completely fair, it *still* works pretty well; unless you’re experiencing pain points specifically related to some of the common pitfalls of client components, then there’s really nothing that says you have to stop writing React apps using this pattern. I think it’s important to note that – unlike the switch from class components to functional components – new developers are not (at the point of writing this article) actively being discouraged from writing entirely client-side apps. 
+
+While it’s a safe bet that RSCs the future of React, we’re only just on the cusp of seeing them become “Stable” in React. In React 18, they were still clearly marked as “Experimental”. Even once the official release of React 19 happens, we’ll still see a lag between stability and adoption as frameworks, libraries, and regular ol’ devs like you and me start to figure out what realistic incorporation looks like. 
+
+While some frameworks and libraries have gotten ahead of the curve on this, we’re still not quite at the point of widespread adoption. That means that we’re only just beginning the process of true standardization of the RSC approach. With the React 19 release, we’ll officially be out of the experimental “early adoption” phase – but if you don’t make the jump right away, don’t worry too much. RSCs aren’t going anywhere and those who choose to wait will get to reap the benefits of increased resources and documentation.
