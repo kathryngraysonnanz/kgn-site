@@ -14,7 +14,7 @@ export default function BooksCourses() {
     <main className={styles.main}>
       <h1>Books & Courses</h1>
       <p></p>
-      <p>Full disclosure: I'd love to write a traditionally published book. If that's something you're also intersted in, <a href="mailto:kathrynkaygrayson@gmail.com">shoot me an email!</a></p>
+      <p>Full disclosure: I&apos;d love to write a traditionally published book. If that&apos;s something you&apos;re also intersted in, <a href="mailto:kathrynkaygrayson@gmail.com">shoot me an email!</a></p>
         <div className={styles.eventCardWrapper}>
             <Card className={styles.card}>
             <CardBody>
@@ -22,7 +22,7 @@ export default function BooksCourses() {
                 <Link href={'https://www.telerik.com/campaigns/design-story/ebook--foundations-of-design-for-developers'}>
                     <h3>Foundations of Design for Developers</h3></Link></CardTitle>
                     <CardBody>
-                        <p>Some believe if you're not born with a gift for design, you'll never be able to effectively work with it. This is false. Design is a science-based skill that can be learned by anyone - including you! The "Foundations of Design for Developers" eBook will help you gain a solid grasp of the design fundamentals every engineer needs to know. Many engineers and developers are interested in learning design but discouraged by the mountain of information available.Finish the eBook and you'll be well-equipped to bridge the gap between design and development, and </p>
+                        <p>Some believe if you&apos;re not born with a gift for design, you&apos;ll never be able to effectively work with it. This is false. Design is a science-based skill that can be learned by anyone - including you! The &quot;Foundations of Design for Developers&quot; eBook will help you gain a solid grasp of the design fundamentals every engineer needs to know. Many engineers and developers are interested in learning design but discouraged by the mountain of information available.Finish the eBook and you&apos;ll be well-equipped to bridge the gap between design and development, and </p>
                         <ul>
                             <li>Understand why design decisions are made and what your designer was working towards. </li>
                             <li>Collaborate and find compromises where you may have previously found only frustration.</li>
@@ -46,7 +46,7 @@ export default function BooksCourses() {
         </Card>
           <Card className={styles.card}>
             <CardBody>
-                <CardTitle><h2>O'Reilly On-Demand Course</h2>
+                <CardTitle><h2>O&apos;Reilly On-Demand Course</h2>
                 <Link href={'https://www.oreilly.com/library/view/usability-testing-for/0636920975267/'}>
                     <h3>Usability Testing for Non-UX Professionals: Connect with Users, Test and Improve Your Products, and Get Better at Your Job as a Product Manager, Developer, or Engineering Manager</h3></Link></CardTitle>
                     <CardBody>
