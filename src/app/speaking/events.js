@@ -1,5 +1,74 @@
 export const events = [
   {
+    date: new Date(2025, 8, 13),
+    title: "Kansas City Developer Conference (KCDC)",
+    subtitle: "Kansas City, MO",
+    talk: ["Zero to Design System in Just 4 Hours Workshop", "From Design Systems to Web & Native Apps with React, .NET, and AI"]
+  },
+  {
+    date: new Date(2025, 7, 23),
+    title: "Nebraska.Code",
+    subtitle: "Lincoln, NE",
+    talk: ["Usablity Testing Without a UX Specialist"]
+  },
+  {
+    date: new Date(2025, 6, 12),
+    title: "RenderATL",
+    subtitle: "Atlanta, GA",
+    talk: ["How to Ruin a User Interface"]
+  },
+  {
+    date: new Date(2025, 5, 23),
+    title: "200OK",
+    subtitle: "Tulsa, OK",
+    talk: ["How to Ruin a User Interface"]
+  },
+  {
+    date: new Date(2025, 5, 13),
+    title: "VueConf",
+    subtitle: "Tampa, FL",
+    talk: ["How to Ruin a User Interface"]
+  },
+  {
+    date: new Date(2025, 5, 2),
+    title: "StirTrek",
+    subtitle: "Columbus, OH",
+    talk: ["I didn't know CSS & HTML could do THAT!"],
+    link: ["https://www.youtube.com/watch?v=hRqF3vH972g&list=PLaHMqLt8nxCwHLWI1LL3yKuAvgSj_EcUe&index=51"]
+  },
+   {
+    date: new Date(2024, 8, 14),
+    title: "DevUp",
+    subtitle: "St. Louis, MO",
+    talk: ["How to Ruin a User Interface", "Learn Enough UX to be Dangerous"]
+  },
+  {
+    date: new Date(2024, 6, 26),
+    title: "Kansas City Developer Conference (KCDC)",
+    subtitle: "Kansas City, MO",
+    talk: ["How to Ruin a User Interface", "A Tale of Two Servers: SSR in React and Angular"]
+  },
+    {
+    date: new Date(2024, 6, 18),
+    title: "React Summit EU 2024",
+    subtitle: "Virtual",
+    talk: ["Ethical AI for the Rest of Us"],
+    link: ["https://gitnation.com/contents/ai-ethics-for-the-rest-of-us"]
+  },
+    {
+    date: new Date(2024, 5, 7),
+    title: "O'Reilly Live Course",
+    subtitle: "Virtual",
+    talk: ["Web Accessibility Workshop"]
+  }, 
+  {
+    date: new Date(2024, 4, 3),
+    title: "StirTrek",
+    subtitle: "Columbus, OH",
+    talk: ["Usability Testing Without a UX Specialist"],
+    link: ["https://www.youtube.com/watch?v=wUj-tU05HUM&list=PLaHMqLt8nxCwZ2viFPR4-i2Dtsas-pdFi&index=19"]
+  }, 
+  {
     date: new Date(2023, 10, 7),
     title: "O'Reilly Live Course",
     subtitle: "Virtual",
