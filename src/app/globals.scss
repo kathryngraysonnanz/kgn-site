@@ -23,6 +23,7 @@ h2 {
   font-family: 'PT Mono', monospace;
   font-size: 1.6rem;
   font-weight: normal;
+  color: $tb-kendo-color-primary; 
 }
 
 h3 {
@@ -31,7 +32,7 @@ h3 {
   font-weight: normal;
 }
 
-p {
+p, ul {
   font-size: 1rem;
   line-height: 1.5rem;
 }
@@ -48,5 +49,9 @@ a {
   body {
     background-color: $tb-kendo-body-bg;
     color: $tb-kendo-body-text;
+  }
+
+  ul {
+    color: $tb-kendo-body-text
   }
 }
