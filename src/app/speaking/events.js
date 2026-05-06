@@ -1,4 +1,40 @@
 export const events = [
+    {
+    date: new Date(2026, 9, 10),
+    title: "Kansas City Developer Conference (KCDC)",
+    subtitle: "Kansas City, MO",
+    talk: ["The UX of AI: User Interaction Beyond the Chat Box"]
+  },
+    {
+    date: new Date(2026, 8, 12),
+    title: "RenderATL",
+    subtitle: "Atlanta, GA",
+    talk: ["The Life-Changing Art of Being Wrong"]
+  },
+    {
+    date: new Date(2026, 5, 20),
+    title: "VueConf",
+    subtitle: "Atlanta, GA",
+    talk: ["The Life-Changing Art of Being Wrong"]
+  },
+    {
+    date: new Date(2026, 5, 1),
+    title: "StirTrek",
+    subtitle: "Columbus, OH",
+    talk: ["How to Ruin a User Interface: Surprisingly Easy Ways to Screw Over Your Users", "The Life-Changing Art of Being Wrong"]
+  },
+  {
+    date: new Date(2026, 4, 9),
+    title: "CodeStock",
+    subtitle: "Knoxville, TN",
+    talk: ["How to Ruin a User Interface: Surprisingly Easy Ways to Screw Over Your Users", "The Life-Changing Art of Being Wrong"]
+  },
+   {
+    date: new Date(2026, 2, 25),
+    title: "ConFoo",
+    subtitle: "Montreal, Canada",
+    talk: ["I Didn't Know HTML & CSS Could Do THAT!", "Learn Enough Design to be Dangerous"]
+  },
   {
     date: new Date(2025, 8, 13),
     title: "Kansas City Developer Conference (KCDC)",
