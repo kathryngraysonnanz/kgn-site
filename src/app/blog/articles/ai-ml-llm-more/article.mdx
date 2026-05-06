@@ -1,0 +1,59 @@
+Hello! Welcome to the beginning of a new series: AI Crash Course. This is something I’ve been really excited to write because, while AI is quickly becoming a part of many peoples’ everyday lives, it can often feel like a bit of a black box. How does it work? Why does it work – or (perhaps more importantly, why *doesn’t* it work)? What can it do? What tools can we use to work with it? For many folks, our understanding of AI can be fairly surface-level and focused on our experience with it as an end user; this series aims to be an introductory course for anyone interested in learning more about the technical aspects of how AI models work, but feeling (perhaps) a bit intimidated and unsure where to start. 
+
+If you are a developer who has already been working extensively with building AI agents and skills, this will likely be too low-level for you (but hey, never hurts to refresh on the basics!). However, if you (like many) feel that you might have “missed the on-ramp” or if you’ve been tentatively working with AI in your applications without truly understanding what’s happening behind the scenes: you’re in the right place! To start off, we’re going to make sure we’re all on the same page in terms of terminology. 
+
+It’s common – especially outside of tech spaces – to see a handful of terms used almost interchangeably: AI, GenAI, ML, LLM, GPT, etc. Let’s take a moment to define each of these, so we can use them intentionally moving forward. 
+
+## AI: Artificial Intelligence
+
+IBM defines Artificial Intelligence (AI) as “technology that enables computers and machines to simulate human learning, comprehension, problem solving, decision making, creativity and autonomy.” 
+
+(Fun fact: IBM is also responsible for the famous 1979 slide reading “A computer can never be held accountable, therefore a computer must never make a management decision.” So…things change, I suppose.)  
+
+AI is a high-level, general term that encompasses many more specific terms – in the same way that “exercise” can refer to many more specific movements (running, dancing, lifting, and so on). Generally speaking, modern AI techniques involve training a computer on a dataset in order to do something it wasn’t explicitly programmed to do. 
+
+## ML: Machine Learning
+
+Machine Learning is an approach for training AI systems. It’s called “learning” because the system is able to recognize patterns in the content and draw related conclusions, even if that conclusion wasn’t directly programmed into the system. One common example of this is image recognition: if an AI model is trained on a dataset that includes many photos of dogs, it can learn to identify when a photo shows a dog even if that exact dog photo wasn’t included in the dataset it trained on. 
+
+## Model
+
+A model is any specific AI system that’s been trained in a particular way. Models can be small, locally-hosted things trained on specific, proprietary data, or they can be larger systems trained on broad, general data. 
+
+### Foundation Models
+
+The larger, broadly trained models are known as foundation models. These are probably the ones you’ve used most often, such as GPT, Claude, Gemini, etc. They’ve been generally trained to be okay at many things, but not fantastic at any one thing. Foundation models are meant to be built upon and augmented with additional layers and adjustments to help them get better at specific tasks. This can be done through approaches such as RAG (Retrieval Augmented Generation) or prompt engineering *(these terms are defined later in this article, if you’re not familiar with them)*. The important part is that most adjustments to foundation models happen *after* they’re trained; while some foundation models allow developers to fine-tune (or further train a pre-trained model on a smaller, specialized dataset), they don’t generally have access to change the original pre-training data of the model and can only refine the output. 
+
+## GenAI: Generative Artificial Intelligence
+
+GenAI refers specifically to the use of AI to create “original” content, typically by predicting content one piece at a time based on learned patterns. “Original” is in quotes in that previous sentence, because anything an AI creates is merely an inference from or remixing of the data it has been given access to. ChatGPT and DALL-E are both examples of GenAI technologies – capable of generating content in response to a prompt (or directions) given by a user. GenAI can refer to text-based content, but it also includes video, images, audio, and more. The main differentiator is that GenAI is creating content, rather than completing a task such as classifying, identifying, or similar. 
+
+## LLM: Large Language Model
+
+LLMs are a specific type of GenAI model created with a focus on understanding and replying to human-generated text. They’re called “large language” models because their training data includes huge amounts of text – often thousands upon thousands of books, millions of documents, writing samples scraped from across the internet, and synthetic data (AI-generated content). This makes them especially good at conversations and writing-related tasks such as drafting emails, writing articles, matching tone-of-voice, and more. 
+
+## Prompt
+
+A prompt is the input we give to an AI model in order to return a response from it. Prompts can be as simple as plain-language questions (like “What are the best restaurants in Toronto?”), or they can be complex, multi-step instructions including examples and additional context. 
+
+### Prompt Engineering
+
+The art of writing prompts in a way that enables the model to complete complex and specific tasks (without changing the model’s training) is known as prompt engineering. As Chip Huyen says in *AI Engineering,* “If you teach a model what to do via the context input into the model, you’re doing prompt engineering.” 
+
+A helpful way to think of it can be that a basic prompt tells the model what to do, while prompt engineering gives the model the context and tools to complete the task, as well. This often (but doesn’t have to) include: 
+
+- Writing highly detailed instructions, sometimes including a persona (”Imagine you are a professor of history…”) or specific output formats (”Return the response in JSON matching the following example…).
+- Providing additional information or tools, such as a reference document (“Based on the attached grading scale, review the following essay…”)
+- Breaking down the request into smaller, chained tasks (”First, review the email for typos. Next, identify any additional steps…” rather than “Correct the following email.”)
+
+## Agent
+
+Agents use an AI model as a reasoning engine and enable it to interact with tools or external environments to complete multi-step tasks. By default, AI models don’t have live access to external systems or updated data, but an agent can wrap around the model and interact with specific environments (like the internet). This vastly extends the capabilities of a model, and can be especially helpful for improving the responses of a model for a specific task. For example, RAG (Retrieval Augmented Generation) systems  are often implemented with agent architectures, allowing the model to search and retrieve text or write and execute SQL queries within the environment of the new documents provided in the RAG database.  
+
+### Skill
+
+Skills are the specific “tools” that agents can make use to extend the capabilities of the AI model. For example, Vercel offers and maintains a skill related to “performance optimization for React and Next.js applications”, which is intended to offer agents the specific domain knowledge related to the Next.js framework that’s necessary to write React apps using their technology.   
+
+## RAG: Retrieval Augmented Generation
+
+RAG, or Retrieval Augmented Generation, is a technique that can improve the accuracy of model responses by allowing it to query and retrieve information from a specified external database. Rather than adding content directly to the training data, RAG systems (often with the help of an agent) retrieve additional information from a separate source. This source is usually an intentionally curated collection of files such as past chat logs, software documentation, internal policy files, or similar. RAG tends to be an especially good fit for hyper-specific knowledge, allowing an AI model to answer questions involving information that isn’t generally available (such as “Does Progress Software give their employees the day off for International Women’s Day?”).

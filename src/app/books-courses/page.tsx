@@ -33,17 +33,7 @@ export default function BooksCourses() {
                     </CardBody>
             </CardBody>
         </Card>
-         <Card className={styles.card}>
-            <CardBody>
-                <CardTitle><h2>Free E-Book</h2>
-               
-                    <h3>Foundations of UX for Developers</h3></CardTitle>
-                    <CardBody>
-                        <p>Coming soon!</p>
-                      
-                    </CardBody>
-            </CardBody>
-        </Card>
+        
           <Card className={styles.card}>
             <CardBody>
                 <CardTitle><h2>O&apos;Reilly On-Demand Course</h2>
@@ -52,6 +42,20 @@ export default function BooksCourses() {
                     <CardBody>
                         <p>In an ideal world, usability testing might be considered exclusively the job responsibility of UX designers or researchers. However, for many of us and for various reasons, that just isn&apos;t a reality. No matter what the situation is, running basic usability tests is something everyone is completely capable of—and it comes with the bonus of making us better at our own jobs, as well, by better understanding our users.</p>
                         <p>In this course, we&apos;ll discuss finding participants, thinking through the testing logistics, writing and facilitating a usability test, and reviewing the data. Each learner will get the chance to write a usability testing script for a feature in their own website or application that they&apos;d like to test. Then, they&apos;ll be challenged to practice usability tests with those scripts to get hands-on experience facilitating tests. Learners will leave this course feeling empowered and confident to start a usability testing program at their own workplace!</p>
+                      
+                    </CardBody>
+            </CardBody>
+        </Card>
+        <Card className={styles.card}>
+            <CardBody>
+                <CardTitle><h2>O&apos;Reilly Live Course</h2>
+                <Link href={'https://www.oreilly.com/live-events/web-accessibility-workshop/0636920095498/0642572015757/'}>
+                    <h3>Web Accessibility Workshop</h3></Link></CardTitle>
+                    <CardBody>
+                        <p>The thought of accessibility—especially testing for accessibility—can be intimidating. In reality, writing and testing accessible code requires only moderate adjustments to the development process. Any developer, from junior engineer to senior team lead, can do it.
+                        </p>
+                        <p>
+                        Join expert Kathryn Grayson Nanz to take the mystery out of accessibility. You&apos;ll examine foundational knowledge, vocabulary, and the Web Content Accessibility Guidelines (WCAG) for common aspects of web design, code, and page content. You&apos;ll run a step-by-step accessibility audit on your own website or application, reviewing the product for accessibility in multiple ways and brainstorming solutions for accessibility mistakes. By the end of the course, you'll feel empowered to start building accessible development into your existing processes and patterns at work.</p>
                       
                     </CardBody>
             </CardBody>

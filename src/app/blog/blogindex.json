@@ -322,6 +322,37 @@
         "link": "how-im-using-ai",
         "published": "Aug 06 2025",
         "snippet": "Take what works, leave the rest. "
+    },
+     {
+        "title": "AI Crash Course: AI, ML, LLM, and More",
+        "link": "ai-ml-llm-more",
+        "published": "Feb 12 2026",
+        "snippet": "If you (like many) feel that you might have “missed the on-ramp” or if you’ve been tentatively working with AI in your applications without truly understanding what’s happening behind the scenes: you’re in the right place!"
+    },
+    {
+        "title": "AI Crash Course: Tokens, Predictions, and Temperature",
+        "link": "ai-tokens-predictions",
+        "published": "Feb 26 2026",
+        "snippet": "We often describe AI models as “thinking,” but what is actually happening when an AI model “thinks”? When it’s drafting a response to us, how does it know what to say?"
+    },
+    {
+        "title": "AI Crash Course: Prompt Engineering",
+        "link": "ai-prompt-engineering",
+        "published": "Mar 26 2026",
+        "snippet": "Prompt engineering is one of our most effective and accessible tools for getting a model to behave in the way we would like."
+    },
+    {
+        "title": "AI Crash Course: Jailbreaking, Prompt Extraction, and Bad Actors",
+        "link": "ai-jailbreaking-extraction-bad-actors",
+        "published": "Apr 14 2026",
+        "snippet": "Applications that include features like AI-powered search, chatbots or content generators require a user prompt in addition to our developer-written system prompt. That means an external party also has the chance to give instructions to our model—and those instructions won’t always be aligned with what we want the model to do."
+    },
+    {
+        "title": "AI Crash Course: MCP Servers, Agents, AI Assistants, and Skills",
+        "link": "ai-mcp-agent-assistant-skill",
+        "published": "Apr 30 2026",
+        "snippet": "Many of the popular developer tools and libraries now offer their own MCP (or Model Context Protocol) servers, AI agents or assistants or AI skills—but what’s the difference between these, and where do the fit into your AI workflow? Let’s break it down."
     }
+
 
 ]
