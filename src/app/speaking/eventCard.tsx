@@ -6,7 +6,7 @@ import { Card, CardBody, CardTitle, CardSubtitle  } from "@progress/kendo-react-
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
 import { UrlObject } from 'url';
 
-export default function EventCard(props: { title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; link: (any); talk: (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined)[]; date: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; }) {
+export default function EventCard(props: { location: string; title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; link: (any); talk: (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined)[]; date: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; }) {
 
   return (
     <>
@@ -44,7 +44,7 @@ export default function EventCard(props: { title: string | number | boolean | Re
 
 
              
-                <CardSubtitle ><p className={styles.date}>{props.date}</p></CardSubtitle>
+                <CardSubtitle ><p className={styles.date}>{props.date} • {props.location}</p></CardSubtitle>
             </CardBody>
         </Card>
     </>

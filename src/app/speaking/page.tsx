@@ -25,6 +25,7 @@ export default function Speaking() {
                 talk={events[i].talk} 
                 date={events[i].date.toDateString()} 
                 link={events[i].link}
+                location={events[i].subtitle}
               />
             )}
             </div>
