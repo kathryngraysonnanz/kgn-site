@@ -55,7 +55,7 @@ export default function BooksCourses() {
                         <p>The thought of accessibility—especially testing for accessibility—can be intimidating. In reality, writing and testing accessible code requires only moderate adjustments to the development process. Any developer, from junior engineer to senior team lead, can do it.
                         </p>
                         <p>
-                        Join expert Kathryn Grayson Nanz to take the mystery out of accessibility. You&apos;ll examine foundational knowledge, vocabulary, and the Web Content Accessibility Guidelines (WCAG) for common aspects of web design, code, and page content. You&apos;ll run a step-by-step accessibility audit on your own website or application, reviewing the product for accessibility in multiple ways and brainstorming solutions for accessibility mistakes. By the end of the course, you'll feel empowered to start building accessible development into your existing processes and patterns at work.</p>
+                        Join expert Kathryn Grayson Nanz to take the mystery out of accessibility. You&apos;ll examine foundational knowledge, vocabulary, and the Web Content Accessibility Guidelines (WCAG) for common aspects of web design, code, and page content. You&apos;ll run a step-by-step accessibility audit on your own website or application, reviewing the product for accessibility in multiple ways and brainstorming solutions for accessibility mistakes. By the end of the course, you&apos;ll feel empowered to start building accessible development into your existing processes and patterns at work.</p>
                       
                     </CardBody>
             </CardBody>
